@@ -6,7 +6,7 @@
 /*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:54:08 by victor            #+#    #+#             */
-/*   Updated: 2023/03/28 23:12:25 by victor           ###   ########.fr       */
+/*   Updated: 2023/03/28 23:30:32 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,17 @@ char	**read_map(t_map *mappppp)
 	if (i != rows)
 		return (NULL);
     map[i] = '\0';
+    int j = 0;
+    printf("%s\n", map[0]);
+    int old = ft_strlen(map[0]);
+    // printf("%d\n", old);
+    while (j < mappppp->row)
+    {
+        printf("%d\n", ft_strlen(map[j]));
+        if (ft_strlen(map[j]) != old)
+            return (NULL);
+        j++;
+    }
 	return (map);
 }
 
@@ -160,17 +171,19 @@ int	main(int ac, char **av)
     fd = open(path, O_RDONLY);
     printf("fd:%d\n", fd);
     map = init_map(av[1], fd);
+    if (map == NULL)
+        return (0);
     printf("row:%d\n", map->row);
     printf("col:%d\n", map->col);
     // map_data = read_map(map);
     // if (!map_data)
     //     printf("error");
-    while (i < map->row)
-    {
-        printf("%s\t%d\n", map->map[i], ft_strlen(map->map[i]));
-        i++;
-    }
-    printf("%d\n", is_map_rect(map));
+    // while (i < map->row)
+    // {
+    //     printf("%s\t%d\n", map->map[i], ft_strlen(map->map[i]));
+    //     i++;
+    // }
+    // printf("%d\n", is_map_rect(map));
     // print_loose();
     // print_win();
     // printf("%s\n", map_data[0]);
