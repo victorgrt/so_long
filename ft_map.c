@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_map.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
+/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:26:21 by vgoret            #+#    #+#             */
-/*   Updated: 2023/03/28 15:11:37 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/03/28 18:30:26 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	ft_map_init_nb(t_map *map, char **tab)
 	}
 }
 
-t_map	*init_map(char *name)
+t_map	*init_map(char *name, int fd)
 {
 	t_map	*map;
 	char	*path;
@@ -90,8 +90,9 @@ t_map	*init_map(char *name)
 	if (path == NULL)
 		return (NULL);
 	map->path = path;
-	map->height = map_height(path);
-	map->width = map_width(path);
+	get_map_info(map, fd);
+	// map->height = map_height(path);
+	// map->width = map_width(path);
 	// map->map = map_tab(map->path, map);
 	// ft_map_init_nb(map, map->map);
 	// map->map = map_tab(path);

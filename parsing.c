@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
+/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 13:29:59 by vgoret            #+#    #+#             */
-/*   Updated: 2023/03/27 15:56:16 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/03/28 18:26:56 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,11 @@ char	*map_path(char *name)
 	return (path);
 }
 
-void	print_map(char *name)
+void	print_map(char *name, int fd)
 {
-	int	fd;
 	char	*line;
 
 	name = map_path(name);
-	fd = open(name, O_RDONLY);
 	if (fd < 0)
 		return ;
 	line = get_next_line(fd);

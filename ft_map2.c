@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_map2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
+/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 16:04:00 by vgoret            #+#    #+#             */
-/*   Updated: 2023/03/28 15:10:51 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/03/28 18:19:38 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,27 +159,30 @@ int	get_size(char *line)
 // 	ft_check_rectangle(tab);
 // }
 
-char	**map_tab(char *path, t_map *map)
+char	**map_tab(t_map *map, int fd)
 {
-	int fd;
 	int i;
 	char	*line;
 	char	**tab;
 
-	tab = malloc(sizeof(char) * (map->height + map->width));
+	tab = malloc(sizeof(char *) * (map->row + 1));
 	if (!tab)
 		return (NULL);
 	i = 0;
-	fd = open(path, O_RDONLY);
 	line = get_next_line(fd);
-	while (line)
+	while (line && i < map->row)
 	{
-		tab[i] = line;
-		i++;
-		line = get_next_line(fd);
+		if (ft_strlen(line) != map->col)
+			return (NULL);
+		tab[i] = ft_strdup(line);
 		free(line);
+		line = get_next_line(fd);
+		i++;
 	}
-	close(fd);
+	free(line);
+	if (i != map->row)
+		return (NULL);
+	tab[i] = '\0';
 	return (tab);
 }
 
