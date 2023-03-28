@@ -6,7 +6,7 @@
 /*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:43:46 by vgoret            #+#    #+#             */
-/*   Updated: 2023/03/28 19:07:27 by victor           ###   ########.fr       */
+/*   Updated: 2023/03/28 19:24:21 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,13 @@ t_map	*init_map(char *map_name, int fd);
 char	**map_tab(t_map *map, int fd);
 
 
+char	**read_map(t_map *map);
 char	**ft_putmap_tab(t_map *map, int fd);
 void    get_map_info(t_map *map, int fd);
 /* GAME */
 
 /* UTILS */
-char	*ft_strdup(char *s);
+char	*ft_strdup(const char *s);
+
 
 #endif

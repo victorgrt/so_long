@@ -6,7 +6,7 @@
 /*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:54:08 by victor            #+#    #+#             */
-/*   Updated: 2023/03/28 19:05:29 by victor           ###   ########.fr       */
+/*   Updated: 2023/03/28 19:27:19 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,18 @@ int is_map_valid(t_map *map, char **tab)
     return (1);
 }
 
-char	**read_map(int fd, t_map *mappppp)
+char	**read_map(t_map *mappppp)
 {
 	char	**map;
 	char	*line;
     int     rows = mappppp->row;
     int     cols = mappppp->col;
 	int		i;
+    int     fd;
+    char    *path;
+
+    path = mappppp->path;
+    fd = open(path, O_RDONLY);
 
 	map = (char **)malloc(sizeof(char *) * (rows + 1));
 	if (!map)
@@ -69,12 +74,14 @@ char	**read_map(int fd, t_map *mappppp)
     line = get_next_line(fd);
 	while (line && i < rows)
 	{
-		if (ft_strlen(line) != cols)
-			return (NULL);
+		// if (ft_strlen(line) != cols)
+			// return (NULL);
+
 		map[i] = ft_strdup(line);
+        
 		free(line);
-		line = get_next_line(fd);
-		i++;
+		        line = get_next_line(fd);
+        i++;
 	}
 	free(line);
 	// if (i != rows)
@@ -100,17 +107,23 @@ int	main(int ac, char **av)
 	{
 		printf("Extension de la map INVALIDE\n");
 		return (0);
-	}
-    // printf("%s\n", map->path);
+    }
     path = map_path(av[1]);
     fd = open(path, O_RDONLY);
     map = init_map(av[1], fd);
-    printf("%s\n", map->path);
 
-    map_data = read_map(fd, map);
-	if (!map_data)
-		printf("Failed to read map");
+    map_data = read_map(map);
+if (!map_data)
+    printf("Failed to read map\n");
+else if (!map_data[0])
+    printf("First line of map is empty\n");
+else
     printf("%s\n", map_data[0]);
-    close(fd);
+    printf("%s\n", map_data[1]);
+    printf("%s\n", map_data[2]);
+    printf("%s\n", map_data[3]);
+    printf("%s\n", map_data[4]);
+    printf("%s\n", map_data[5]);
+    // printf("%s\n", map_data[6]);
 	return (0);
 }
