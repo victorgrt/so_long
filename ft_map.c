@@ -6,7 +6,7 @@
 /*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:26:21 by vgoret            #+#    #+#             */
-/*   Updated: 2023/03/28 19:22:43 by victor           ###   ########.fr       */
+/*   Updated: 2023/03/28 22:54:24 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ t_map	*init_map(char *name, int fd)
 		return (NULL);
 	map->path = path;
 	get_map_info(map, fd);
+	map->map = read_map(map);
 	// map->height = map_height(path);
 	// map->width = map_width(path);
 	// map->map = map_tab(map->path, map);

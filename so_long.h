@@ -6,7 +6,7 @@
 /*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:43:46 by vgoret            #+#    #+#             */
-/*   Updated: 2023/03/28 19:24:21 by victor           ###   ########.fr       */
+/*   Updated: 2023/03/28 22:52:40 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,8 @@ void    get_map_info(t_map *map, int fd);
 /* UTILS */
 char	*ft_strdup(const char *s);
 
+/* PRINTER */
+void	print_win();
+void	print_loose();
 
 #endif
