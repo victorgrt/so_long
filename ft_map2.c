@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 16:04:00 by vgoret            #+#    #+#             */
-/*   Updated: 2023/03/27 17:56:12 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/03/28 15:10:51 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,45 +65,91 @@ int	ft_check_compo(char	**tab, t_map *map)
 	return (0);
 }
 
-int	ft_check_rectangle(t_map *map)
+int	get_size(char *line)
 {
-	int		size;
-	int		size2;
-	int		fd;
-	char	*line;
-	// char	*first;
-	
-	fd = open(map->path, O_RDONLY);
-	line = get_next_line(fd);
-	// first = line;
-	printf("line1=%s", line);
-	size2 = ft_strlen(line);
-	printf("len1=%d\n", size2);
-	while (line != NULL)
+	int	i;
+
+	i = 0;
+	while (line[i])
 	{
-		line = get_next_line(fd);
-		if (line != NULL)
-		{
-			size = ft_strlen(line);
-			printf("%s\n", line);
-			printf("size .. %d\n", size);
-			if (size != size2)
-			{
-				printf("Pas RECT");
-				return (1);
-			}
-		}
-		// if (line)
+		i++;
+		// if (line[i] == '\n')
 		// {
-		// 	printf("strlen=%d\n", ft_strlen(line));
-		// 	printf("%s\n", line);		
+		// 	i--;
+		// 	break ;
 		// }
-		free(line);
 	}
-	// size = ft_stl
-	printf("Map rectangulaire\n");
-	return (0);
+	return (i);
 }
+
+// int	ft_check_rectangle(t_map *map)
+// {
+// 	int	size;
+// 	int	size2;
+// 	int	fd;
+// 	int	i;
+// 	char	*line;
+
+// 	i = 0;
+// 	fd = open(map->path, O_RDONLY);
+// 	line = get_next_line(fd);
+// 	i++;
+// 	size = get_size(line);
+// 	printf("size:%d\n", size);
+// 	while (line != NULL)
+// 	{
+// 		line = get_next_line(fd);
+// 		i++;
+// 		printf("line:%s\n", line);
+// 		size2 = get_size(line);
+// 		printf("size2:%d\n", size2);
+// 		if (i == map->height)
+// 			size2++;
+// 		if (size != size2)
+// 		{
+// 			printf("Pas RECT");
+// 			return (1);
+// 		}
+// 		free(line);
+// 	}
+// 	return (0);
+// }
+
+
+// int	ft_check_rectangle(t_map *map)
+// {
+// 	int		size;
+// 	int		size2;
+// 	int		fd;
+// 	char	*line;
+// 	// char	*first;
+	
+// 	fd = open(map->path, O_RDONLY);
+// 	line = get_next_line(fd);
+// 	size2 = ft_strlen(line);
+// 	while (line != NULL)
+// 	{
+// 		line = get_next_line(fd);
+// 		if (line != NULL)
+// 		{
+// 			size = ft_strlen(line);
+// 			if (size != size2)
+// 			{
+// 				printf("Pas RECT");
+// 				return (1);
+// 			}
+// 		}
+// 		// if (line)
+// 		// {
+// 		// 	printf("strlen=%d\n", ft_strlen(line));
+// 		// 	printf("%s\n", line);		
+// 		// }
+// 		free(line);
+// 	}
+// 	// size = ft_stl
+// 	printf("Map rectangulaire\n");
+// 	return (0);
+// }
 
 // int	map_check(char **tab)
 // {
@@ -115,8 +161,6 @@ int	ft_check_rectangle(t_map *map)
 
 char	**map_tab(char *path, t_map *map)
 {
-	// int	row;
-	// int	col;
 	int fd;
 	int i;
 	char	*line;
@@ -125,7 +169,6 @@ char	**map_tab(char *path, t_map *map)
 	tab = malloc(sizeof(char) * (map->height + map->width));
 	if (!tab)
 		return (NULL);
-	// row = 0;
 	i = 0;
 	fd = open(path, O_RDONLY);
 	line = get_next_line(fd);
@@ -134,46 +177,56 @@ char	**map_tab(char *path, t_map *map)
 		tab[i] = line;
 		i++;
 		line = get_next_line(fd);
-		// free(line);
+		free(line);
 	}
-	// while (line[i] != '\0')
-	// {
-	// 	tab[0][i] = line[i];
-	// 	i++;	
-	// }d
-	printf("%d\n", map->height);
-	printf("%d\n", map->width);
-	printf("%s", tab[0]);
-	printf("%s", tab[1]);
-	printf("%s", tab[2]);
-	printf("%s", tab[3]);
-	printf("%s", tab[4]);
-	printf("%s", tab[5]);
-	printf("%s", tab[6]);
-	
-	// printf("%d", tab[0][1]);
-	// while ()
-	return (NULL);
+	close(fd);
+	return (tab);
 }
 
-int	main(int ac, char **av)
+int	ft_check_rect(char **tab, t_map *map)
 {
-	t_map	*map;
-	char	**tab;
+	int	i;
+	int	j;
+	// int	size;
 
-	if (ac != 2)
+	i = 0;
+	while (i < map->height)
 	{
-		printf("Probleme d'arguments");
-		return (0);
+		j = 0;
+		while (j < map->width)
+			j++;
+		if (j != ft_strlen(tab[i]))
+		{
+			printf("j:%d\nstrlen:%d\n", j, ft_strlen(tab[i]));
+			printf("Pas rect");
+			return (1);
+		}
+		i++;
 	}
-	if (verif_arg(av[1]) == 0)
-	{
-		printf("Extension de la map INVALIDE\n");
-		return (0);
-	}
-	map = init_map(av[1]);
-	tab = map_tab(map->path, map);
-	// ft_check_rectangle(map);
-	ft_check_compo(tab, map);
 	return (0);
 }
+
+// int	main(int ac, char **av)
+// {
+// 	t_map	*map;
+// 	// char	**tab;
+
+// 	if (ac != 2)
+// 	{
+// 		printf("Probleme d'arguments");
+// 		return (0);
+// 	}
+// 	if (verif_arg(av[1]) == 0)
+// 	{
+// 		printf("Extension de la map INVALIDE\n");
+// 		return (0);
+// 	}
+// 	map = init_map(av[1]);
+// 	// tab = map_tab(map->path, map);
+// 	// ft_check_rect(tab, map);
+// 	// printf("%d\n", tab[0][0]);
+// 	// ft_check_rectangle(map);
+// 	// ft_check_compo(tab, map);
+// 	printf("p:%d\nc:%d\ne:%d\n", map->nb_p, map->nb_c, map->nb_e);
+// 	return (0);
+// }

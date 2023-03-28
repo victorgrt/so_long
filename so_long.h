@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:43:46 by vgoret            #+#    #+#             */
-/*   Updated: 2023/03/27 16:18:03 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/03/28 14:33:37 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@ typedef struct s_map{
 	char	*path;
 	int		width;
 	int		height;
+	int		nb_c;
+	int		nb_p;
+	int		nb_e;
 } t_map;
 
 /* GET_NEXT_LINE */

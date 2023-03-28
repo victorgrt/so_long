@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:26:21 by vgoret            #+#    #+#             */
-/*   Updated: 2023/03/27 16:19:42 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/03/28 15:11:37 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,31 @@ int	map_width(char *name)
 	return (i);
 }
 
+void	ft_map_init_nb(t_map *map, char **tab)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	// printf("reso:height%d\nwidth%d\n", map->height, map->width);
+	// printf("height:%d\nwidth:%d\n", map->height, map->width);
+	while (i < map->height)
+	{
+		j = 0;
+		while (j < map->width)
+		{
+			if (tab[i][j] == 'P')
+				map->nb_p++;
+			else if (tab[i][j] == 'E')
+				map->nb_e++;
+			else if (tab[i][j] == 'C')
+				map->nb_c++;
+			j++;
+		}
+		i++;
+	}
+}
+
 t_map	*init_map(char *name)
 {
 	t_map	*map;
@@ -67,6 +92,8 @@ t_map	*init_map(char *name)
 	map->path = path;
 	map->height = map_height(path);
 	map->width = map_width(path);
+	// map->map = map_tab(map->path, map);
+	// ft_map_init_nb(map, map->map);
 	// map->map = map_tab(path);
 
 	return (map);
