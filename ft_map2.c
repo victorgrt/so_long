@@ -6,7 +6,7 @@
 /*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 16:04:00 by vgoret            #+#    #+#             */
-/*   Updated: 2023/03/28 18:19:38 by victor           ###   ########.fr       */
+/*   Updated: 2023/03/28 18:47:10 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,7 +165,7 @@ char	**map_tab(t_map *map, int fd)
 	char	*line;
 	char	**tab;
 
-	tab = malloc(sizeof(char *) * (map->row + 1));
+	tab = (char **)malloc(sizeof(char *) * (map->row + 1));
 	if (!tab)
 		return (NULL);
 	i = 0;
@@ -182,7 +182,8 @@ char	**map_tab(t_map *map, int fd)
 	free(line);
 	if (i != map->row)
 		return (NULL);
-	tab[i] = '\0';
+	tab[i] = NULL;
+	map->map = tab;
 	return (tab);
 }
 

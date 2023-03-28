@@ -6,7 +6,7 @@
 /*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:43:46 by vgoret            #+#    #+#             */
-/*   Updated: 2023/03/28 18:30:33 by victor           ###   ########.fr       */
+/*   Updated: 2023/03/28 19:07:27 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ int	verif_arg(char *str);
 
 /* MAP */
 void	print_map(char *map_name, int fd);
-int	map_height(char *map_name);
-int	map_width(char *map_name);
+int	map_height(char *map_name, int fd);
+int	map_width(char *map_name, int fd);
 char	*map_path(char *map_name);
 t_map	*init_map(char *map_name, int fd);
 char	**map_tab(t_map *map, int fd);

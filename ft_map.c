@@ -6,21 +6,18 @@
 /*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:26:21 by vgoret            #+#    #+#             */
-/*   Updated: 2023/03/28 18:30:26 by victor           ###   ########.fr       */
+/*   Updated: 2023/03/28 19:07:12 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	map_height(char *name)
+int	map_height(char *name, int fd)
 {
 	int	i;
-	int	fd;
 	char	*line;
 	
 	i = 0;
-
-	fd = open(name, O_RDONLY);
 	line = get_next_line(fd);
 	while (line)
 	{
@@ -28,18 +25,15 @@ int	map_height(char *name)
 		i++;
 		free(line);
 	}
-	close(fd);
 	return (i);
 }
 
-int	map_width(char *name)
+int	map_width(char *name, int fd)
 {
 	int	i;
-	int	fd;
 	char	*line;
 	
 	i = 0;
-	fd = open(name, O_RDONLY);
 	line = get_next_line(fd);
 	i += ft_strlen(line);
 	while (line)
@@ -49,7 +43,6 @@ int	map_width(char *name)
 			i += ft_strlen(line) - 1;
 		free(line);
 	}
-	close(fd);
 	return (i);
 }
 

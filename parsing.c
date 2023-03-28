@@ -6,7 +6,7 @@
 /*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 13:29:59 by vgoret            #+#    #+#             */
-/*   Updated: 2023/03/28 18:26:56 by victor           ###   ########.fr       */
+/*   Updated: 2023/03/28 18:39:20 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ char	*map_path(char *name)
 {
 	char	*path;
 	int		i;
-	int		fd;
 
 	path = malloc(sizeof(char) * 5 + ft_strlen(name));
 	path[0] = 'm';
@@ -47,13 +46,6 @@ char	*map_path(char *name)
 		path[i + 5] = name[i];
 		i++;
 	}
-	fd = open(path, O_RDONLY);
-	if (fd < 0)
-	{
-		printf(" 404 Path not found\n");
-		return (NULL);
-	}
-	close(fd);
 	return (path);
 }
 

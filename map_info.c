@@ -6,7 +6,7 @@
 /*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:54:08 by victor            #+#    #+#             */
-/*   Updated: 2023/03/28 18:32:03 by victor           ###   ########.fr       */
+/*   Updated: 2023/03/28 19:05:29 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,42 @@ int is_map_valid(t_map *map, char **tab)
     return (1);
 }
 
+char	**read_map(int fd, t_map *mappppp)
+{
+	char	**map;
+	char	*line;
+    int     rows = mappppp->row;
+    int     cols = mappppp->col;
+	int		i;
+
+	map = (char **)malloc(sizeof(char *) * (rows + 1));
+	if (!map)
+		return (NULL);
+	i = 0;
+    line = get_next_line(fd);
+	while (line && i < rows)
+	{
+		if (ft_strlen(line) != cols)
+			return (NULL);
+		map[i] = ft_strdup(line);
+		free(line);
+		line = get_next_line(fd);
+		i++;
+	}
+	free(line);
+	// if (i != rows)
+		// return (NULL);
+	map[i] = '\0';
+	return (map);
+}
+
+
 int	main(int ac, char **av)
 {
 	t_map	*map;
     int     fd;
-	char	**tab;
+	char	**map_data;
+    char    *path;
 
 	if (ac != 2)
 	{
@@ -70,15 +101,16 @@ int	main(int ac, char **av)
 		printf("Extension de la map INVALIDE\n");
 		return (0);
 	}
-    fd = open(map_path(av[1]), O_RDONLY);
-	map = init_map(av[1], fd);
-    
+    // printf("%s\n", map->path);
+    path = map_path(av[1]);
+    fd = open(path, O_RDONLY);
+    map = init_map(av[1], fd);
+    printf("%s\n", map->path);
 
-    printf("%d\n%d\n", map->row, map->col);
-	tab = map_tab(map, fd);
-    printf("valid ? %d\n", is_map_valid(map, tab));
+    map_data = read_map(fd, map);
+	if (!map_data)
+		printf("Failed to read map");
+    printf("%s\n", map_data[0]);
     close(fd);
-    // ft_putmap_tab(map);
-	// ft_print_tab(tab);
 	return (0);
 }
