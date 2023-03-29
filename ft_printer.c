@@ -6,27 +6,11 @@
 /*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 22:41:54 by victor            #+#    #+#             */
-/*   Updated: 2023/03/29 18:17:57 by victor           ###   ########.fr       */
+/*   Updated: 2023/03/29 18:38:15 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-int handle_map_error(t_map *map)
-{
-    if (is_map_closed(map) == 1)
-    {
-        printf("Error\nMap not closed\n");
-        return (1);
-    }
-    if (is_map_rules(map) == 1)
-    {
-        printf("Error\nCheck Assets of the map\n");
-        return (1);
-    }
-
-    return (0);
-}
 
 void    print_win()
 {

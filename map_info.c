@@ -6,7 +6,7 @@
 /*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:54:08 by victor            #+#    #+#             */
-/*   Updated: 2023/03/29 18:19:55 by victor           ###   ########.fr       */
+/*   Updated: 2023/03/29 18:38:37 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,41 +178,57 @@ char	**read_map(t_map *mappppp)
 	return (map);
 }
 
-int	main(int ac, char **av)
+int handle_map_error(t_map *map)
 {
-	t_map	*map;
-    // s_player    *player;
-    int     fd;
-	// char	**map_data;
-    char    *path;
-    // int i = 0;
-
-	if (ac != 2)
-	{
-		printf("Error\nNo Map for so_long\n ");
-		return (0);
-	}
-	if (verif_arg(av[1]) == 0)
-	{
-		printf("Error\nExtension de la map INVALIDE\n");
-		return (0);
-    }
-    path = map_path(av[1]);
-    printf("path:%s\n", path);
-    fd = open(path, O_RDONLY);
-    printf("fd:%d\n", fd);
-    map = init_map(av[1], fd);
-    if (map == NULL)
+    if (is_map_closed(map) == 1)
     {
-        printf("Error\nMap pas rectangle\n");
-        return (0);
+        printf("Error\nMap not closed\n");
+        return (1);
     }
-    if (map == NULL)
-        return (0);
-    printf("row:%d\n", map->row);
-    printf("col:%d\n", map->col);
-	if (handle_map_error(map) == 1)
-		return (1);
-    printf("map info/P:%d  E:%d  C:%d\n", map->nb_p, map->nb_e, map->nb_c);
-	return (0);
+    if (is_map_rules(map) == 1)
+    {
+        printf("Error\nCheck Assets of the map\n");
+        return (1);
+    }
+
+    return (0);
 }
+
+// int	main(int ac, char **av)
+// {
+// 	t_map	*map;
+//     // s_player    *player;
+//     int     fd;
+// 	// char	**map_data;
+//     char    *path;
+//     // int i = 0;
+
+// 	if (ac != 2)
+// 	{
+// 		printf("Error\nNo Map for so_long\n ");
+// 		return (0);
+// 	}
+// 	if (verif_arg(av[1]) == 0)
+// 	{
+// 		printf("Error\nExtension de la map INVALIDE\n");
+// 		return (0);
+//     }
+//     path = map_path(av[1]);
+//     printf("path:%s\n", path);
+//     fd = open(path, O_RDONLY);
+//     printf("fd:%d\n", fd);
+//     map = init_map(av[1], fd);
+//     if (map == NULL)
+//     {
+//         printf("Error\nMap pas rectangle\n");
+//         return (0);
+//     }
+//     if (map == NULL)
+//         return (0);
+//     printf("row:%d\n", map->row);
+//     printf("col:%d\n", map->col);
+// 	if (handle_map_error(map) == 1)
+// 		return (1);
+//     printf("map info/P:%d  E:%d  C:%d\n", map->nb_p, map->nb_e, map->nb_c);
+// 	return (0);
+// }

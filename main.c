@@ -6,7 +6,7 @@
 /*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:36:29 by vgoret            #+#    #+#             */
-/*   Updated: 2023/03/29 17:59:37 by victor           ###   ########.fr       */
+/*   Updated: 2023/03/29 19:21:45 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,45 +20,78 @@
 #define WINDOW_WIDTH 1024
 #define WINDOW_HEIGHT 720
 
+#define BLUE 0x0000FF
+#define RED 0xFF0000
+
+
+
 #define MLX_ERROR 1
 
-typedef struct s_data
-{
-	void	*mlx_ptr;
-	void	*win_ptr;
-}	t_data;
+typedef struct s_data {
+    void    *mlx_win;
+    void    *mlx;
+    void    *img;
+    char    *addr;
+    int     bits_per_pixel;
+    int     line_length;
+    int     endian;
+} t_data;
 
-int	handle_keypress(int keysym, t_data *data)
+void my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
-	if (keysym == XK_Escape)
-		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-	printf("Key : %d\n", keysym);
-	return (0);
+    char    *dst;
+
+    dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+    *(unsigned int*)dst = color;
 }
 
-// int	handle_keyrelease(int keysym, void *data)
-// {
-// 	printf("Keyrelease :%d\n", keysym);
-// 	return (0);
-// }
+void	ft_draw_window(t_data img, int height, int width, int color)
+{
+	int	offset;
+	int	x;
+	int	y;
 
-// int main(void)
-// {
-// 	void	*mlx_ptr;
-// 	void	*win_ptr;
+	x = 0;
+	y = 0;
+	offset = (y * img.line_length + x * (img.bits_per_pixel / 8));
+	while (y < width)
+    {
+        x = 0;
+        while(x < height)
+        {
+            offset = (y * img.line_length + x * (img.bits_per_pixel / 8));
+            *(unsigned int *)(img.addr + offset) = color;
+            x++;
+        }
+        y++;
+    }
+}
 
-// 	mlx_ptr = mlx_init();
-// 	if (mlx_ptr == NULL)
-// 		return (MLX_ERROR);
-// 	win_ptr = mlx_new_window(mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT, "My first window!"); //mon pointeur de window
-// 	if (win_ptr == NULL)
-// 	{
-// 		free(win_ptr);
-// 		return (MLX_ERROR);
-// 	}
-// 	while (1)
-// 		;
-// 	mlx_destroy_window(mlx_ptr, win_ptr);
-// 	mlx_destroy_display(mlx_ptr);
-// 	free(mlx_ptr);
-// }
+int main(void)
+{
+    // int     x;
+    // int     y;
+    t_data  img;
+
+    img.mlx = mlx_init();
+    img.mlx_win = mlx_new_window(img.mlx, WINDOW_HEIGHT, WINDOW_WIDTH, "so_long");
+    img.img = mlx_new_image(img.mlx, 1920, 1080);
+    img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
+                                &img.endian);
+    my_mlx_pixel_put(&img, 5, 5, 0x00FF0000);
+	ft_draw_window(img, WINDOW_HEIGHT, WINDOW_WIDTH, RED);
+    // while (y < 1080)
+    // {
+    //     x = 0;
+    //     while(x < 1920)
+    //     {
+    //         int offset = (y * img.line_length + x * (img.bits_per_pixel / 8));
+    //         *(unsigned int *)(img.addr + offset) = 0x00FF0000;
+    //         x++;
+    //     }
+    //     y++;
+    // }
+    mlx_put_image_to_window(img.mlx, img.mlx_win, img.img, 0, 0);
+    mlx_loop(img.mlx);
+    return (0);
+}
