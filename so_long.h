@@ -6,7 +6,7 @@
 /*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:43:46 by vgoret            #+#    #+#             */
-/*   Updated: 2023/03/28 22:52:40 by victor           ###   ########.fr       */
+/*   Updated: 2023/03/29 15:25:55 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@
 #endif
 
 typedef struct s_player{
-	
+	int	row;
+	int	col;
 } s_player;
 
 typedef struct s_map{

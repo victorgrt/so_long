@@ -6,7 +6,7 @@
 /*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:26:21 by vgoret            #+#    #+#             */
-/*   Updated: 2023/03/29 02:49:28 by victor           ###   ########.fr       */
+/*   Updated: 2023/03/29 15:43:06 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,10 +88,7 @@ t_map	*init_map(char *name, int fd)
 	map->nb_p = 0;
 	get_map_info(map, fd);
 	if (read_map(map) == NULL)
-	{
-		printf("Pas carré");
 		return (NULL);
-	}
 	map->map = read_map(map);
 	// map->height = map_height(path);
 	// map->width = map_width(path);
