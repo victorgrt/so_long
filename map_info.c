@@ -6,7 +6,7 @@
 /*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:54:08 by victor            #+#    #+#             */
-/*   Updated: 2023/03/29 18:38:37 by victor           ###   ########.fr       */
+/*   Updated: 2023/03/29 22:50:27 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int is_map_closed(t_map *map)
     return (0);
 }
 
-int is_map_rules(t_map *map)
+int is_map_rules(t_map *map, s_player *player)
 {
     int i;
     int j;
@@ -104,8 +104,8 @@ int is_map_rules(t_map *map)
             // printf("%c\n", map->map[i][j]);
             if (map->map[i][j] == 'P')
             {
-                // player->row = i;
-                // player->col = j;
+                player->pos_y = i;
+                player->pos_x = j;
                 map->nb_p += 1;
             }
             if (map->map[i][j] == 'C')
@@ -178,14 +178,14 @@ char	**read_map(t_map *mappppp)
 	return (map);
 }
 
-int handle_map_error(t_map *map)
+int handle_map_error(t_map *map, s_player *player)
 {
     if (is_map_closed(map) == 1)
     {
         printf("Error\nMap not closed\n");
         return (1);
     }
-    if (is_map_rules(map) == 1)
+    if (is_map_rules(map, player) == 1)
     {
         printf("Error\nCheck Assets of the map\n");
         return (1);
@@ -194,41 +194,50 @@ int handle_map_error(t_map *map)
     return (0);
 }
 
-// int	main(int ac, char **av)
-// {
-// 	t_map	*map;
-//     // s_player    *player;
-//     int     fd;
-// 	// char	**map_data;
-//     char    *path;
-//     // int i = 0;
+int	main(int ac, char **av)
+{
+	t_map	*map;
+    s_player    *player;
+    int     fd;
+	// char	**map_data;
+    char    *path;
+    // int i = 0;
 
-// 	if (ac != 2)
-// 	{
-// 		printf("Error\nNo Map for so_long\n ");
-// 		return (0);
-// 	}
-// 	if (verif_arg(av[1]) == 0)
-// 	{
-// 		printf("Error\nExtension de la map INVALIDE\n");
-// 		return (0);
-//     }
-//     path = map_path(av[1]);
-//     printf("path:%s\n", path);
-//     fd = open(path, O_RDONLY);
-//     printf("fd:%d\n", fd);
-//     map = init_map(av[1], fd);
-//     if (map == NULL)
-//     {
-//         printf("Error\nMap pas rectangle\n");
-//         return (0);
-//     }
-//     if (map == NULL)
-//         return (0);
-//     printf("row:%d\n", map->row);
-//     printf("col:%d\n", map->col);
-// 	if (handle_map_error(map) == 1)
-// 		return (1);
-//     printf("map info/P:%d  E:%d  C:%d\n", map->nb_p, map->nb_e, map->nb_c);
-// 	return (0);
-// }
+	if (ac != 2)
+	{
+		printf("Error\nNo Map for so_long\n ");
+		return (0);
+	}
+	if (verif_arg(av[1]) == 0)
+	{
+		printf("Error\nExtension de la map INVALIDE\n");
+		return (0);
+    }
+    path = map_path(av[1]);
+    printf("path:%s\n", path);
+    fd = open(path, O_RDONLY);
+    printf("fd:%d\n", fd);
+    map = init_map(av[1], fd);
+    player = malloc(sizeof(s_player));
+    if (!player)
+    {
+        printf("erreur malloc");
+        return (0);
+    }
+    player->pos_y = 0;
+    player->pos_x = 0;
+    if (map == NULL)
+    {
+        printf("Error\nMap pas rectangle\n");
+        return (0);
+    }
+    if (map == NULL)
+        return (0);
+    printf("row:%d\n", map->row);
+    printf("col:%d\n", map->col);
+	if (handle_map_error(map, player) == 1)
+		return (1);
+    printf("map info/P:%d  E:%d  C:%d\n", map->nb_p, map->nb_e, map->nb_c);
+    printf("player[%d][%d]\n", player->pos_x, player->pos_y);
+	return (0);
+}

@@ -6,7 +6,7 @@
 #    By: victor <victor@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/16 16:44:56 by vgoret            #+#    #+#              #
-#    Updated: 2023/03/29 19:31:07 by victor           ###   ########.fr        #
+#    Updated: 2023/03/29 22:13:00 by victor           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ CC      =	gcc
 
 SRC = main.c parsing.c ft_check_map.c ft_map.c ft_map2.c ft_printer.c map_info.c \
 	player.c utils.c \
+	draw_map.c \
 	src/get_next_line.c src/get_next_line_utils.c \
 
 OBJ = ${SRC:.c=.o}
