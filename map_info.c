@@ -6,7 +6,7 @@
 /*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:54:08 by victor            #+#    #+#             */
-/*   Updated: 2023/03/29 22:50:27 by victor           ###   ########.fr       */
+/*   Updated: 2023/03/29 23:11:33 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,50 +194,50 @@ int handle_map_error(t_map *map, s_player *player)
     return (0);
 }
 
-int	main(int ac, char **av)
-{
-	t_map	*map;
-    s_player    *player;
-    int     fd;
-	// char	**map_data;
-    char    *path;
-    // int i = 0;
+// int	main(int ac, char **av)
+// {
+// 	t_map	*map;
+//     s_player    *player;
+//     int     fd;
+// 	// char	**map_data;
+//     char    *path;
+//     // int i = 0;
 
-	if (ac != 2)
-	{
-		printf("Error\nNo Map for so_long\n ");
-		return (0);
-	}
-	if (verif_arg(av[1]) == 0)
-	{
-		printf("Error\nExtension de la map INVALIDE\n");
-		return (0);
-    }
-    path = map_path(av[1]);
-    printf("path:%s\n", path);
-    fd = open(path, O_RDONLY);
-    printf("fd:%d\n", fd);
-    map = init_map(av[1], fd);
-    player = malloc(sizeof(s_player));
-    if (!player)
-    {
-        printf("erreur malloc");
-        return (0);
-    }
-    player->pos_y = 0;
-    player->pos_x = 0;
-    if (map == NULL)
-    {
-        printf("Error\nMap pas rectangle\n");
-        return (0);
-    }
-    if (map == NULL)
-        return (0);
-    printf("row:%d\n", map->row);
-    printf("col:%d\n", map->col);
-	if (handle_map_error(map, player) == 1)
-		return (1);
-    printf("map info/P:%d  E:%d  C:%d\n", map->nb_p, map->nb_e, map->nb_c);
-    printf("player[%d][%d]\n", player->pos_x, player->pos_y);
-	return (0);
-}
+// 	if (ac != 2)
+// 	{
+// 		printf("Error\nNo Map for so_long\n ");
+// 		return (0);
+// 	}
+// 	if (verif_arg(av[1]) == 0)
+// 	{
+// 		printf("Error\nExtension de la map INVALIDE\n");
+// 		return (0);
+//     }
+//     path = map_path(av[1]);
+//     printf("path:%s\n", path);
+//     fd = open(path, O_RDONLY);
+//     printf("fd:%d\n", fd);
+//     map = init_map(av[1], fd);
+//     player = malloc(sizeof(s_player));
+//     if (!player)
+//     {
+//         printf("erreur malloc");
+//         return (0);
+//     }
+//     player->pos_y = 0;
+//     player->pos_x = 0;
+//     if (map == NULL)
+//     {
+//         printf("Error\nMap pas rectangle\n");
+//         return (0);
+//     }
+//     if (map == NULL)
+//         return (0);
+//     printf("row:%d\n", map->row);
+//     printf("col:%d\n", map->col);
+// 	if (handle_map_error(map, player) == 1)
+// 		return (1);
+//     printf("map info/P:%d  E:%d  C:%d\n", map->nb_p, map->nb_e, map->nb_c);
+//     printf("player[%d][%d]\n", player->pos_x, player->pos_y);
+// 	return (0);
+// }
