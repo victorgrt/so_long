@@ -6,7 +6,7 @@
 /*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:36:29 by vgoret            #+#    #+#             */
-/*   Updated: 2023/03/29 19:21:45 by victor           ###   ########.fr       */
+/*   Updated: 2023/03/29 19:31:19 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,9 @@
 
 #define BLUE 0x0000FF
 #define RED 0xFF0000
-
-
+#define	GREEN 0x00ff00
+#define	BLACK 0x000000
+#define WHITE 0xFFFFFF
 
 #define MLX_ERROR 1
 
@@ -79,18 +80,7 @@ int main(void)
     img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
                                 &img.endian);
     my_mlx_pixel_put(&img, 5, 5, 0x00FF0000);
-	ft_draw_window(img, WINDOW_HEIGHT, WINDOW_WIDTH, RED);
-    // while (y < 1080)
-    // {
-    //     x = 0;
-    //     while(x < 1920)
-    //     {
-    //         int offset = (y * img.line_length + x * (img.bits_per_pixel / 8));
-    //         *(unsigned int *)(img.addr + offset) = 0x00FF0000;
-    //         x++;
-    //     }
-    //     y++;
-    // }
+	ft_draw_window(img, WINDOW_HEIGHT, WINDOW_WIDTH, GREEN);
     mlx_put_image_to_window(img.mlx, img.mlx_win, img.img, 0, 0);
     mlx_loop(img.mlx);
     return (0);
