@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+         #
+#    By: victor <victor@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/16 16:44:56 by vgoret            #+#    #+#              #
-#    Updated: 2023/03/27 12:36:43 by vgoret           ###   ########.fr        #
+#    Updated: 2023/03/29 17:50:16 by victor           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,9 @@ CC      =	gcc
 ################################################################################
 # * SRC * #
 
-SRC = main.c
+SRC = main.c parsing.c ft_check_map.c ft_map.c ft_map2.c ft_printer.c map_info.c \
+	player.c utils.c \
+	src/get_next_line.c src/get_next_line_utils.c \
 
 OBJ = ${SRC:.c=.o}
 
@@ -29,11 +31,10 @@ OBJ = ${SRC:.c=.o}
 all: ${NAME}
 
 ${NAME} : ${OBJ}
-	$(CC) ${OBJ} ${CCFLAGS} -I/usr/include -Imlx_linux -O3 -c $< -o $@
+	$(CC) ${OBJ} ${CCFLAGS} -I/usr/include -Imlx_linux -Lmlx_linux -lmlx_Linux -L/usr/lib -lXext -lX11 -lm -lz -o $@
 
-%.o : %.c
-	$(CC) ${CCFLAGS} ${SRC} -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
-
+%.o: %.c
+	$(CC) ${CCFLAGS} -Imlx_linux -c $< -o $@
 
 clean:
 	@rm -f ${OBJ}

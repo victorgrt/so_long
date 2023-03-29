@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
+/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:36:29 by vgoret            #+#    #+#             */
-/*   Updated: 2023/03/27 12:42:58 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/03/29 17:51:08 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ int	handle_keypress(int keysym, t_data *data)
 	return (0);
 }
 
-int	handle_keyrelease(int keysym, void *data)
-{
-	printf("Keyrelease :%d\n", keysym);
-	return (0);
-}
+// int	handle_keyrelease(int keysym, void *data)
+// {
+// 	printf("Keyrelease :%d\n", keysym);
+// 	return (0);
+// }
 
 int main(void)
 {

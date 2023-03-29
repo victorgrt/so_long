@@ -6,7 +6,7 @@
 /*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 15:05:53 by vgoret            #+#    #+#             */
-/*   Updated: 2023/03/28 18:26:11 by victor           ###   ########.fr       */
+/*   Updated: 2023/03/29 17:31:30 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,41 +29,6 @@ void	ft_print_tab(char **tab)
 		}
 		i++;
 	}
-}
-
-
-
-char	**ft_putmap_tab(t_map *map, int fd)
-{
-	char	**tab;
-	char	*line;
-	int		i;
-	int		j;
-
-	tab = malloc(sizeof(char) * (map->height * map->width));
-	if (!tab)
-		return (0);
-	line = get_next_line(fd);
-	i = 0;
-	j = 0;
-	while (line[j])
-	{
-		tab[i][j] = line[j];
-		j++; 
-	}
-	while (line)
-	{
-		j = 0;
-		line = get_next_line(fd);
-		while (line[j])
-		{
-			tab[i][j] = line[j];
-			j++;
-		}
-		free(line);
-	}
-	return (tab);
-
 }
 
 // int	main(int ac, char **av)

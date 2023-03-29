@@ -6,7 +6,7 @@
 /*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 16:04:00 by vgoret            #+#    #+#             */
-/*   Updated: 2023/03/28 18:47:10 by victor           ###   ########.fr       */
+/*   Updated: 2023/03/29 17:32:22 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,51 +19,7 @@
 1111111111111
 */
 
-int	ft_check_compo(char	**tab, t_map *map)
-{
-	int	p;
-	int	e;
-	int	c;
-	int	i;
-	int	j;
 
-	i = 0;
-	j = 0;
-	p = 0;
-	e = 0;
-	c = 0;
-	while (i < map->height)
-	{
-		j = 0;
-		while (j < map->width)
-		{
-			if (tab[i][j] == 'p')
-				p++;
-			else if (tab[i][j] == 'e')
-				e++;
-			else if (tab[i][j] == 's')
-				c++;
-			j++;
-		}
-		i++;
-	}
-	if (e != 1)
-	{
-		printf("Probleme E");
-		return (1);
-	}
-	else if (c < 1)
-	{
-		printf("Pas assez de C");
-		return (1);
-	}
-	else if (p != 1)
-	{
-		printf("Probleme P");
-		return (1);
-	}
-	return (0);
-}
 
 int	get_size(char *line)
 {
@@ -185,29 +141,6 @@ char	**map_tab(t_map *map, int fd)
 	tab[i] = NULL;
 	map->map = tab;
 	return (tab);
-}
-
-int	ft_check_rect(char **tab, t_map *map)
-{
-	int	i;
-	int	j;
-	// int	size;
-
-	i = 0;
-	while (i < map->height)
-	{
-		j = 0;
-		while (j < map->width)
-			j++;
-		if (j != ft_strlen(tab[i]))
-		{
-			printf("j:%d\nstrlen:%d\n", j, ft_strlen(tab[i]));
-			printf("Pas rect");
-			return (1);
-		}
-		i++;
-	}
-	return (0);
 }
 
 // int	main(int ac, char **av)
