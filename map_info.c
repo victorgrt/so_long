@@ -6,7 +6,7 @@
 /*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:54:08 by victor            #+#    #+#             */
-/*   Updated: 2023/03/28 23:30:32 by victor           ###   ########.fr       */
+/*   Updated: 2023/03/29 02:25:30 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,36 +44,92 @@ void    get_map_info(t_map *map, int fd)
 //     return (0);
 // }
 
-// int is_map_valid(t_map *map, char **tab)
-// {
+int is_map_closed(t_map *map)
+{
+    int i;
+    int j;
+    int col;
 
-//     if (is_map_closed(map, tab) == 1)
-//         return (1);
-//     // else if (is_map_rect(map, tab) == 1)
-//     //     return (1);
-//     // else if (is_map_doable(map, tab) == 1)
-//     //     return (1);
-//     // else if (is_map_rect(map, tab) == 1)
-//     //     return (1);
+    printf("\n");
+    col = map->col;
+    i = 0;
+    j = 0;
+    while (j < map->row)
+    {
+        printf("%s\t[%d]\tlen :%d\t\n", map->map[j], j, ft_strlen(map->map[j]));
+        int size = ft_strlen(map->map[j]);
+        i = 0;
+        while (map->map[j] && i < map->row)
+        {
+            // printf("ici %d\n", map->map[map->row-1][i]);
+            //droite et gauche done
+            if (map->map[i][0] != 49)
+            {
+                printf("ici : %d\ti : %d\tj :%d\n", map->map[j][i], i, j);
+                return (1);
+            }
+            printf("size:%d\t%d\n", size, map->map[j][size-1]);
+            if (map->map[i][size - 1] != '1')
+            {
+                printf("la : %d\ti : %d\tj :%d\n", map->map[j][i], i, size);
+                return (1);
+            }
+            //haut et bas a faire
+
+            // if (map->map[i][size - 1] != '1')
+            // {
+            //     printf("la : %d\ti : %d\tj :%d\n", map->map[j][i], i, size);
+            //     return (1);
+            // }
+            // if (map->map[map->row-1][i] != '1')
+            //     return (1);
+            i++; 
+        }
+        j++;
+    }
+    i = 0;
+    j = 0;
+    while (j < map->col)
+    {
+        i = 0;
+        while (map->map[j] && i < map->col - 1)
+        {
+            // printf("ici %d\n", map->map[map->row-1][i]);
+            //droite et gauche done
+            if (map->map[0][i] != 49)
+            {
+                printf("ici : %d\ti : %d\tj :%d\n", map->map[j][i], i, j);
+                return (1);
+            }
+            if (map->map[map->row-1][i] != 49)
+            {
+                printf("ici : %d\ti : %d\tj :%d\n", map->map[j][i], i, j);
+                return (1);
+            }
+            i++;
+        }
+        j++;
+    }
     
     
-//     return (0);
+    
+    return (0);
 
-//     // while (i < map->col)
-//     // {
-//     //     if (tab[0][i] != '1' || tab[map->row - 1][i] != '1')
-//     //         return (0);
-//     //     i++;
-//     // }
-//     // i = 0;
-//     // while (i < map->row)
-//     // {
-//     //     if (tab[i][0] != '1' || tab[i][map->col - 1] != '1')
-//     //         return (0);
-//     //     i++;
-//     // }
-//     // return (1);
-// }
+    // while (i < map->col)
+    // {
+    //     if (tab[0][i] != '1' || tab[map->row - 1][i] != '1')
+    //         return (0);
+    //     i++;
+    // }
+    // i = 0;
+    // while (i < map->row)
+    // {
+    //     if (tab[i][0] != '1' || tab[i][map->col - 1] != '1')
+    //         return (0);
+    //     i++;
+    // }
+    // return (1);
+}
 
 char	**read_map(t_map *mappppp)
 {
@@ -109,12 +165,12 @@ char	**read_map(t_map *mappppp)
 		return (NULL);
     map[i] = '\0';
     int j = 0;
-    printf("%s\n", map[0]);
+    // printf("%s\n", map[0]);
     int old = ft_strlen(map[0]);
     // printf("%d\n", old);
     while (j < mappppp->row)
     {
-        printf("%d\n", ft_strlen(map[j]));
+        // printf("%d\n", ft_strlen(map[j]));
         if (ft_strlen(map[j]) != old)
             return (NULL);
         j++;
@@ -127,13 +183,16 @@ int is_map_rect(t_map *map)
     int i;
     int size;
     int current;
+    char    **map_data;
     
     size = ft_strlen(map->map[0]);
     printf("%d\n", size);
     i = 0;
+    map_data = map->map; 
+    printf("%d\n", map->row);
     while (i < map->row)
     {
-        printf("%d\n", ft_strlen(map->map[i]));
+        printf("%d\n", ft_strlen(map_data[i]));
         i++;
     }
     // i = 0;
@@ -183,7 +242,7 @@ int	main(int ac, char **av)
     //     printf("%s\t%d\n", map->map[i], ft_strlen(map->map[i]));
     //     i++;
     // }
-    // printf("%d\n", is_map_rect(map));
+    printf("%d\n", is_map_closed(map));
     // print_loose();
     // print_win();
     // printf("%s\n", map_data[0]);
