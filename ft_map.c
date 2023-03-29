@@ -6,7 +6,7 @@
 /*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:26:21 by vgoret            #+#    #+#             */
-/*   Updated: 2023/03/28 23:28:30 by victor           ###   ########.fr       */
+/*   Updated: 2023/03/29 02:49:28 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,9 @@ t_map	*init_map(char *name, int fd)
 	if (path == NULL)
 		return (NULL);
 	map->path = path;
+	map->nb_c = 0;
+	map->nb_e = 0;
+	map->nb_p = 0;
 	get_map_info(map, fd);
 	if (read_map(map) == NULL)
 	{
