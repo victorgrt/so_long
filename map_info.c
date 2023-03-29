@@ -6,7 +6,7 @@
 /*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:54:08 by victor            #+#    #+#             */
-/*   Updated: 2023/03/29 02:54:45 by victor           ###   ########.fr       */
+/*   Updated: 2023/03/29 15:22:10 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,22 +110,28 @@ int is_map_rules(t_map *map)
     int j;
 
     i = 0;
-    while (i < map->col)
+    while (i < map->row - 1)
     {
         j = 0;
-        while (j < map->row)
+        while (j < map->col - 1)
         {
-            printf("%c\n", map->map[i][j]);
+            // printf("%c\n", map->map[i][j]);
             if (map->map[i][j] == 'P')
                 map->nb_p += 1;
-            // if (map->map[i][j] == 'C')
-            //     map->nb_c++;
-            // if (map->map[i][j] == 'S')
-            //     map->nb_e++;
+            if (map->map[i][j] == 'C')
+                map->nb_c++;
+            if (map->map[i][j] == 'E')
+                map->nb_e++;
             j++;
         }
         i++;
     }
+    if (map->nb_p != 1)
+        return (1);
+    if (map->nb_e != 1)
+        return (1);
+    if (map->nb_c <= 0)
+        return (1);
     return (0);
 }
 
@@ -176,35 +182,6 @@ char	**read_map(t_map *mappppp)
 	return (map);
 }
 
-int is_map_rect(t_map *map)
-{
-    int i;
-    int size;
-    int current;
-    char    **map_data;
-    
-    size = ft_strlen(map->map[0]);
-    printf("%d\n", size);
-    i = 0;
-    map_data = map->map; 
-    printf("%d\n", map->row);
-    while (i < map->row)
-    {
-        printf("%d\n", ft_strlen(map_data[i]));
-        i++;
-    }
-    // i = 0;
-    // while (i < map->row)
-    // {
-    //     current = ft_strlen(map->map[i]);
-    //     printf("%d\n", current);
-    //     if (current != size)
-    //         return (1);
-    //     i++;
-    // }
-    return (0);
-}
-
 int	main(int ac, char **av)
 {
 	t_map	*map;
@@ -248,6 +225,7 @@ int	main(int ac, char **av)
         return (0);
     }
     printf("%d\n", is_map_rules(map));
+    printf("p:%d\tc:%d\te:%d\n", map->nb_p, map->nb_c, map->nb_e);
     // print_loose();
     // print_win();
     // printf("%s\n", map_data[0]);
