@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:43:46 by vgoret            #+#    #+#             */
-/*   Updated: 2023/03/30 15:08:31 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/03/30 15:48:10 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@
 typedef struct s_player{
 	int	pos_x;
 	int	pos_y;
-	int	speed;
 } s_player;
 
 typedef struct s_map{
@@ -48,6 +47,8 @@ typedef struct s_data {
     int     bits_per_pixel;
     int     line_length;
     int     endian;
+	int		player_x;
+	int		player_y;
 } t_data;
 
 /* GET_NEXT_LINE */
@@ -60,7 +61,7 @@ char	*get_next_line(int fd);
 int	verif_arg(char *str);
 
 /* PLAYER */
-
+void	get_pos_player(t_map *map, s_player *player);
 void	draw_player(s_player *player, void *mlx_ptr, void *win_ptr);
 
 /* MAP */
@@ -86,6 +87,6 @@ char	*ft_strdup(const char *s);
 /* PRINTER */
 void	print_win();
 void	print_loose();
-void    ft_print_info(t_map *map, s_player *player, char *path, int fd);
+void    ft_print_info(t_map *map, char *path, int fd, t_data img);
 
 #endif

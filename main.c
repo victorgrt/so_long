@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:36:29 by vgoret            #+#    #+#             */
-/*   Updated: 2023/03/30 15:11:12 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/03/30 15:50:25 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,11 @@ void	draw_map(t_map *map, t_data *img, s_player *player)
         {
             draw_tile(x, y, map->map[y][x], img);
             if (map->map[y][x] == 'P')
+            {
+                player->pos_x = x;
+                player->pos_y = y;
                 draw_player(player, img->mlx, img->mlx_win);
+            }
             x++;
         }
         y++;
@@ -126,12 +130,15 @@ void	draw_player(s_player *player, void *mlx_ptr, void *win_ptr)
 {
     if (player->pos_x < 0 || player->pos_x >= WINDOW_WIDTH || player->pos_y < 0 || player->pos_y >= WINDOW_HEIGHT)
         return;
+    // printf("la[%d][%d]\n", player->pos_x, player->pos_y);
     mlx_pixel_put(mlx_ptr, win_ptr, player->pos_x, player->pos_y, RED);
 }
 
 
 int	handle_keypress(int keysym, t_data *img, s_player *player)
 {
+    // get_pos_player(map, player);
+
 	if (keysym == XK_Escape || keysym == 113)
     {
 		mlx_destroy_window(img->mlx, img->mlx_win);
@@ -141,27 +148,27 @@ int	handle_keypress(int keysym, t_data *img, s_player *player)
     {
         if (keysym == XK_Left)
         {   
-            printf("before:[%d][%d]\n", player->pos_x, player->pos_y);
-            player->pos_x-=1;
-            printf("after:[%d][%d]\n", player->pos_x, player->pos_y);
+            printf("before:[%d][%d]\n", img->player_x, img->player_y);
+            img->player_x += -1;
+            printf("after:[%d][%d]\n", img->player_x, img->player_y);
 		}
 		if (keysym == XK_Right)
         {   
-            printf("before:[%d][%d]\n", player->pos_x, player->pos_y);
-            player->pos_x+=1;
-            printf("after:[%d][%d]\n", player->pos_x, player->pos_y);
+            printf("before:[%d][%d]\n", img->player_x, img->player_y);
+             img->player_x +=1;
+            printf("after:[%d][%d]\n", img->player_x, img->player_y);
 		}
 		if (keysym == XK_Up)
         {   
-            printf("before:[%d][%d]\n", player->pos_x, player->pos_y);
-            player->pos_y-=1;
-            printf("after:[%d][%d]\n", player->pos_x, player->pos_y);
+            printf("before:[%d][%d]\n", img->player_x, img->player_y);
+             img->player_y -=1;
+            printf("after:[%d][%d]\n", img->player_x, img->player_y);
 		}
 		if (keysym == XK_Down)
         {   
-            printf("before:[%d][%d]\n", player->pos_x, player->pos_y);
-            player->pos_y+=1;
-            printf("after:[%d][%d]\n", player->pos_x, player->pos_y);
+            printf("before:[%d][%d]\n", img->player_x, img->player_y);
+             img->player_y +=1;
+            printf("after:[%d][%d]\n", img->player_x, img->player_y);
 		}
         draw_player(player, img->mlx, img->mlx_win);
         // ft_draw_window(*img, map->row * TILE_SIZE, map->col * TILE_SIZE, BLACK);
@@ -216,23 +223,22 @@ int	main(int ac, char **av)
         printf("Erreur de malloc du player\n");
         return (0);
     }
-    player->pos_y = 0;
-    player->pos_x = 0;
     if (handle_map_error(map, player) == 1)
 		return (1);
-    ft_print_info(map, player, path, fd);
-
-
+    ft_print_info(map, path, fd, img);
+    get_pos_player(map, player);
+    
         //init mlx
 	img.mlx = mlx_init();
     height = TILE_SIZE * map->row;
     width = TILE_SIZE * map->col;
-    printf("%d\n%d\n", height, width);
+    img.player_x = player->pos_x;
+    img.player_y = player->pos_y;
 	img.mlx_win = mlx_new_window(img.mlx, width, height, "so_long");
 	img.img = mlx_new_image(img.mlx, width, height);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel,
 			&img.line_length, &img.endian);
-                
+            
 	draw_map(map, &img, player);
 	mlx_put_image_to_window(img.mlx, img.mlx_win, img.img, 0, 0);
     
@@ -240,11 +246,11 @@ int	main(int ac, char **av)
 	mlx_hook(img.mlx_win, KeyPress, KeyPressMask, &handle_keypress, &img); /* ADDED */
 	mlx_hook(img.mlx_win, KeyRelease, KeyReleaseMask, &handle_keyrelease, &img); /* CHANGED */
 	// mlx_clear_window(img.mlx, img.mlx_win);
-
-
-
+    ft_print_info(map, path, fd, img);
+    
     mlx_loop(img.mlx);
     mlx_destroy_display(img.mlx_win);
 	free(img.mlx_win);
+    printf("pos[%d][%d]\n", player->pos_x, player->pos_y);
 	return (0);
 }
