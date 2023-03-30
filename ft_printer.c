@@ -3,14 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printer.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 22:41:54 by victor            #+#    #+#             */
-/*   Updated: 2023/03/29 18:38:15 by victor           ###   ########.fr       */
+/*   Updated: 2023/03/30 12:18:28 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void    ft_print_info(t_map *map, s_player *player, char *path, int fd)
+{
+    printf("\033[1m#--\033[0;34m %s \033[0m\033[1m--#\033[0m\n\
+-fd: %d\n\
+-row: %d\tcol:%d\n\
+-map info:\n  P:%d\n  E:%d\n  C:%d\n\
+-player[%d][%d]\n\
+\033[1m#-------------------#\033[0m\n", path, fd, map->row, map->col, map->nb_p, map->nb_e, map->nb_c, player->pos_x, player->pos_y);
+}
 
 void    print_win()
 {

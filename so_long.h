@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:43:46 by vgoret            #+#    #+#             */
-/*   Updated: 2023/03/29 22:54:26 by victor           ###   ########.fr       */
+/*   Updated: 2023/03/30 15:08:31 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 typedef struct s_player{
 	int	pos_x;
 	int	pos_y;
+	int	speed;
 } s_player;
 
 typedef struct s_map{
@@ -39,6 +40,16 @@ typedef struct s_map{
 	int		nb_e;
 } t_map;
 
+typedef struct s_data {
+    void    *mlx_win;
+    void    *mlx;
+    void    *img;
+    char    *addr;
+    int     bits_per_pixel;
+    int     line_length;
+    int     endian;
+} t_data;
+
 /* GET_NEXT_LINE */
 int		ft_strlen(char *str);
 void	*ft_calloc(size_t nmemb, size_t size);
@@ -49,6 +60,8 @@ char	*get_next_line(int fd);
 int	verif_arg(char *str);
 
 /* PLAYER */
+
+void	draw_player(s_player *player, void *mlx_ptr, void *win_ptr);
 
 /* MAP */
 void	print_map(char *map_name, int fd);
@@ -73,5 +86,6 @@ char	*ft_strdup(const char *s);
 /* PRINTER */
 void	print_win();
 void	print_loose();
+void    ft_print_info(t_map *map, s_player *player, char *path, int fd);
 
 #endif
