@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:36:29 by vgoret            #+#    #+#             */
-/*   Updated: 2023/03/30 15:50:25 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/03/30 15:58:22 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ void	draw_map(t_map *map, t_data *img, s_player *player)
             {
                 player->pos_x = x;
                 player->pos_y = y;
-                draw_player(player, img->mlx, img->mlx_win);
+                draw_player(player, img->mlx, img->mlx_win, img);
             }
             x++;
         }
@@ -126,16 +126,16 @@ void	draw_map(t_map *map, t_data *img, s_player *player)
     }
 }
 
-void	draw_player(s_player *player, void *mlx_ptr, void *win_ptr)
+void	draw_player(s_player *player, void *mlx_ptr, void *win_ptr, t_data *img)
 {
     if (player->pos_x < 0 || player->pos_x >= WINDOW_WIDTH || player->pos_y < 0 || player->pos_y >= WINDOW_HEIGHT)
         return;
     // printf("la[%d][%d]\n", player->pos_x, player->pos_y);
-    mlx_pixel_put(mlx_ptr, win_ptr, player->pos_x, player->pos_y, RED);
+    mlx_pixel_put(mlx_ptr, win_ptr, img->player_x, img->player_y, RED);
 }
 
 
-int	handle_keypress(int keysym, t_data *img, s_player *player)
+int	handle_keypress(int keysym, t_data *img, s_player *player, t_map *map)
 {
     // get_pos_player(map, player);
 
@@ -170,10 +170,10 @@ int	handle_keypress(int keysym, t_data *img, s_player *player)
              img->player_y +=1;
             printf("after:[%d][%d]\n", img->player_x, img->player_y);
 		}
-        draw_player(player, img->mlx, img->mlx_win);
-        // ft_draw_window(*img, map->row * TILE_SIZE, map->col * TILE_SIZE, BLACK);
-        
-	}
+        ft_draw_window(*img, WINDOW_HEIGHT, WINDOW_WIDTH, BLACK);
+        draw_map(map, img, player);
+        mlx_put_image_to_window(img->mlx, img->mlx_win, img->img, 0, 0);
+    }
     
 	printf("Keypress: %d\n", keysym);
 	return (0);

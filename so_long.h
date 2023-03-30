@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:43:46 by vgoret            #+#    #+#             */
-/*   Updated: 2023/03/30 15:48:10 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/03/30 15:54:44 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	verif_arg(char *str);
 
 /* PLAYER */
 void	get_pos_player(t_map *map, s_player *player);
-void	draw_player(s_player *player, void *mlx_ptr, void *win_ptr);
+void	draw_player(s_player *player, void *mlx_ptr, void *win_ptr, t_data *img);
 
 /* MAP */
 void	print_map(char *map_name, int fd);
