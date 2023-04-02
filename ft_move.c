@@ -6,24 +6,70 @@
 /*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 13:19:22 by victor            #+#    #+#             */
-/*   Updated: 2023/04/02 17:14:12 by victor           ###   ########.fr       */
+/*   Updated: 2023/04/02 17:24:48 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void left(t_data *game, int dest)
+void left(t_data *game)
 {
     int img_w;
     int img_h;
 
+    // if (game->map_struc->map[game->player_x][game->player_y])
     game->img = mlx_xpm_file_to_image(game->mlx, "./ressources/floor.xpm", &img_w, &img_h);
     mlx_put_image_to_window(game->mlx, game->win, game->img, game->player_x, game->player_y);
 
-    game->player_y -= 1;
+    game->player_x -= 32;
 
     game->img = mlx_xpm_file_to_image(game->mlx, "./ressources/bitfuul-image.xpm", &img_w, &img_h);
-    mlx_put_image_to_window(game->mlx, game->win, game->img, game->player_x, dest);
+    mlx_put_image_to_window(game->mlx, game->win, game->img, game->player_x, game->player_y);
+}
+
+void right(t_data *game)
+{
+    int img_w;
+    int img_h;
+
+    // if (game->map_struc->map[game->player_x][game->player_y])
+    game->img = mlx_xpm_file_to_image(game->mlx, "./ressources/floor.xpm", &img_w, &img_h);
+    mlx_put_image_to_window(game->mlx, game->win, game->img, game->player_x, game->player_y);
+
+    game->player_x += 32;
+
+    game->img = mlx_xpm_file_to_image(game->mlx, "./ressources/bitfuul-image.xpm", &img_w, &img_h);
+    mlx_put_image_to_window(game->mlx, game->win, game->img, game->player_x, game->player_y);
+}
+
+void up(t_data *game)
+{
+    int img_w;
+    int img_h;
+
+    // if (game->map_struc->map[game->player_x][game->player_y])
+    game->img = mlx_xpm_file_to_image(game->mlx, "./ressources/floor.xpm", &img_w, &img_h);
+    mlx_put_image_to_window(game->mlx, game->win, game->img, game->player_x, game->player_y);
+
+    game->player_y -= 32;
+
+    game->img = mlx_xpm_file_to_image(game->mlx, "./ressources/bitfuul-image.xpm", &img_w, &img_h);
+    mlx_put_image_to_window(game->mlx, game->win, game->img, game->player_x, game->player_y);
+}
+
+void down(t_data *game)
+{
+    int img_w;
+    int img_h;
+
+    // if (game->map_struc->map[game->player_x][game->player_y])
+    game->img = mlx_xpm_file_to_image(game->mlx, "./ressources/floor.xpm", &img_w, &img_h);
+    mlx_put_image_to_window(game->mlx, game->win, game->img, game->player_x, game->player_y);
+
+    game->player_y += 32;
+
+    game->img = mlx_xpm_file_to_image(game->mlx, "./ressources/bitfuul-image.xpm", &img_w, &img_h);
+    mlx_put_image_to_window(game->mlx, game->win, game->img, game->player_x, game->player_y);
 }
 
 int key_hook(int keysym, t_data *game)
@@ -42,22 +88,24 @@ int key_hook(int keysym, t_data *game)
         {
 
             printf("before:[%d][%d]\n", game->player_x, game->player_y);
-            game->player_x += -1;
+            // game->player_x += -1;
+            up(game);
             game->move++;
             printf("after:[%d][%d]\n", game->player_x, game->player_y);
         }
         if (keysym == 65364)
         {
             printf("before:[%d][%d]\n", game->player_x, game->player_y);
-            game->player_x += 1;
+            // game->player_x += 1;
+            down(game);
             game->move++;
             printf("after:[%d][%d]\n", game->player_x, game->player_y);
         }
         if (keysym == 65361)
         {
             printf("before:[%d][%d]\n", game->player_x, game->player_y);
-            int dest = game->player_y - 1;
-            left(game, dest);
+            // int dest = game->player_y - 1;s
+            left(game);
 
 
             game->move++;
@@ -66,7 +114,8 @@ int key_hook(int keysym, t_data *game)
         if (keysym == 65363)
         {
             printf("before:[%d][%d]\n", game->player_x, game->player_y);
-            game->player_y += 1;
+            // game->player_y += 1;
+            right(game);
             game->move++;
             printf("after:[%d][%d]\n", game->player_x, game->player_y);
         }
