@@ -6,7 +6,7 @@
 /*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:43:46 by vgoret            #+#    #+#             */
-/*   Updated: 2023/04/02 19:10:51 by victor           ###   ########.fr       */
+/*   Updated: 2023/04/02 23:04:40 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,5 +111,7 @@ void    ft_print_info(t_map *map, char *path, int fd, t_data img);
 int key_hook(int keysym, t_data *game);
 
 t_textures    *load_textures(t_data *game);
+void    render_image(t_data *game, int x, int y, char *path);
+void    put_image(char c, int x, int y, t_data *game);
 
 #endif

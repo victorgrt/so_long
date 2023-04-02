@@ -6,7 +6,7 @@
 /*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:36:29 by vgoret            #+#    #+#             */
-/*   Updated: 2023/04/02 19:42:00 by victor           ###   ########.fr       */
+/*   Updated: 2023/04/02 23:09:44 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ void	draw_player(t_data *game, t_data *img)
         // TILE_SIZE, TILE_SIZE, RED, img);
     // printf("la[%d][%d]\n", player->pos_x, player->pos_y);
     mlx_pixel_put(img->mlx, img->win, img->player_x, img->player_y, RED);
-
 }
 
 void    render_image(t_data *game, int x, int y, char *path)
@@ -74,16 +73,16 @@ void    render_image(t_data *game, int x, int y, char *path)
     int tryy;
 
     game->img = mlx_xpm_file_to_image(game->mlx, path, &tryx, &tryy);
-    mlx_put_image_to_window(game->mlx, game->win, game->img, x, y);
+    mlx_put_image_to_window(game->mlx, game->win, game->img, x*64, y*64);
 
 }
 
 void    put_image(char c, int x, int y, t_data *game)
 {
     if (c == '1')
-        render_image(game, x, y, "./ressources/wall.xpm");
+        render_image(game, x*64, y*64, "./ressources/wall.xpm");
     if (c == '0')
-        render_image(game, x, y, "./ressources/floor.xpm");
+        render_image(game, x, y, "./ressources/floor32.xpm");
     if (c == 'C')
         render_image(game, x, y, "./ressources/collect.xpm");
     if (c == 'E')
