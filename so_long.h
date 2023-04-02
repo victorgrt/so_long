@@ -6,7 +6,7 @@
 /*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:43:46 by vgoret            #+#    #+#             */
-/*   Updated: 2023/04/02 16:21:15 by victor           ###   ########.fr       */
+/*   Updated: 2023/04/02 19:10:51 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,19 @@ typedef struct s_map{
 	int		nb_e;
 } t_map;
 
+typedef struct  s_textures
+{
+	int		w;
+	int		h;
+    void    *wall;
+    void    *player;
+    void    *exit;
+    void    *floor;
+}               t_textures;
+
 typedef struct s_data {
 	t_map	*map_struc;
+	t_textures *textures;
     void    *mlx;
     void    *win;
     void    *img;
@@ -54,6 +65,9 @@ typedef struct s_data {
 	int		width;
 	int		height;
 } t_data;
+
+
+
 
 /* GET_NEXT_LINE */
 int		ft_strlen(char *str);
@@ -95,5 +109,7 @@ void	print_loose();
 void    ft_print_info(t_map *map, char *path, int fd, t_data img);
 
 int key_hook(int keysym, t_data *game);
+
+t_textures    *load_textures(t_data *game);
 
 #endif

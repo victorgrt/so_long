@@ -6,7 +6,7 @@
 /*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:36:29 by vgoret            #+#    #+#             */
-/*   Updated: 2023/04/02 17:06:06 by victor           ###   ########.fr       */
+/*   Updated: 2023/04/02 19:20:09 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,6 +208,7 @@ int	main(int ac, char **av)
 
 
     init_structure(&game, map);
+    // game.textures = load_textures(&game);
     ft_print_info(map, path, fd, game);
     
         //init mlx
