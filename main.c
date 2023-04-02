@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
+/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:36:29 by vgoret            #+#    #+#             */
-/*   Updated: 2023/03/30 15:58:22 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/04/02 17:06:06 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,78 +31,9 @@
 #define KEY_Q 12
 #define KEY_ESC 53 
 
-void my_mlx_pixel_put(t_data *data, int x, int y, int color)
-{
-    char    *dst;
+#define TILE_SIZE 32 // Taille d'une tuile en pixels
 
-    dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-    *(unsigned int*)dst = color;
-}
-
-void	ft_draw_window(t_data img, int height, int width, int color)
-{
-    int offset;
-    int x;
-    int y;
-
-    x = 0;
-    y = 0;
-    offset = (y * img.line_length + x * (img.bits_per_pixel / 8));
-    while (y < width)
-    {
-        x = 0;
-        while(x < height)
-        {
-            offset = (y * img.line_length + x * (img.bits_per_pixel / 8));
-            *(unsigned int *)(img.addr + offset) = color;
-            x++;
-        }
-        y++;
-    }
-}
-
-#define TILE_SIZE 64 // Taille d'une tuile en pixels
-
-void	ft_draw_rectangle(int x, int y, int width, int height, int color, t_data *img)
-{
-    int offset;
-    int i;
-    int j;
-
-    j = 0;
-    while (j < height)
-    {
-        i = 0;
-        while (i < width)
-        {
-            offset = (y + j) * img->line_length + (x + i) * (img->bits_per_pixel / 8);
-            *(unsigned int *)(img->addr + offset) = color;
-            i++;
-        }
-        j++;
-    }
-}
-
-void	draw_tile(int x, int y, char c, t_data *img)
-{
-    if (c == '1') // mur
-        ft_draw_rectangle(x * TILE_SIZE, y * TILE_SIZE,
-            TILE_SIZE, TILE_SIZE, WHITE, img);
-    else if (c == '0') // sol
-        ft_draw_rectangle(x * TILE_SIZE, y * TILE_SIZE,
-            TILE_SIZE, TILE_SIZE, BLACK, img);
-    else if (c == 'P') // joueur
-        ft_draw_rectangle(x * TILE_SIZE, y * TILE_SIZE,
-            TILE_SIZE, TILE_SIZE, RED, img);
-    else if (c == 'C') // collectable
-        ft_draw_rectangle(x * TILE_SIZE, y * TILE_SIZE,
-            TILE_SIZE, TILE_SIZE, GREEN, img);
-    else if (c == 'E') // Exit
-        ft_draw_rectangle(x * TILE_SIZE, y * TILE_SIZE,
-            TILE_SIZE, TILE_SIZE, BLUE, img);
-}
-
-void	draw_map(t_map *map, t_data *img, s_player *player)
+void	draw_map(t_map *map, t_data *img, t_data *game)
 {
     int x;
     int y;
@@ -113,12 +44,12 @@ void	draw_map(t_map *map, t_data *img, s_player *player)
         x = 0;
         while (x < map->col)
         {
-            draw_tile(x, y, map->map[y][x], img);
+            // draw_tile(x, y, map->map[y][x], img);
             if (map->map[y][x] == 'P')
             {
-                player->pos_x = x;
-                player->pos_y = y;
-                draw_player(player, img->mlx, img->mlx_win, img);
+                // player->pos_x = x;
+                // player->pos_y = y;
+                draw_player(game, img);
             }
             x++;
         }
@@ -126,22 +57,25 @@ void	draw_map(t_map *map, t_data *img, s_player *player)
     }
 }
 
-void	draw_player(s_player *player, void *mlx_ptr, void *win_ptr, t_data *img)
+void	draw_player(t_data *game, t_data *img)
 {
-    if (player->pos_x < 0 || player->pos_x >= WINDOW_WIDTH || player->pos_y < 0 || player->pos_y >= WINDOW_HEIGHT)
+    if (game->player_x < 0 || game->player_x >= WINDOW_WIDTH || game->player_y < 0 || game->player_y >= WINDOW_HEIGHT)
         return;
+    // ft_draw_rectangle(img->player_x * TILE_SIZE, img->player_y * TILE_SIZE,
+        // TILE_SIZE, TILE_SIZE, RED, img);
     // printf("la[%d][%d]\n", player->pos_x, player->pos_y);
-    mlx_pixel_put(mlx_ptr, win_ptr, img->player_x, img->player_y, RED);
+    mlx_pixel_put(img->mlx, img->win, img->player_x, img->player_y, RED);
+
 }
 
 
-int	handle_keypress(int keysym, t_data *img, s_player *player, t_map *map)
+int	handle_keypress(int keysym, t_data *img)
 {
     // get_pos_player(map, player);
 
 	if (keysym == XK_Escape || keysym == 113)
     {
-		mlx_destroy_window(img->mlx, img->mlx_win);
+		mlx_destroy_window(img->mlx, img->win);
         return (0);
     }
     if (keysym == XK_Left || keysym == XK_Right || keysym == XK_Up || keysym == XK_Down)
@@ -151,6 +85,7 @@ int	handle_keypress(int keysym, t_data *img, s_player *player, t_map *map)
             printf("before:[%d][%d]\n", img->player_x, img->player_y);
             img->player_x += -1;
             printf("after:[%d][%d]\n", img->player_x, img->player_y);
+
 		}
 		if (keysym == XK_Right)
         {   
@@ -170,29 +105,74 @@ int	handle_keypress(int keysym, t_data *img, s_player *player, t_map *map)
              img->player_y +=1;
             printf("after:[%d][%d]\n", img->player_x, img->player_y);
 		}
-        ft_draw_window(*img, WINDOW_HEIGHT, WINDOW_WIDTH, BLACK);
-        draw_map(map, img, player);
-        mlx_put_image_to_window(img->mlx, img->mlx_win, img->img, 0, 0);
+        // ft_draw_window(*img, WINDOW_HEIGHT, WINDOW_WIDTH, BLACK);
+        // draw_map(map, img, player);
+                        // draw_player(player, img);
+        // mlx_put_image_to_window(img->mlx, img->mlx_win, img->img, 0, 0);
     }
-    
+
 	printf("Keypress: %d\n", keysym);
 	return (0);
 }
 
-int	handle_keyrelease(int keysym)
+void    render_image(t_data *game, int x, int y, char *path)
 {
-	printf("Keyrelease: %d\n", keysym);
-	return (0);
+    int tryx;
+    int tryy;
+
+    game->img = mlx_xpm_file_to_image(game->mlx, path, &tryx, &tryy);
+    mlx_put_image_to_window(game->mlx, game->win, game->img, x, y);
+
+}
+
+void    put_image(char c, int x, int y, t_data *game)
+{
+    if (c == '1')
+        render_image(game, x, y, "./ressources/wall.xpm");
+    if (c == '0')
+        render_image(game, x, y, "./ressources/floor.xpm");
+    if (c == 'C')
+        render_image(game, x, y, "./ressources/collect.xpm");
+    if (c == 'E')
+        render_image(game, x, y, "./ressources/door.xpm");
+    if (c == 'P')
+        render_image(game, x, y, "./ressources/bitfuul-image.xpm");
+
+}
+
+void    ft_generate_window(t_data *game)
+{
+    int x;
+    int y;
+    int x_map;
+    int y_map;
+
+    y_map = 0;
+    y = 0;
+    while (y < game->map_struc->row)
+    {
+        x_map = 0;
+        x = 0;
+        while (x < game->map_struc->col)
+        {
+            put_image(game->map_struc->map[y][x], x_map, y_map, game);
+            // printf("ici texture : [%d][%d]\n", x, y);
+            x++;
+            x_map += 64;
+        }
+        y++;
+        y_map += 64;
+    }
 }
 
 int	main(int ac, char **av)
 {
     (void) ac;
 	t_map	*map;
-	t_data	img;
+	t_data	game;
     s_player    *player;
-    int     height = 0;
-    int     width = 0;
+    // int     height = 0;
+    // int     width = 0;
     char    *path;
     int     fd;
     
@@ -225,32 +205,21 @@ int	main(int ac, char **av)
     }
     if (handle_map_error(map, player) == 1)
 		return (1);
-    ft_print_info(map, path, fd, img);
-    get_pos_player(map, player);
+
+
+    init_structure(&game, map);
+    ft_print_info(map, path, fd, game);
     
         //init mlx
-	img.mlx = mlx_init();
-    height = TILE_SIZE * map->row;
-    width = TILE_SIZE * map->col;
-    img.player_x = player->pos_x;
-    img.player_y = player->pos_y;
-	img.mlx_win = mlx_new_window(img.mlx, width, height, "so_long");
-	img.img = mlx_new_image(img.mlx, width, height);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel,
-			&img.line_length, &img.endian);
-            
-	draw_map(map, &img, player);
-	mlx_put_image_to_window(img.mlx, img.mlx_win, img.img, 0, 0);
-    
-    // mlx_hook(img.mlx_win, EVENT_EXIT, 0, handle_exit, &img);
-	mlx_hook(img.mlx_win, KeyPress, KeyPressMask, &handle_keypress, &img); /* ADDED */
-	mlx_hook(img.mlx_win, KeyRelease, KeyReleaseMask, &handle_keyrelease, &img); /* CHANGED */
-	// mlx_clear_window(img.mlx, img.mlx_win);
-    ft_print_info(map, path, fd, img);
-    
-    mlx_loop(img.mlx);
-    mlx_destroy_display(img.mlx_win);
-	free(img.mlx_win);
+	game.mlx = mlx_init();
+	game.win = mlx_new_window(game.mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "so_long");
+    ft_generate_window(&game);
+    mlx_hook(game.win, 2, (1L << 0), key_hook, &game); /* ADDED */
+    // mlx_hook(game.win, KeyRelease, KeyReleaseMask, &key_hook, &game);
+    // mlx_hook(); player input
+    // mlx_hook(); exit
+
+    mlx_loop(game.mlx);
     printf("pos[%d][%d]\n", player->pos_x, player->pos_y);
 	return (0);
 }

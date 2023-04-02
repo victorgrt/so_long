@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
+/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:43:46 by vgoret            #+#    #+#             */
-/*   Updated: 2023/03/30 15:54:44 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/04/02 16:21:15 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,19 @@ typedef struct s_map{
 } t_map;
 
 typedef struct s_data {
-    void    *mlx_win;
+	t_map	*map_struc;
     void    *mlx;
+    void    *win;
     void    *img;
-    char    *addr;
-    int     bits_per_pixel;
-    int     line_length;
-    int     endian;
 	int		player_x;
 	int		player_y;
+	int		c;
+	int		p;
+	int		e;
+	int		max_c;
+	int		move;
+	int		width;
+	int		height;
 } t_data;
 
 /* GET_NEXT_LINE */
@@ -61,8 +65,8 @@ char	*get_next_line(int fd);
 int	verif_arg(char *str);
 
 /* PLAYER */
-void	get_pos_player(t_map *map, s_player *player);
-void	draw_player(s_player *player, void *mlx_ptr, void *win_ptr, t_data *img);
+void	get_pos_player(t_map *map, t_data *game);
+void	draw_player(t_data *game, t_data *img);
 
 /* MAP */
 void	print_map(char *map_name, int fd);
@@ -80,6 +84,7 @@ char	**read_map(t_map *map);
 char	**ft_putmap_tab(t_map *map, int fd);
 void    get_map_info(t_map *map, int fd);
 /* GAME */
+int init_structure(t_data *game, t_map *map);
 
 /* UTILS */
 char	*ft_strdup(const char *s);
@@ -88,5 +93,7 @@ char	*ft_strdup(const char *s);
 void	print_win();
 void	print_loose();
 void    ft_print_info(t_map *map, char *path, int fd, t_data img);
+
+int key_hook(int keysym, t_data *game);
 
 #endif

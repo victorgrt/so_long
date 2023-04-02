@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
+/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 15:27:39 by victor            #+#    #+#             */
-/*   Updated: 2023/03/30 15:37:32 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/04/01 13:31:29 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	get_pos_player(t_map *map, s_player *player)
+void	get_pos_player(t_map *map, t_data *game)
 {
 	int	x;
 	int	y;
@@ -25,8 +25,8 @@ void	get_pos_player(t_map *map, s_player *player)
 		{
 			if (map->map[y][x] == 'P')
 			{
-				player->pos_x = x;
-				player->pos_y = y;
+				game->player_x = x;
+				game->player_y = y;
 				return ;
 			}
 			x++;

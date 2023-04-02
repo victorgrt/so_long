@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+         #
+#    By: victor <victor@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/16 16:44:56 by vgoret            #+#    #+#              #
-#    Updated: 2023/03/30 15:07:14 by vgoret           ###   ########.fr        #
+#    Updated: 2023/04/01 13:53:25 by victor           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ CC      =	gcc
 SRC = main.c parsing.c ft_check_map.c ft_map.c ft_map2.c ft_printer.c map_info.c \
 	player.c utils.c \
 	draw_map.c \
+	structure.c ft_move.c\
 	src/get_next_line.c src/get_next_line_utils.c \
 
 OBJ = ${SRC:.c=.o}
