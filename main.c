@@ -6,7 +6,7 @@
 /*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:36:29 by vgoret            #+#    #+#             */
-/*   Updated: 2023/04/02 23:09:44 by victor           ###   ########.fr       */
+/*   Updated: 2023/04/02 23:19:46 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,16 +73,16 @@ void    render_image(t_data *game, int x, int y, char *path)
     int tryy;
 
     game->img = mlx_xpm_file_to_image(game->mlx, path, &tryx, &tryy);
-    mlx_put_image_to_window(game->mlx, game->win, game->img, x*64, y*64);
+    mlx_put_image_to_window(game->mlx, game->win, game->img, x, y);
 
 }
 
 void    put_image(char c, int x, int y, t_data *game)
 {
     if (c == '1')
-        render_image(game, x*64, y*64, "./ressources/wall.xpm");
+        render_image(game, x, y, "./ressources/wall.xpm");
     if (c == '0')
-        render_image(game, x, y, "./ressources/floor32.xpm");
+        render_image(game, x, y, "./ressources/floor.xpm");
     if (c == 'C')
         render_image(game, x, y, "./ressources/collect.xpm");
     if (c == 'E')
