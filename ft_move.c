@@ -6,7 +6,7 @@
 /*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 13:19:22 by victor            #+#    #+#             */
-/*   Updated: 2023/04/02 19:32:37 by victor           ###   ########.fr       */
+/*   Updated: 2023/04/02 19:57:26 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,18 @@ void left(t_data *game)
     int img_w;
     int img_h;
 
-    // if (game->map_struc->map[game->player_x][game->player_y])
-    game->img = mlx_xpm_file_to_image(game->mlx, "./ressources/floor.xpm", &img_w, &img_h);
-    mlx_put_image_to_window(game->mlx, game->win, game->img, game->player_x*64, game->player_y*64);
+    if (game->map_struc->map[game->player_x - 1][game->player_y] != '1')
+    {
+        game->img = mlx_xpm_file_to_image(game->mlx, "./ressources/floor.xpm", &img_w, &img_h);
+        mlx_put_image_to_window(game->mlx, game->win, game->img, game->player_x*64, game->player_y*64);
 
-    game->player_x -= 1;
+        game->player_x -= 1;
 
-    game->img = mlx_xpm_file_to_image(game->mlx, "./ressources/bitfuul-image.xpm", &img_w, &img_h);
-    mlx_put_image_to_window(game->mlx, game->win, game->img, game->player_x*64, game->player_y*64);
+        game->img = mlx_xpm_file_to_image(game->mlx, "./ressources/bitfuul-image.xpm", &img_w, &img_h);
+        mlx_put_image_to_window(game->mlx, game->win, game->img, game->player_x*64, game->player_y*64);
+    }
+    else    
+        printf("Erreur : next char = %d\n", game->map_struc->map[game->player_x - 1][game->player_y]);
 }
 
 void right(t_data *game)
@@ -33,13 +37,18 @@ void right(t_data *game)
     int img_h;
 
     // if (game->map_struc->map[game->player_x][game->player_y])
-    game->img = mlx_xpm_file_to_image(game->mlx, "./ressources/floor.xpm", &img_w, &img_h);
-    mlx_put_image_to_window(game->mlx, game->win, game->img, game->player_x*64, game->player_y*64);
+    if (game->map_struc->map[game->player_x + 1][game->player_y] != '1')
+    {
+        game->img = mlx_xpm_file_to_image(game->mlx, "./ressources/floor.xpm", &img_w, &img_h);
+        mlx_put_image_to_window(game->mlx, game->win, game->img, game->player_x*64, game->player_y*64);
 
-    game->player_x += 1;
+        game->player_x += 1;
 
-    game->img = mlx_xpm_file_to_image(game->mlx, "./ressources/bitfuul-image.xpm", &img_w, &img_h);
-    mlx_put_image_to_window(game->mlx, game->win, game->img, game->player_x*64, game->player_y*64);
+        game->img = mlx_xpm_file_to_image(game->mlx, "./ressources/bitfuul-image.xpm", &img_w, &img_h);
+        mlx_put_image_to_window(game->mlx, game->win, game->img, game->player_x*64, game->player_y*64);
+    }
+    else
+        printf("Erreur : next char = %d\n", game->map_struc->map[game->player_x+1][game->player_y]);
 }
 
 void up(t_data *game)
@@ -48,13 +57,18 @@ void up(t_data *game)
     int img_h;
 
     // if (game->map_struc->map[game->player_x][game->player_y])
-    game->img = mlx_xpm_file_to_image(game->mlx, "./ressources/floor.xpm", &img_w, &img_h);
-    mlx_put_image_to_window(game->mlx, game->win, game->img, game->player_x*64, game->player_y*64);
+    if (game->map_struc->map[game->player_x][game->player_y-1] != '1')
+    {
+        game->img = mlx_xpm_file_to_image(game->mlx, "./ressources/floor.xpm", &img_w, &img_h);
+        mlx_put_image_to_window(game->mlx, game->win, game->img, game->player_x*64, game->player_y*64);
 
-    game->player_y -= 1;
+        game->player_y -= 1;
 
-    game->img = mlx_xpm_file_to_image(game->mlx, "./ressources/bitfuul-image.xpm", &img_w, &img_h);
-    mlx_put_image_to_window(game->mlx, game->win, game->img, game->player_x*64, game->player_y*64);
+        game->img = mlx_xpm_file_to_image(game->mlx, "./ressources/bitfuul-image.xpm", &img_w, &img_h);
+        mlx_put_image_to_window(game->mlx, game->win, game->img, game->player_x*64, game->player_y*64);
+    }
+    else    
+        printf("Erreur : next char = %d\n", game->map_struc->map[game->player_x][game->player_y-1]);
 }
 
 void down(t_data *game)
@@ -63,13 +77,18 @@ void down(t_data *game)
     int img_h;
 
     // if (game->map_struc->map[game->player_x][game->player_y])
-    game->img = mlx_xpm_file_to_image(game->mlx, "./ressources/floor.xpm", &img_w, &img_h);
-    mlx_put_image_to_window(game->mlx, game->win, game->img, game->player_x*64, game->player_y*64);
+    if (game->map_struc->map[game->player_x][game->player_y+1] != '1')
+    {
+        game->img = mlx_xpm_file_to_image(game->mlx, "./ressources/floor.xpm", &img_w, &img_h);
+        mlx_put_image_to_window(game->mlx, game->win, game->img, game->player_x*64, game->player_y*64);
 
-    game->player_y += 1;
+        game->player_y += 1;
 
-    game->img = mlx_xpm_file_to_image(game->mlx, "./ressources/bitfuul-image.xpm", &img_w, &img_h);
-    mlx_put_image_to_window(game->mlx, game->win, game->img, game->player_x*64, game->player_y*64);
+        game->img = mlx_xpm_file_to_image(game->mlx, "./ressources/bitfuul-image.xpm", &img_w, &img_h);
+        mlx_put_image_to_window(game->mlx, game->win, game->img, game->player_x*64, game->player_y*64);
+    }
+     else    
+        printf("Erreur : next char = %d\n", game->map_struc->map[game->player_x][game->player_y+1]);
 }
 
 int key_hook(int keysym, t_data *game)
@@ -85,6 +104,7 @@ int key_hook(int keysym, t_data *game)
     {
         if (keysym == 65362)
         {
+            printf("ici : %d\n", game->map_struc->map[game->player_x][game->player_y-1]);
             printf("before:[%d][%d]\n", game->player_x, game->player_y);
             // game->player_x += -1;
             up(game);

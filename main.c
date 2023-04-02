@@ -6,7 +6,7 @@
 /*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:36:29 by vgoret            #+#    #+#             */
-/*   Updated: 2023/04/02 19:20:09 by victor           ###   ########.fr       */
+/*   Updated: 2023/04/02 19:42:00 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,53 +66,6 @@ void	draw_player(t_data *game, t_data *img)
     // printf("la[%d][%d]\n", player->pos_x, player->pos_y);
     mlx_pixel_put(img->mlx, img->win, img->player_x, img->player_y, RED);
 
-}
-
-
-int	handle_keypress(int keysym, t_data *img)
-{
-    // get_pos_player(map, player);
-
-	if (keysym == XK_Escape || keysym == 113)
-    {
-		mlx_destroy_window(img->mlx, img->win);
-        return (0);
-    }
-    if (keysym == XK_Left || keysym == XK_Right || keysym == XK_Up || keysym == XK_Down)
-    {
-        if (keysym == XK_Left)
-        {   
-            printf("before:[%d][%d]\n", img->player_x, img->player_y);
-            img->player_x += -1;
-            printf("after:[%d][%d]\n", img->player_x, img->player_y);
-
-		}
-		if (keysym == XK_Right)
-        {   
-            printf("before:[%d][%d]\n", img->player_x, img->player_y);
-             img->player_x +=1;
-            printf("after:[%d][%d]\n", img->player_x, img->player_y);
-		}
-		if (keysym == XK_Up)
-        {   
-            printf("before:[%d][%d]\n", img->player_x, img->player_y);
-             img->player_y -=1;
-            printf("after:[%d][%d]\n", img->player_x, img->player_y);
-		}
-		if (keysym == XK_Down)
-        {   
-            printf("before:[%d][%d]\n", img->player_x, img->player_y);
-             img->player_y +=1;
-            printf("after:[%d][%d]\n", img->player_x, img->player_y);
-		}
-        // ft_draw_window(*img, WINDOW_HEIGHT, WINDOW_WIDTH, BLACK);
-        // draw_map(map, img, player);
-                        // draw_player(player, img);
-        // mlx_put_image_to_window(img->mlx, img->mlx_win, img->img, 0, 0);
-    }
-
-	printf("Keypress: %d\n", keysym);
-	return (0);
 }
 
 void    render_image(t_data *game, int x, int y, char *path)
