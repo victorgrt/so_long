@@ -6,7 +6,7 @@
 /*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 13:19:22 by victor            #+#    #+#             */
-/*   Updated: 2023/04/02 19:28:36 by victor           ###   ########.fr       */
+/*   Updated: 2023/04/02 19:32:37 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void left(t_data *game)
 
     // if (game->map_struc->map[game->player_x][game->player_y])
     game->img = mlx_xpm_file_to_image(game->mlx, "./ressources/floor.xpm", &img_w, &img_h);
-    mlx_put_image_to_window(game->mlx, game->win, game->img, game->player_x, game->player_y);
+    mlx_put_image_to_window(game->mlx, game->win, game->img, game->player_x*64, game->player_y*64);
 
     game->player_x -= 1;
 
@@ -49,13 +49,14 @@ void up(t_data *game)
 
     // if (game->map_struc->map[game->player_x][game->player_y])
     game->img = mlx_xpm_file_to_image(game->mlx, "./ressources/floor.xpm", &img_w, &img_h);
-    mlx_put_image_to_window(game->mlx, game->win, game->img, game->player_x, game->player_y);
+    mlx_put_image_to_window(game->mlx, game->win, game->img, game->player_x*64, game->player_y*64);
 
     game->player_y -= 1;
 
     game->img = mlx_xpm_file_to_image(game->mlx, "./ressources/bitfuul-image.xpm", &img_w, &img_h);
     mlx_put_image_to_window(game->mlx, game->win, game->img, game->player_x*64, game->player_y*64);
 }
+
 void down(t_data *game)
 {
     int img_w;
@@ -63,7 +64,7 @@ void down(t_data *game)
 
     // if (game->map_struc->map[game->player_x][game->player_y])
     game->img = mlx_xpm_file_to_image(game->mlx, "./ressources/floor.xpm", &img_w, &img_h);
-    mlx_put_image_to_window(game->mlx, game->win, game->img, game->player_x, game->player_y);
+    mlx_put_image_to_window(game->mlx, game->win, game->img, game->player_x*64, game->player_y*64);
 
     game->player_y += 1;
 
