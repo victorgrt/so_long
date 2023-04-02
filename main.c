@@ -6,7 +6,7 @@
 /*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:36:29 by vgoret            #+#    #+#             */
-/*   Updated: 2023/04/02 23:19:46 by victor           ###   ########.fr       */
+/*   Updated: 2023/04/02 23:28:35 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,15 +80,15 @@ void    render_image(t_data *game, int x, int y, char *path)
 void    put_image(char c, int x, int y, t_data *game)
 {
     if (c == '1')
-        render_image(game, x, y, "./ressources/wall.xpm");
+        render_image(game, x, y, "./ressources/wall64.xpm");
     if (c == '0')
-        render_image(game, x, y, "./ressources/floor.xpm");
+        render_image(game, x, y, "./ressources/tile64.xpm");
     if (c == 'C')
         render_image(game, x, y, "./ressources/collect.xpm");
     if (c == 'E')
         render_image(game, x, y, "./ressources/door.xpm");
     if (c == 'P')
-        render_image(game, x, y, "./ressources/bitfuul-image.xpm");
+        render_image(game, x, y, "./ressources/player3.xpm");
 
 }
 
