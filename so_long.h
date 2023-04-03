@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
+/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:43:46 by vgoret            #+#    #+#             */
-/*   Updated: 2023/04/03 17:34:39 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/04/03 20:47:25 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <fcntl.h>
+
+# include "./src/ft_printf/ft_printf.h"
 
 #ifndef BUFFER_SIZE
 # define BUFFER_SIZE 1

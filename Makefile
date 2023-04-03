@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+         #
+#    By: victor <victor@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/16 16:44:56 by vgoret            #+#    #+#              #
-#    Updated: 2023/04/03 17:32:43 by vgoret           ###   ########.fr        #
+#    Updated: 2023/04/03 20:48:17 by victor           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,8 @@ OBJ = ${SRC:.c=.o}
 all: ${NAME} ok_util
 
 ${NAME} : ${OBJ}
-	@$(CC) ${OBJ} ${CCFLAGS} -I/usr/include -Imlx_linux -Lmlx_linux -lmlx_Linux -L/usr/lib -lXext -lX11 -lm -lz -o $@
+	@make -C ./src/ft_printf	
+	@$(CC) ${OBJ} ${CCFLAGS} -I/usr/include -Imlx_linux -Lmlx_linux -lmlx_Linux -L/usr/lib -lXext -lX11 -lm -lz ./src/ft_printf/ft_printf.a -o $@
 
 %.o: %.c
 	@$(CC) ${CCFLAGS} -Imlx_linux -c $< -o $@

@@ -6,7 +6,7 @@
 /*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 16:04:00 by vgoret            #+#    #+#             */
-/*   Updated: 2023/03/29 17:32:22 by victor           ###   ########.fr       */
+/*   Updated: 2023/04/03 21:21:36 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	get_size(char *line)
 // 			size2++;
 // 		if (size != size2)
 // 		{
-// 			printf("Pas RECT");
+// 			("Pas RECT");
 // 			return (1);
 // 		}
 // 		free(line);

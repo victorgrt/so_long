@@ -6,7 +6,7 @@
 /*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 15:05:53 by vgoret            #+#    #+#             */
-/*   Updated: 2023/03/29 17:31:30 by victor           ###   ########.fr       */
+/*   Updated: 2023/04/03 21:21:32 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_print_tab(char **tab)
 		j = 0;
 		while (tab[i][j])
 		{
-			printf("%c", tab[i][j]);
+			ft_printf("%c", tab[i][j]);
 			j++;
 		}
 		i++;

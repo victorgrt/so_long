@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
+/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:36:29 by vgoret            #+#    #+#             */
-/*   Updated: 2023/04/03 16:34:53 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/04/03 21:35:56 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,9 +149,7 @@ int	main(int ac, char **av)
     fd = open(path, O_RDONLY);
     // map = init_map(av[1], fd);
 
-
-
-    init_structure(&game, av[1], fd);
+	init_structure(&game, av[1], fd);
     // game.textures = load_textures(&game);
     // ft_print_info(game->map_struct, path, fd, game);
     
