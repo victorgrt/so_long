@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:36:29 by vgoret            #+#    #+#             */
-/*   Updated: 2023/04/02 23:28:35 by victor           ###   ########.fr       */
+/*   Updated: 2023/04/03 16:34:53 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,20 +67,23 @@ void	draw_player(t_data *game, t_data *img)
     mlx_pixel_put(img->mlx, img->win, img->player_x, img->player_y, RED);
 }
 
-void    render_image(t_data *game, int x, int y, char *path)
+void    render_image(t_data **game, int x, int y, char *path)
 {
     int tryx;
     int tryy;
 
-    game->img = mlx_xpm_file_to_image(game->mlx, path, &tryx, &tryy);
-    mlx_put_image_to_window(game->mlx, game->win, game->img, x, y);
-
+    // ft_draw_window(game);
+    (*game)->img = mlx_xpm_file_to_image((*game)->mlx, path, &tryx, &tryy);
+    mlx_put_image_to_window((*game)->mlx, (*game)->win, (*game)->img, x, y);
+    // ft_draw_window(game);
 }
 
-void    put_image(char c, int x, int y, t_data *game)
+void    put_image(char c, int x, int y, t_data **game)
 {
     if (c == '1')
+    {
         render_image(game, x, y, "./ressources/wall64.xpm");
+    }
     if (c == '0')
         render_image(game, x, y, "./ressources/tile64.xpm");
     if (c == 'C')
@@ -88,7 +91,7 @@ void    put_image(char c, int x, int y, t_data *game)
     if (c == 'E')
         render_image(game, x, y, "./ressources/door.xpm");
     if (c == 'P')
-        render_image(game, x, y, "./ressources/player3.xpm");
+        render_image(game, x, y, "./ressources/alien.xpm");
 
 }
 
@@ -99,30 +102,31 @@ void    ft_generate_window(t_data *game)
     int x_map;
     int y_map;
 
-    y_map = 0;
-    y = 0;
-    while (y < game->map_struc->row)
+    x_map = 0;
+    x = 0;
+    while (x < game->map_struc->col)
     {
-        x_map = 0;
-        x = 0;
-        while (x < game->map_struc->col)
+        y_map = 0;
+        y = 0;
+        while (y < game->map_struc->row)
         {
-            put_image(game->map_struc->map[y][x], x_map, y_map, game);
+            //printf("putting %d\n", game->map_struc->map[x][y]);
+            put_image(game->map_struc->map[y][x], x_map, y_map, &game);
             // printf("ici texture : [%d][%d]\n", x, y);
-            x++;
-            x_map += 64;
+            // ft_draw_window(game);
+            y++;
+            y_map += 64;
         }
-        y++;
-        y_map += 64;
+        x++;
+        x_map += 64;
     }
 }
 
 int	main(int ac, char **av)
 {
     (void) ac;
-	t_map	*map;
+	// t_map	*map;
 	t_data	game;
-    s_player    *player;
     // int     height = 0;
     // int     width = 0;
     char    *path;
@@ -143,29 +147,17 @@ int	main(int ac, char **av)
     /*Init map*/
     path = map_path(av[1]);
     fd = open(path, O_RDONLY);
-    map = init_map(av[1], fd);
-    if (map == NULL)
-    {
-        printf("Error\nMap pas rectangle\n");
-        return (0);
-    }
-    player = malloc(sizeof(s_player));
-    if (!player)
-    {
-        printf("Erreur de malloc du player\n");
-        return (0);
-    }
-    if (handle_map_error(map, player) == 1)
-		return (1);
+    // map = init_map(av[1], fd);
 
 
-    init_structure(&game, map);
+
+    init_structure(&game, av[1], fd);
     // game.textures = load_textures(&game);
-    ft_print_info(map, path, fd, game);
+    // ft_print_info(game->map_struct, path, fd, game);
     
         //init mlx
 	game.mlx = mlx_init();
-	game.win = mlx_new_window(game.mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "so_long");
+	game.win = mlx_new_window(game.mlx, game.map_struc->col*64, game.map_struc->row*64, "so_long");
     ft_generate_window(&game);
     mlx_hook(game.win, 2, (1L << 0), key_hook, &game); /* ADDED */
     // mlx_hook(game.win, KeyRelease, KeyReleaseMask, &key_hook, &game);
@@ -173,6 +165,6 @@ int	main(int ac, char **av)
     // mlx_hook(); exit
 
     mlx_loop(game.mlx);
-    printf("pos[%d][%d]\n", player->pos_x, player->pos_y);
+    // printf("pos[%d][%d]\n", player->pos_x, player->pos_y);
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:43:46 by vgoret            #+#    #+#             */
-/*   Updated: 2023/04/02 23:04:40 by victor           ###   ########.fr       */
+/*   Updated: 2023/04/03 15:37:48 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ typedef struct s_map{
 
 typedef struct  s_textures
 {
-	int		w;
-	int		h;
+	// int		w;
+	// int		h;
     void    *wall;
     void    *player;
     void    *exit;
@@ -55,6 +55,9 @@ typedef struct s_data {
     void    *mlx;
     void    *win;
     void    *img;
+	int     bits_per_pixel;
+    int     line_length;
+	int     endian;
 	int		player_x;
 	int		player_y;
 	int		c;
@@ -98,7 +101,7 @@ char	**read_map(t_map *map);
 char	**ft_putmap_tab(t_map *map, int fd);
 void    get_map_info(t_map *map, int fd);
 /* GAME */
-int init_structure(t_data *game, t_map *map);
+int init_structure(t_data *game, char *av, int fd);
 
 /* UTILS */
 char	*ft_strdup(const char *s);
@@ -111,7 +114,9 @@ void    ft_print_info(t_map *map, char *path, int fd, t_data img);
 int key_hook(int keysym, t_data *game);
 
 t_textures    *load_textures(t_data *game);
-void    render_image(t_data *game, int x, int y, char *path);
-void    put_image(char c, int x, int y, t_data *game);
+void    render_image(t_data **game, int x, int y, char *path);
+void    put_image(char c, int x, int y, t_data **game);
+void ft_draw_window(t_data *game);
+
 
 #endif
