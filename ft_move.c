@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 13:19:22 by victor            #+#    #+#             */
-/*   Updated: 2023/04/03 16:38:41 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/04/03 17:37:21 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,16 @@ void left(t_data **game)
     // printf("%d\n", (*game)->map[(*game)->player_x - 1][(*game)->player_y]);
     if ((*game)->map_struc->map[(*game)->player_y][(*game)->player_x - 1] != '1')
     {
+        if ((*game)->map_struc->map[(*game)->player_y][(*game)->player_x - 1] == 'C')
+        {
+            ft_collect(game, 'l');
+            return ;
+        }
+        else if ((*game)->map_struc->map[(*game)->player_y][(*game)->player_x - 1] == 'E')
+        {
+            ft_exit(game);  
+            return ;
+        }
         (*game)->img = mlx_xpm_file_to_image((*game)->mlx, "./ressources/floor.xpm", &img_w, &img_h);
         mlx_put_image_to_window((*game)->mlx, (*game)->win, (*game)->img, (*game)->player_x*64, (*game)->player_y*64);
 
@@ -42,13 +52,13 @@ void left(t_data **game)
         
         (*game)->img = mlx_xpm_file_to_image((*game)->mlx, "./ressources/alien.xpm", &img_w, &img_h);
         mlx_put_image_to_window((*game)->mlx, (*game)->win, (*game)->img, (*game)->player_x*64, (*game)->player_y*64);
-        printmap(game);
+        // printmap(game);
         printf("[%d][%d]\n", (*game)->player_x, (*game)->player_y);
     }
     else    
     {
-        printmap(game);
-        printf("Erreur : next char = %d\n", (*game)->map_struc->map[(*game)->player_x][(*game)->player_y+1]);
+        // printmap(game);
+        printf("Erreur : next char = %d\n", (*game)->map_struc->map[(*game)->player_y][(*game)->player_x-1]);
     }
 }
 
@@ -60,6 +70,16 @@ void down(t_data **game)
     // if ((*game)->map_struc->map[(*game)->player_x][(*game)->player_y])
     if ((*game)->map_struc->map[(*game)->player_y+1][(*game)->player_x] != '1')
     {
+        if ((*game)->map_struc->map[(*game)->player_y+1][(*game)->player_x] == 'C')
+        {
+            ft_collect(game, 'd');
+            return ;
+        }
+        else if ((*game)->map_struc->map[(*game)->player_y+1][(*game)->player_x] == 'E')
+        {
+            ft_exit(game);
+            return ;
+        }
         (*game)->img = mlx_xpm_file_to_image((*game)->mlx, "./ressources/floor.xpm", &img_w, &img_h);
         mlx_put_image_to_window((*game)->mlx, (*game)->win, (*game)->img, (*game)->player_x*64, (*game)->player_y*64);
 
@@ -70,14 +90,14 @@ void down(t_data **game)
         (*game)->img = mlx_xpm_file_to_image((*game)->mlx, "./ressources/alien.xpm", &img_w, &img_h);
         mlx_put_image_to_window((*game)->mlx, (*game)->win, (*game)->img, (*game)->player_x*64, (*game)->player_y*64);
         
-        printmap(game);
+        // printmap(game);
         printf("[%d][%d]\n", (*game)->player_x, (*game)->player_y);
     }
     
          else    
     {
-        printmap(game);
-        printf("Erreur : next char = %d\n", (*game)->map_struc->map[(*game)->player_x][(*game)->player_y+1]);
+        // printmap(game);
+        printf("Erreur : next char = %d\n", (*game)->map_struc->map[(*game)->player_y+1][(*game)->player_x]);
     }
 }
 
@@ -87,8 +107,18 @@ void up(t_data **game)
     int img_h;
 
     // if (game->map_struc->map[game->player_x][game->player_y])
-    if ((*game)->map_struc->map[(*game)->player_y-1][(*game)->player_x] != '1')
+    if ((*game)->map_struc->map[(*game)->player_y - 1][(*game)->player_x] != '1')
     {
+        if ((*game)->map_struc->map[(*game)->player_y - 1][(*game)->player_x] == 'C')
+        {
+            ft_collect(game, 'u');
+            return ;
+        }
+        else if ((*game)->map_struc->map[(*game)->player_y - 1][(*game)->player_x] == 'E')
+        {
+            ft_exit(game);
+            return ;
+        }
         (*game)->img = mlx_xpm_file_to_image((*game)->mlx, "./ressources/floor.xpm", &img_w, &img_h);
         mlx_put_image_to_window((*game)->mlx, (*game)->win, (*game)->img, (*game)->player_x*64, (*game)->player_y*64);
 
@@ -98,40 +128,50 @@ void up(t_data **game)
 
         (*game)->img = mlx_xpm_file_to_image((*game)->mlx, "./ressources/alien.xpm", &img_w, &img_h);
         mlx_put_image_to_window((*game)->mlx, (*game)->win, (*game)->img, (*game)->player_x*64, (*game)->player_y*64);
-        printmap(game);
+        // printmap(game);
         printf("[%d][%d]\n", (*game)->player_x, (*game)->player_y);
     }
          else    
     {
-        printmap(game);
-        printf("Erreur : next char = %d\n", (*game)->map_struc->map[(*game)->player_x][(*game)->player_y+1]);
+        // printmap(game);
+        printf("Erreur : next char = %d\n", (*game)->map_struc->map[(*game)->player_y-1][(*game)->player_x]);
     }
 }
+
 
 void right(t_data **game)
 {
     int img_w;
     int img_h;
 
-    // if (game->map_struc->map[game->player_x][game->player_y])
-    if ((*game)->map_struc->map[(*game)->player_y][(*game)->player_x+1] != '1')
+    if ((*game)->map_struc->map[(*game)->player_y][(*game)->player_x + 1] != '1')
     {
+        if ((*game)->map_struc->map[(*game)->player_y][(*game)->player_x + 1] == 'C')
+        {
+            ft_collect(game, 'r');
+            printf("Collectabless>>>>>>>>>> %d/%d\n", (*game)->c, (*game)->max_c);
+            return ;
+        }
+        else if ((*game)->map_struc->map[(*game)->player_y][(*game)->player_x + 1] == 'E')
+        {
+            ft_exit(game);
+            return ;
+        }
         (*game)->img = mlx_xpm_file_to_image((*game)->mlx, "./ressources/floor.xpm", &img_w, &img_h);
         mlx_put_image_to_window((*game)->mlx, (*game)->win, (*game)->img, (*game)->player_x*64, (*game)->player_y*64);
 
-        // (*game)->map_struc->map[(*game)->player_x][(*game)->player_y] = '0';
-        (*game)->player_x += 1;
-        // (*game)->map_struc->map[(*game)->player_x][(*game)->player_y] = 'P';
 
+        (*game)->player_x += 1;
+        
+        
         (*game)->img = mlx_xpm_file_to_image((*game)->mlx, "./ressources/alien.xpm", &img_w, &img_h);
         mlx_put_image_to_window((*game)->mlx, (*game)->win, (*game)->img, (*game)->player_x*64, (*game)->player_y*64);
-        printmap(game);
-        printf("[%d][%d]\n", (*game)->player_x, (*game)->player_y);
+
     }
-     else    
+    else    
     {
-        printmap(game);
-        printf("Erreur : next char = %d\n", (*game)->map_struc->map[(*game)->player_x][(*game)->player_y+1]);
+        // printmap(game);
+        printf("Erreur : next char = %d\n", (*game)->map_struc->map[(*game)->player_y][(*game)->player_x+1]);
     }
 }
 
@@ -148,8 +188,8 @@ int key_hook(int keysym, t_data *game)
     {
         if (keysym == 65362)
         {
-            printf("ici : %d\n", game->map_struc->map[game->player_x][game->player_y-1]);
-            printf("before:[%d][%d]\n", game->player_x, game->player_y);
+            // printf("ici : %d\n", game->map_struc->map[game->player_x][game->player_y-1]);
+            // printf("before:[%d][%d]\n", game->player_x, game->player_y);
             // game->player_x += -1;
             up(&game);
             game->move++;

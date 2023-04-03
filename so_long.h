@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:43:46 by vgoret            #+#    #+#             */
-/*   Updated: 2023/04/03 15:37:48 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/04/03 17:34:39 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ t_textures    *load_textures(t_data *game);
 void    render_image(t_data **game, int x, int y, char *path);
 void    put_image(char c, int x, int y, t_data **game);
 void ft_draw_window(t_data *game);
-
+void    ft_collect(t_data **game, char c);
+void    ft_exit(t_data **game);
 
 #endif
