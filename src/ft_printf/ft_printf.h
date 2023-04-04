@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 15:43:23 by vgoret            #+#    #+#             */
-/*   Updated: 2023/01/26 17:00:18 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/04/04 12:13:27 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*ft_itoa(int n);
 int		ft_putchar(int c);
 int		ft_putstr(char *str);
 int		ft_print_hexa(unsigned int nbr, const char format);
-int		ft_strlen2(char *str);
+int		ft_strlen(char *str);
 int		ft_print_void(long unsigned int ptr);
 int		ft_print_nb(int n);
 int		ft_print_unsigned(unsigned int nb);

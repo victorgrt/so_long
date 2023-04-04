@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 14:55:32 by vgoret            #+#    #+#             */
-/*   Updated: 2023/02/15 15:51:33 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/04/04 12:13:43 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_putstr(char *str)
 		ft_putstr("(null)");
 		return (6);
 	}
-	len = ft_strlen2(str);
+	len = ft_strlen(str);
 	write(1, str, len);
 	return (len);
 }

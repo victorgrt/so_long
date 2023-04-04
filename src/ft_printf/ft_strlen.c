@@ -6,13 +6,13 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:49:43 by vgoret            #+#    #+#             */
-/*   Updated: 2023/01/26 17:10:40 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/04/04 12:13:01 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_strlen2(char *str)
+int	ft_strlen(char *str)
 {
 	int	i;
 

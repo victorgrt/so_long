@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   action.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 16:53:36 by vgoret            #+#    #+#             */
-/*   Updated: 2023/04/03 21:21:05 by victor           ###   ########.fr       */
+/*   Updated: 2023/04/04 12:18:59 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,7 @@ void    ft_exit(t_data **game)
 		mlx_put_image_to_window((*game)->mlx, (*game)->win, (*game)->img, (*game)->player_x*64, (*game)->player_y*64);
 		(*game)->img = mlx_xpm_file_to_image((*game)->mlx, "./ressources/alien.xpm", &img_w, &img_h);
 		mlx_put_image_to_window((*game)->mlx, (*game)->win, (*game)->img, (*game)->player_x*64, (*game)->player_y*64);
-		print_win();
-    printf("You won in %d moves, good job !\n", (*game)->move);
+		print_win(*game);
 		exit (0);    
 	}
 	else

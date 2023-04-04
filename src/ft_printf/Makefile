@@ -6,14 +6,14 @@
 #    By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/21 17:24:08 by vgoret            #+#    #+#              #
-#    Updated: 2023/02/15 15:54:47 by vgoret           ###   ########.fr        #
+#    Updated: 2023/04/04 12:13:11 by vgoret           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = ft_printf.a
 
 SRC = ft_printf.c ft_putstr.c ft_print_void.c ft_print_nb.c ft_print_unsigned.c \
-	ft_print_hexa.c ft_print_pourc.c ft_putchar.c ft_strlen2.c \
+	ft_print_hexa.c ft_print_pourc.c ft_putchar.c ft_strlen.c \
 	ft_itoa.c
 
 OBJ = ${SRC:.c=.o}

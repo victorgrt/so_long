@@ -3,23 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_map2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 16:04:00 by vgoret            #+#    #+#             */
-/*   Updated: 2023/04/03 21:21:36 by victor           ###   ########.fr       */
+/*   Updated: 2023/04/04 12:41:11 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-/*
-1111111111111	S'assurer qu'on est entre des murs
-1000000C00001	1 sortie, <=1 item, 1 position de depart
-1P0011E000001
-1111111111111
-*/
-
-
 
 int	get_size(char *line)
 {

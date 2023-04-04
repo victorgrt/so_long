@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:43:46 by vgoret            #+#    #+#             */
-/*   Updated: 2023/04/03 20:47:25 by victor           ###   ########.fr       */
+/*   Updated: 2023/04/04 12:57:47 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ int init_structure(t_data *game, char *av, int fd);
 char	*ft_strdup(const char *s);
 
 /* PRINTER */
-void	print_win();
+void	print_win(t_data *game);
 void	print_loose();
 void    ft_print_info(t_map *map, char *path, int fd, t_data img);
 

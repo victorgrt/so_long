@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:36:29 by vgoret            #+#    #+#             */
-/*   Updated: 2023/04/03 21:35:56 by victor           ###   ########.fr       */
+/*   Updated: 2023/04/04 12:39:22 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,12 @@ void    ft_generate_window(t_data *game)
     }
 }
 
+int    close_window(t_data *game)
+{
+    mlx_destroy_window(game->mlx, game->win);
+    exit (0);
+}
+
 int	main(int ac, char **av)
 {
     (void) ac;
@@ -155,9 +161,10 @@ int	main(int ac, char **av)
     
         //init mlx
 	game.mlx = mlx_init();
-	game.win = mlx_new_window(game.mlx, game.map_struc->col*64, game.map_struc->row*64, "so_long");
+	game.win = mlx_new_window(game.mlx, game.map_struc->col * 64, game.map_struc->row*64, "so_long");
     ft_generate_window(&game);
     mlx_hook(game.win, 2, (1L << 0), key_hook, &game); /* ADDED */
+    mlx_hook(game.win, 17, 0L, (void *)close_window, &game);
     // mlx_hook(game.win, KeyRelease, KeyReleaseMask, &key_hook, &game);
     // mlx_hook(); player input
     // mlx_hook(); exit
