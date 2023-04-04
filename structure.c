@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 13:28:54 by victor            #+#    #+#             */
-/*   Updated: 2023/04/04 12:21:58 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/04/04 16:31:25 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,36 +16,36 @@ int init_structure(t_data *game, char *av, int fd)
 {
     // int img_h;
     // int img_w;
-    s_player    *player;
     
     game->map_struc = init_map(av, fd);
+    int i = 0;
+    while (game->map_struc->map[i])
+    {
+        printf("%s\n", game->map_struc->map[i]);
+        i++;
+    }
     if (game->map_struc->map == NULL)
     {
         printf("Error\nMap pas rectangle\n");
-        return (0);
+        return (1);
     }
-    player = malloc(sizeof(s_player));
-    if (!player)
+    if (handle_map_error(game) == 1)
     {
-        printf("Erreur de malloc du player\n");
-        return (0);
+	    free(game->mlx);
+        free(game->win);
+    	return (1);
     }
-    if (handle_map_error(game->map_struc, player) == 1)
-		return (1);
     // game->map = map->map;
     get_pos_player(game->map_struc, game);
+    game->mlx = mlx_init();
+	game->win = mlx_new_window(game->mlx, game->map_struc->col * 64,
+			game->map_struc->row * 64, "so_long");
     game->c = 0;
     game->e = game->map_struc->nb_e;
     game->p = game->map_struc->nb_p;
-    game->max_c = game->map_struc->nb_c;
     game->move = 0;
     game->width = game->map_struc->col * 64;
     game->height = game->map_struc->row * 64;
-    // game->player_img->img_ptr = mlx_xpm_file_to_image(game->mlx, "./ressources/bitfuul-image.xpm", &img_w, &img_h);
-    // game->player_img->addr = mlx_get_data_addr(game->player_img.img_ptr, &game->player_img.bits_per_pixel, &game->player_img.line_length, &game->player_img.endian);
-    // game->floor_img->img_ptr = mlx_xpm_file_to_image(game->mlx, "./ressources/floor.xpm", &img_w, &img_h);
-    // game->floor_img->addr = mlx_get_data_addr(game->player_img.img_ptr, &game->player_img.bits_per_pixel, &game->player_img.line_length, &game->player_img.endian);
     // printf("structure : \nmove : %d\nc :%d\tp :%d\te :%d\nmax_c : %d\nwidth : %d\theight :%d\n", game->move, game->c, game->p, game->e, game->max_c, game->width, game->height);
-    
-    return (1);
+    return (0);
 }

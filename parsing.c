@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 13:29:59 by vgoret            #+#    #+#             */
-/*   Updated: 2023/03/28 22:12:22 by victor           ###   ########.fr       */
+/*   Updated: 2023/04/04 14:52:41 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
 
 int	verif_arg(char *str)
 {
@@ -22,7 +21,8 @@ int	verif_arg(char *str)
 	{
 		while (str[i] != '.')
 			i++;
-		if (str[i + 1] == 'b' && str[i + 2] == 'e' && str[i + 3] == 'r' && str[i + 4] == '\0')
+		if (str[i + 1] == 'b' && str[i + 2] == 'e' && str[i + 3] == 'r' && str[i
+			+ 4] == '\0')
 			return (1);
 		return (0);
 	}
@@ -80,8 +80,7 @@ Generee une map
 // {
 // 	// int	fd;
 // 	s_map	*map;
-	
-	
+
 // 	if (map_path(name) == NULL)
 // 		return (1);
 // 	name = map_path(name);
@@ -93,14 +92,13 @@ Generee une map
 // 	// map->map = malloc(sizeof(char *) * map_len());
 // 	// if (!(map->map))
 // 	// 	return (NULL);
-		
+
 // }
 
 // int	main(int ac, char **av)
 // {
 // 	// int	i;
 
-	
 // 	if (ac != 2)
 // 	{
 // 		printf("Probleme d'arguments");
@@ -111,13 +109,14 @@ Generee une map
 // 		printf("Extension de la map INVALIDE\n");
 // 		return (0);
 // 	}
-// 	//gerener ma structure map avec la map dans un double tableau et le nom -> verif que le nom existe dans maps/
+// 	//gerener ma structure map avec la map dans un double tableau et le nom
+		//-> verif que le nom existe dans maps/
 // 	// mapinator(av[1]);
 // 	print_map(av[1]);
 // 	//printf("%s\n", map_path(av[1]));
-	
+
 // 	//map->map_name = av[1];
-// 	//printf("%d", map_len());	
+// 	//printf("%d", map_len());
 
 // 	return (0);
 // }
