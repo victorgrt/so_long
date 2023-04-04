@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_move.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
+/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 13:19:22 by victor            #+#    #+#             */
-/*   Updated: 2023/04/04 16:47:15 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/04/04 20:28:39 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,8 +150,6 @@ void	right(t_data **game)
 			+ 1] == 'C')
 		{
 			ft_collect(game, 'r');
-			ft_printf("Collectabless>>>>>>>>>> %d/%d\n", (*game)->c,
-				(*game)->max_c);
 			return ;
 		}
 		else if ((*game)->map_struc->map[(*game)->player_y]
