@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 15:05:53 by vgoret            #+#    #+#             */
-/*   Updated: 2023/04/03 21:21:32 by victor           ###   ########.fr       */
+/*   Updated: 2023/04/04 14:53:50 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	ft_print_tab(char **tab)
 {
 	int	i;
 	int	j;
-	
 
 	i = 0;
 	while (tab[i])

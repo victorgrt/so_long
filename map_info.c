@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:54:08 by victor            #+#    #+#             */
-/*   Updated: 2023/04/04 12:57:38 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/04/04 16:33:42 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	get_map_info(t_map *map, int fd)
 {
-	char		*line;
+	char	*line;
 
 	map->row = 0;
 	map->col = 0;
@@ -30,23 +30,25 @@ void	get_map_info(t_map *map, int fd)
 	free(line);
 }
 
-int	is_map_closed(t_map *map)
+int	is_map_closed(t_data *game)
 {
 	int	i;
 	int	j;
 	int	size;
+	char	**map;
 
 	i = 0;
 	j = 0;
-	while (j < map->row)
+	map = game->map_struc->map;
+	while (j < game->map_struc->row)
 	{
-		size = ft_strlen(map->map[j]);
+		size = ft_strlen(map[j]);
 		i = 0;
-		while (map->map[j] && i < map->row)
+		while (map[j] && i < game->map_struc->row)
 		{
-			if (map->map[i][0] != 49)
+			if (map[i][0] != 49)
 				return (1);
-			if (map->map[i][size - 1] != '1')
+			if (map[i][size - 1] != '1')
 				return (1);
 			i++;
 		}
@@ -54,14 +56,14 @@ int	is_map_closed(t_map *map)
 	}
 	i = 0;
 	j = 0;
-	while (j < map->col)
+	while (j < game->map_struc->col)
 	{
 		i = 0;
-		while (map->map[j] && i < map->col - 1)
+		while (map[j] && i < game->map_struc->col - 1)
 		{
-			if (map->map[0][i] != 49)
+			if (map[0][i] != 49)
 				return (1);
-			if (map->map[map->row - 1][i] != 49)
+			if (map[game->map_struc->row - 1][i] != 49)
 				return (1);
 			i++;
 		}
@@ -70,43 +72,46 @@ int	is_map_closed(t_map *map)
 	return (0);
 }
 
-int	is_map_rules(t_map *map, s_player *player)
+int	is_map_rules(t_data *game)
 {
 	int	i;
 	int	j;
+	char	**tab;
 
 	i = 0;
-	while (i < map->row - 1)
+	tab = game->map_struc->map;
+	while (i < game->map_struc->row - 1)
 	{
 		j = 0;
-		while (j < map->col - 1)
+		while (j < game->map_struc->col - 1)
 		{
-			if (map->map[i][j] == 'P')
+			if (tab[i][j] == 'P')
 			{
-				player->pos_y = i;
-				player->pos_x = j;
-				map->nb_p += 1;
+				game->player_y = i;
+				game->player_x = j;
+				game->p += 1;
 			}
-			if (map->map[i][j] == 'C')
-				map->nb_c++;
-			if (map->map[i][j] == 'E')
-				map->nb_e++;
-			if (map->map[i][j] != 'C' && map->map[i][j] != 'P'
-				&& map->map[i][j] != 'E' && map->map[i][j] != '1'
-				&& map->map[i][j] != '0')
+			if (tab[i][j] == 'C')
+				game->max_c++;
+			if (tab[i][j] == 'E')
+				game->e++;
+			if (tab[i][j] != 'C' && tab[i][j] != 'P'
+				&& tab[i][j] != 'E' && tab[i][j] != '1'
+				&& tab[i][j] != '0')
 			{
-				printf("Error\nUnknown character : %c ([%d][%d])\n", map->map[i][j], i, j);
+				printf("Error\nUnknown character : %c ([%d][%d])\n",
+						tab[i][j], i, j);
 				return (1);
 			}
 			j++;
 		}
 		i++;
 	}
-	if (map->nb_p != 1)
+	if (game->p != 1)
 		return (1);
-	if (map->nb_e != 1)
+	if (game->e != 1)
 		return (1);
-	if (map->nb_c <= 0)
+	if (game->max_c <= 0)
 		return (1);
 	return (0);
 }
@@ -116,20 +121,22 @@ char	**read_map(t_map *mappppp)
 	char	**map;
 	char	*line;
 	char	*path;
-    int				rows;
-    int				cols;
-	int				i;
-    int				fd;
+	int		rows;
+	int		cols;
+	int		i;
+	int		fd;
+	int		j;
+	int		old;
 
 	rows = mappppp->row;
 	cols = mappppp->col;
-    path = mappppp->path;
-    fd = open(path, O_RDONLY);
+	path = mappppp->path;
+	fd = open(path, O_RDONLY);
 	map = (char **)malloc(sizeof(char *) * (rows + 1));
 	if (!map)
 		return (NULL);
 	i = 0;
-    line = get_next_line(fd);
+	line = get_next_line(fd);
 	while (line && i < rows)
 	{
 		if (ft_strlen(line) != cols && i < rows - 1)
@@ -137,35 +144,72 @@ char	**read_map(t_map *mappppp)
 		map[i] = ft_strdup(line);
 		free(line);
 		line = get_next_line(fd);
-        i++;
+		i++;
 	}
 	free(line);
 	if (i != rows)
 		return (NULL);
-    map[i] = '\0';
-    int j = 0;
-    int old = ft_strlen(map[0]);
-    while (j < mappppp->row)
-    {
-        if (ft_strlen(map[j]) != old)
-            return (NULL);
-        j++;
-    }
+	map[i] = '\0';
+	j = 0;
+	old = ft_strlen(map[0]);
+	while (j < mappppp->row)
+	{
+		if (ft_strlen(map[j]) != old)
+			return (NULL);
+		j++;
+	}
 	return (map);
 }
 
-int	handle_map_error(t_map *map, s_player *player)
+// void    flood_map(t_map map, int row, int column)
+// {
+//     char    **mapdata;
+//     int        i;
+//     int        j;
+
+//     i = row;
+//     j = column;
+//     mapdata = map->c_data;
+//     if (i > map->rows - 1  j > map->columns - 1  j < 0  i < 0)
+//         return ;
+//     if (mapdata[i][j] == '1'  mapdata[i][j] == '2')
+//         return ;
+//     if (mapdata[i][j] == 'C')
+//             map->collected += 1;
+//     mapdata[i][j] = '2';
+//     flood_map(map, i + 1, j);
+//     flood_map(map, i, j + 1);
+//     flood_map(map, i - 1, j);
+//     flood_map(map, i, j - 1);
+// }
+
+// void    ft_check_working_map(t_mapmap)
+// {
+//     int        i;
+//     int        j;
+//     int        collected;
+
+//     ft_fill_player_position(map);
+//     i = map->player_row;
+//     j = map->player_column;
+//     flood_map(map, i, j);
+//     collected = map->collected;
+//     if (collected != map->collectible)
+//         ft_error("Error\nMap cannot be completed\n", map);
+// }
+
+int	handle_map_error(t_data *game)
 {
-	if (is_map_closed(map) == 1)
+	if (is_map_closed(game) == 1)
 	{
-	    printf("Error\nMap not closed\n");
-	    return (1);
+		printf("Error\nMap not closed\n");
+		return (1);
 	}
-	if (is_map_rules(map, player) == 1)
+	if (is_map_rules(game) == 1)
 	{
-	    printf("Error\nCheck Assets of the map\n");
-	    return (1);
-	}	
+		printf("Error\nCheck Assets of the map\n");
+		return (1);
+	}
 	return (0);
 }
 
