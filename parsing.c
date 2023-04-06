@@ -6,26 +6,36 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 13:29:59 by vgoret            #+#    #+#             */
-/*   Updated: 2023/04/04 14:52:41 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/04/06 18:18:39 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	verif_arg(char *str)
+int	parsing(t_data *game, char *arg, int fd)
 {
-	int	i;
+	t_map	*map;
+	(void) fd;
 
-	i = 0;
-	while (str[i])
+	if (verif_arg(arg) == 1)
 	{
-		while (str[i] != '.')
-			i++;
-		if (str[i + 1] == 'b' && str[i + 2] == 'e' && str[i + 3] == 'r' && str[i
-			+ 4] == '\0')
-			return (1);
-		return (0);
+		printf("Mauvais extension, fichier attendu : .ber\n");
+		return (1);
 	}
+	map = init_map(arg);
+	if (!map)
+	{
+		printf("Error\nMap non-conforme\n");
+		return (1);
+	}
+	if (handle_map_error(game) == 1)
+	{
+		return (1);
+	}
+	//verifier si map rectangle
+	//verifier si map faisable
+	printf("%s\n%d\t%d\t%d\n%d\t%d\n", map->path, map->nb_c, map->nb_e, map->nb_p, map->col, map->row);
+	printf("%d\t%d\t%d\t%d\n", game->c, game->e, game->p, game->max_c);
 	return (0);
 }
 
@@ -55,27 +65,30 @@ char	*map_path(char *name)
 	return (path);
 }
 
-void	print_map(char *name, int fd)
+int	verif_arg(char *str)
 {
-	char	*line;
-
-	name = map_path(name);
-	if (fd < 0)
-		return ;
-	line = get_next_line(fd);
-	while (line)
+	int	i;
+	char	*path;
+	
+	i = 0;
+	while (str[i])
 	{
-		printf("%s", line);
-		free(line);
-		line = get_next_line(fd);
-		if (line == NULL)
-			break ;
+		while (str[i] != '.')
+			i++;
+		if (str[i + 1] == 'b' && str[i + 2] == 'e' && str[i + 3] == 'r' && str[i
+			+ 4] == '\0')
+		{
+			path = map_path(str);
+			if (open(path, O_RDONLY) >= 0)
+				return (0);
+		}
+		return (1);
 	}
+	return (1);
 }
 
-/*
-Generee une map
-*/
+// Generee une map
+//
 // int	mapinator(char *name)
 // {
 // 	// int	fd;
@@ -119,4 +132,16 @@ Generee une map
 // 	//printf("%d", map_len());
 
 // 	return (0);
+// }
+
+// int	main(int ac, char **av)
+// {
+// 	(void) ac;
+// 	char	*temp;
+
+// 	temp = map_path(av[1]);
+// 	parsing(av[1], )
+// 	printf("%s\n", temp);
+// 	printf("%d\n", verif_arg(temp));
+// 	return (1);
 // }

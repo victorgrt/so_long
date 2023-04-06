@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:36:29 by vgoret            #+#    #+#             */
-/*   Updated: 2023/04/05 11:58:24 by victor           ###   ########.fr       */
+/*   Updated: 2023/04/06 17:13:17 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,13 +82,13 @@ void	ft_generate_window(t_data *game)
 
 	x_map = 0;
 	x = 0;
-	while (x < game->map_struc->col)
+	while (x < game->col)
 	{
 		y_map = 0;
 		y = 0;
-		while (y < game->map_struc->row)
+		while (y < game->row)
 		{
-			put_image(game->map_struc->map[y][x], x_map, y_map, &game);
+			put_image(game->map[y][x], x_map, y_map, &game);
 			y++;
 			y_map += 64;
 		}
@@ -103,29 +103,41 @@ int	close_window(t_data *game)
 	exit(0);
 }
 
-int	main(int ac, char **av)
-{
-	t_data	game;
-	char	*path;
-	int		fd;
+// int	main(int ac, char **av)
+// {
+// 	t_data	game;
+// 	char	*path;
+// 	int		fd;
     
-	if (ac != 2)
-	{
-		printf("Error\nNo Map for so_long\n ");
-		return (0);
-	}
-	if (verif_arg(av[1]) == 0)
-	{
-		printf("Error\nExtension de la map INVALIDE\n");
-		return (0);
-	}
-    path = map_path(av[1]);
-	fd = open(path, O_RDONLY);
-	init_structure(&game, av[1], fd);
-	ft_generate_window(&game);
-	mlx_hook(game.win, 2, (1L << 0), key_hook, &game);
-	mlx_hook(game.win, 17, 0L, (void *)close_window, &game);
+// 	if (ac != 2)
+// 	{
+// 		printf("Error\nNo Map for so_long\n ");
+// 		return (0);
+// 	}
+// 	if (verif_arg(av[1]) == 1)
+// 	{
+// 		printf("Error\nExtension de la map INVALIDE\n");
+// 		return (0);
+// 	}
+//     path = map_path(av[1]);
+// 	printf("al : %d\n", nb_line(path));
+// 	fd = open(path, O_RDONLY);
+// 	if (fd < 0)
+// 	{
+// 		printf("map not found in the folder ./maps\n");
+// 		return (free(path), 0);
+// 	}
+// 		init_structure(&game);
+// 	if (parsing(&game, av[1], fd) == 1)
+// 	{
+// 		printf("erreur de parsing\n");
+// 		return (0);
+// 	}
 
-	mlx_loop(game.mlx);
-	return (0);
-}
+// 	// ft_generate_window(&game);
+// 	// mlx_hook(game.win, 2, (1L << 0), key_hook, &game);
+// 	// mlx_hook(game.win, 17, 0L, (void *)close_window, &game);
+
+// 	// mlx_loop(game.mlx);
+// 	return (0);
+// }

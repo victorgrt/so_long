@@ -3,27 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   map_info.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:54:08 by victor            #+#    #+#             */
-/*   Updated: 2023/04/05 11:55:58 by victor           ###   ########.fr       */
+/*   Updated: 2023/04/06 18:40:02 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	get_map_info(t_map *map, int fd)
+void	get_map_info(t_data *game, int fd)
 {
 	char	*line;
 
-	map->row = 0;
-	map->col = 0;
+	game->row = 0;
+	game->col = 0;
 	line = get_next_line(fd);
 	while (line)
 	{
-		if (map->col == 0)
-			map->col = ft_strlen(line);
-		map->row++;
+		if (game->col == 0)
+			game->col = ft_strlen(line);
+		game->row++;
 		free(line);
 		line = get_next_line(fd);
 	}
@@ -39,12 +39,12 @@ int	is_map_closed(t_data *game)
 
 	i = 0;
 	j = 0;
-	map = game->map_struc->map;
-	while (j < game->map_struc->row)
+	map = game->map;
+	while (j < game->row)
 	{
 		size = ft_strlen(map[j]);
 		i = 0;
-		while (map[j] && i < game->map_struc->row)
+		while (map[j] && i < game->row)
 		{
 			if (map[i][0] != 49)
 				return (1);
@@ -56,14 +56,14 @@ int	is_map_closed(t_data *game)
 	}
 	i = 0;
 	j = 0;
-	while (j < game->map_struc->row)
+	while (j < game->row)
 	{
 		i = 0;
-		while (map[j] && i < game->map_struc->col - 1)
+		while (map[j] && i < game->col - 1)
 		{
 			if (map[0][i] != 49)
 				return (1);
-			if (map[game->map_struc->row - 1][i] != 49)
+			if (map[game->row - 1][i] != 49)
 				return (1);
 			i++;
 		}
@@ -79,22 +79,12 @@ int	is_map_rules(t_data *game)
 	char	**tab;
 
 	i = 0;
-	tab = game->map_struc->map;
-	while (i < game->map_struc->row - 1)
+	tab = game->map;
+	while (i < game->row - 1)
 	{
 		j = 0;
-		while (j < game->map_struc->col - 1)
+		while (j < game->col - 1)
 		{
-			if (tab[i][j] == 'P')
-			{
-				game->player_y = i;
-				game->player_x = j;
-				game->p += 1;
-			}
-			if (tab[i][j] == 'C')
-				game->max_c++;
-			if (tab[i][j] == 'E')
-				game->e++;
 			if (tab[i][j] != 'C' && tab[i][j] != 'P'
 				&& tab[i][j] != 'E' && tab[i][j] != '1'
 				&& tab[i][j] != '0')
@@ -107,31 +97,21 @@ int	is_map_rules(t_data *game)
 		}
 		i++;
 	}
-	// if (game->p != 1)
-	// 	return (1);
-	// if (game->e != 1)
-	// 	return (1);
-	// if (game->max_c <= 0)
-	// 	return (1);
 	return (0);
 }
 
-char	**read_map(t_map *mappppp)
+char	**read_map(t_map *mappppp, int fd)
 {
 	char	**map;
 	char	*line;
-	char	*path;
 	int		rows;
 	int		cols;
 	int		i;
-	int		fd;
 	int		j;
 	int		old;
 
 	rows = mappppp->row;
 	cols = mappppp->col;
-	path = mappppp->path;
-	fd = open(path, O_RDONLY);
 	map = (char **)malloc(sizeof(char *) * (rows + 1));
 	if (!map)
 		return (NULL);

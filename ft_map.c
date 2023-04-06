@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_map.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:26:21 by vgoret            #+#    #+#             */
-/*   Updated: 2023/04/05 11:52:26 by victor           ###   ########.fr       */
+/*   Updated: 2023/04/06 17:20:56 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-t_map	*init_map(char *name, int fd)
+t_map	*init_map(char *name)
 {
 	t_map	*map;
 	char	*path;
@@ -27,10 +27,10 @@ t_map	*init_map(char *name, int fd)
 	map->nb_c = 0;
 	map->nb_e = 0;
 	map->nb_p = 0;
-	get_map_info(map, fd);
-	if (read_map(map) == NULL)
-		return (NULL);
-	map->map = read_map(map);
+	// get_map_info(map, fd);
+	// if (read_map(map, fd) == NULL)
+	// 	return (NULL);
+	// map->map = read_map(map, fd);
 	// map->height = map_height(path);
 	// map->width = map_width(path);
 	// map->map = map_tab(map->path, map);
@@ -54,6 +54,46 @@ void	ft_free(char **tab)
 	tab = NULL;
 	return ;
 }
+
+int	nb_line(char *path)
+{
+	int		fd;
+	int		i;
+	char	*temp;
+
+	fd = open(path, O_RDONLY);
+	i = 0;
+	temp = get_next_line(fd);
+	while (temp)
+	{
+		temp = get_next_line(fd);
+		free(temp);
+		i++;
+	}
+	close(fd);
+	return (i);
+}
+
+// char	**create_map(t_data *game)
+// {
+// 	int	fd;
+// 	int	i;
+// 	char	*temp;
+
+// 	game->map = malloc(sizeof(*game) * nb_line(game->path) + 1);
+// 	if (!game->map_struc->map)
+// 		return (NULL);
+// 	fd = open(game->map_struc->path, O_RDONLY);
+// 	i = 0;
+// 	while (i < nb_line(game->map_struc->path))
+// 	{
+// 		temp = ft_strdup(get_next_line(fd));
+// 		game->map_struc->map[i] = temp;
+// 		i++;
+// 	}
+// 	close(fd);
+// 	return(game->map_struc->map);
+// }
 
 // int	main(int ac, char **av)
 // {

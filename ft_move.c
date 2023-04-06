@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_move.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 13:19:22 by victor            #+#    #+#             */
-/*   Updated: 2023/04/05 12:06:01 by victor           ###   ########.fr       */
+/*   Updated: 2023/04/06 15:07:28 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	left(t_data **game)
 	int	img_w;
 	int	img_h;
 
-	printf("alodlaodlao %d\n", (*game)->max_c);
 	if ((*game)->map_struc->map[(*game)->player_y][(*game)->player_x
 		- 1] != '1')
 	{

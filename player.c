@@ -6,24 +6,24 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 15:27:39 by victor            #+#    #+#             */
-/*   Updated: 2023/04/04 14:52:10 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/04/06 16:29:30 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	get_pos_player(t_map *map, t_data *game)
+void	get_pos_player(t_data *game)
 {
 	int x;
 	int y;
 
 	y = 0;
-	while (y < map->row)
+	while (y < game->row)
 	{
 		x = 0;
-		while (x < map->col)
+		while (x < game->col)
 		{
-			if (map->map[y][x] == 'P')
+			if (game->map[y][x] == 'P')
 			{
 				game->player_x = x;
 				game->player_y = y;

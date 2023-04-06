@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 22:41:54 by victor            #+#    #+#             */
-/*   Updated: 2023/04/04 14:53:36 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/04/06 18:19:33 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,20 @@ void	print_win(t_data *game)
 void	print_loose(void)
 {
 	ft_printf("\033[0;31m██╗░░░██╗░█████╗░██╗░░░██╗  ██╗░░░░░░█████╗░░█████╗░░██████╗███████╗\n╚██╗░██╔╝██╔══██╗██║░░░██║  ██║░░░░░██╔══██╗██╔══██╗██╔════╝██╔════╝\n░╚████╔╝░██║░░██║██║░░░██║  ██║░░░░░██║░░██║██║░░██║╚█████╗░█████╗░░\n░░╚██╔╝░░██║░░██║██║░░░██║  ██║░░░░░██║░░██║██║░░██║░╚═══██╗██╔══╝░░\n░░░██║░░░╚█████╔╝╚██████╔╝  ███████╗╚█████╔╝╚█████╔╝██████╔╝███████╗\n░░░╚═╝░░░░╚════╝░░╚═════╝░  ╚══════╝░╚════╝░░╚════╝░╚═════╝░╚══════╝\n\033[0m");
+}
+
+void	print_map(t_data *game)
+{
+	int i;
+	
+	i = 0;
+	while (game->map[i])
+	{
+		printf("%s\tlen : %d\n", game->map[i], ft_strlen(game->map[i]));
+		i++;
+	}
+	printf("fd:%d\t path:%s\nrow:%d\tcol:%d\nc:%d\tp:%d\te:%d\nplayer[%d][%d]\n",game->fd, game->path, game->row, game->col, game->max_c, game->p, game->p, game->player_x, game->player_y);
+		printf("check : %d\n", ft_check_objects(game));
 }
 
 // int main (void)

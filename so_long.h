@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:43:46 by vgoret            #+#    #+#             */
-/*   Updated: 2023/04/05 12:05:29 by victor           ###   ########.fr       */
+/*   Updated: 2023/04/06 18:21:27 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,17 @@ typedef struct s_textures
 
 typedef struct s_data
 {
-	t_map		*map_struc;
-	t_textures	*textures;
 	void		*mlx;
 	void		*win;
 	void		*img;
-	int			bits_per_pixel;
-	int			line_length;
-	int			endian;
+	char		*path;
+
+	char		**map;
+	int			row;
+	int			col;
+	int			width;
+	int			height;
+
 	int			player_x;
 	int			player_y;
 	int			c;
@@ -62,8 +65,8 @@ typedef struct s_data
 	int			e;
 	int			max_c;
 	int			move;
-	int			width;
-	int			height;
+
+	int			fd;
 }				t_data;
 
 /* GET_NEXT_LINE */
@@ -76,26 +79,25 @@ char			*get_next_line(int fd);
 int				verif_arg(char *str);
 
 /* PLAYER */
-void			get_pos_player(t_map *map, t_data *game);
+void			get_pos_player(t_data *game);
 void			draw_player(t_data *game, t_data *img);
 
 /* MAP */
-void			print_map(char *map_name, int fd);
 int				map_height(char *map_name, int fd);
 int				map_width(char *map_name, int fd);
 char			*map_path(char *map_name);
-t_map			*init_map(char *map_name, int fd);
+t_map			*init_map(char *map_name);//en travaux
 char			**map_tab(t_map *map, int fd);
 
 int				handle_map_error(t_data *game);
 
 int				is_map_rules(t_data *game);
 int				is_map_closed(t_data *game);
-char			**read_map(t_map *map);
+char			**read_map(t_map *map, int fd);
 char			**ft_putmap_tab(t_map *map, int fd);
-void			get_map_info(t_map *map, int fd);
+void			get_map_info(t_data *game, int fd);
 /* GAME */
-int				init_structure(t_data *game, char *av, int fd);
+int				init_structure(t_data *game);
 
 /* UTILS */
 char			*ft_strdup(const char *s);
@@ -121,5 +123,16 @@ void			down(t_data **game);
 void			up(t_data **game);
 void	printmap(t_data **game);
 void	print_move(t_data *game, int move, char c);
+
+/* Parsing */
+
+int	parsing(t_data *game, char *arg, int fd);
+int	nb_line(char *path);
+char	**create_map(t_data *game);//jsp si ca marche mais jcrois pas
+
+char	**create_game(t_data *game);
+void	init_objects(t_data *game);
+void	print_map(t_data *game);
+int	ft_check_objects(t_data *game);
 
 #endif

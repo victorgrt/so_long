@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   action.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 16:53:36 by vgoret            #+#    #+#             */
-/*   Updated: 2023/04/05 12:05:43 by victor           ###   ########.fr       */
+/*   Updated: 2023/04/06 15:07:37 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ void	ft_exit(t_data *game)
 	int	img_w;
 	int	img_h;
 
-	printf("al : %d\t%d", game->c, game->max_c);
 	if (game->c == game->max_c)
 	{
 		game->img = mlx_xpm_file_to_image(game->mlx,
