@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:13:31 by vgoret            #+#    #+#             */
-/*   Updated: 2023/04/06 18:40:58 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/04/06 19:33:29 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,10 @@ int	main(int ac, char **av)
 	}
 	if (init_game(&game, map_path(av[1])) == 1)
 		return (0);
+
+	ft_generate_window(&game);
+	mlx_hook(game.win, 2, (1L << 0), key_hook, &game);
+	mlx_hook(game.win, 17, 0L, (void *)close_window, &game);
 	mlx_loop(game.mlx);
 
 	return (0);

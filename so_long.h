@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:43:46 by vgoret            #+#    #+#             */
-/*   Updated: 2023/04/06 18:21:27 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/04/06 19:33:23 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,5 +134,7 @@ char	**create_game(t_data *game);
 void	init_objects(t_data *game);
 void	print_map(t_data *game);
 int	ft_check_objects(t_data *game);
+void	ft_generate_window(t_data *game);
+int	close_window(t_data *game);
 
 #endif

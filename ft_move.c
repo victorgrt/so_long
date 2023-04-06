@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 13:19:22 by victor            #+#    #+#             */
-/*   Updated: 2023/04/06 15:07:28 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/04/06 19:30:28 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void	printmap(t_data **game)
 	int	i;
 
 	i = 0;
-	while ((*game)->map_struc->map[i])
+	while ((*game)->map[i])
 	{
-		ft_printf("%s\n", (*game)->map_struc->map[i]);
+		ft_printf("%s\n", (*game)->map[i]);
 		i++;
 	}
 }
@@ -29,16 +29,16 @@ void	left(t_data **game)
 	int	img_w;
 	int	img_h;
 
-	if ((*game)->map_struc->map[(*game)->player_y][(*game)->player_x
+	if ((*game)->map[(*game)->player_y][(*game)->player_x
 		- 1] != '1')
 	{
-		if ((*game)->map_struc->map[(*game)->player_y][(*game)->player_x
+		if ((*game)->map[(*game)->player_y][(*game)->player_x
 			- 1] == 'C')
 		{
 			ft_collect(game, 'l');
 			return ;
 		}
-		else if ((*game)->map_struc->map[(*game)->player_y]
+		else if ((*game)->map[(*game)->player_y]
 			[(*game)->player_x - 1] == 'E')
 		{
 			ft_exit(*game);
@@ -58,7 +58,7 @@ void	left(t_data **game)
 	// else
 	// {
 	// 	ft_printf("Erreur : next char = %d\n",
-	// 		(*game)->map_struc->map[(*game)->player_y][(*game)->player_x - 1]);
+	// 		(*game)->map[(*game)->player_y][(*game)->player_x - 1]);
 	// }
 }
 
@@ -67,16 +67,16 @@ void	down(t_data **game)
 	int	img_w;
 	int	img_h;
 
-	if ((*game)->map_struc->map[(*game)->player_y + 1]
+	if ((*game)->map[(*game)->player_y + 1]
 		[(*game)->player_x] != '1')
 	{
-		if ((*game)->map_struc->map[(*game)->player_y + 1]
+		if ((*game)->map[(*game)->player_y + 1]
 			[(*game)->player_x] == 'C')
 		{
 			ft_collect(game, 'd');
 			return ;
 		}
-		else if ((*game)->map_struc->map[(*game)->player_y
+		else if ((*game)->map[(*game)->player_y
 				+ 1][(*game)->player_x] == 'E')
 		{
 			ft_exit(*game);
@@ -96,7 +96,7 @@ void	down(t_data **game)
 	// else
 	// {
 	// 	ft_printf("Erreur : next char = %d\n",
-	// 		(*game)->map_struc->map[(*game)->player_y + 1][(*game)->player_x]);
+	// 		(*game)->map[(*game)->player_y + 1][(*game)->player_x]);
 	// }
 }
 
@@ -105,16 +105,16 @@ void	up(t_data **game)
 	int	img_w;
 	int	img_h;
 
-	if ((*game)->map_struc->map[(*game)->player_y - 1]
+	if ((*game)->map[(*game)->player_y - 1]
 		[(*game)->player_x] != '1')
 	{
-		if ((*game)->map_struc->map[(*game)->player_y - 1]
+		if ((*game)->map[(*game)->player_y - 1]
 			[(*game)->player_x] == 'C')
 		{
 			ft_collect(game, 'u');
 			return ;
 		}
-		else if ((*game)->map_struc->map[(*game)->player_y
+		else if ((*game)->map[(*game)->player_y
 				- 1][(*game)->player_x] == 'E')
 		{
 			ft_exit(*game);
@@ -134,7 +134,7 @@ void	up(t_data **game)
 	// else
 	// {
 	// 	ft_printf("Erreur : next char = %d\n", (*game)->map_struc
-	// 		->map[(*game)->player_y - 1][(*game)->player_x]);
+	//map[(*game)->player_y - 1][(*game)->player_x]);
 	// }
 }
 
@@ -143,16 +143,16 @@ void	right(t_data **game)
 	int	img_w;
 	int	img_h;
 
-	if ((*game)->map_struc->map[(*game)->player_y][(*game)->player_x
+	if ((*game)->map[(*game)->player_y][(*game)->player_x
 		+ 1] != '1')
 	{
-		if ((*game)->map_struc->map[(*game)->player_y][(*game)->player_x
+		if ((*game)->map[(*game)->player_y][(*game)->player_x
 			+ 1] == 'C')
 		{
 			ft_collect(game, 'r');
 			return ;
 		}
-		else if ((*game)->map_struc->map[(*game)->player_y]
+		else if ((*game)->map[(*game)->player_y]
 			[(*game)->player_x + 1] == 'E')
 		{
 			ft_exit(*game);
@@ -172,6 +172,6 @@ void	right(t_data **game)
 	// else
 	// {
 	// 	ft_printf("Erreur : next char = %d\n", (*game)->map_struc
-	// 		->map[(*game)->player_y][(*game)->player_x + 1]);
+	//map[(*game)->player_y][(*game)->player_x + 1]);
 	// }
 }

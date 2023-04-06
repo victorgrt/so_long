@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 16:53:36 by vgoret            #+#    #+#             */
-/*   Updated: 2023/04/06 15:07:37 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/04/06 19:31:43 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,25 +25,25 @@ void	ft_collect(t_data **game, char c)
 	if (c == 'u')
 	{
 		(*game)->player_y -= 1;
-		(*game)->map_struc->map[(*game)->player_y][(*game)->player_x] = '0';
+		(*game)->map[(*game)->player_y][(*game)->player_x] = '0';
     print_move((*game), (*game)->move, c);
 	}
 	if (c == 'd')
 	{
 		(*game)->player_y += 1;
-		(*game)->map_struc->map[(*game)->player_y][(*game)->player_x] = '0';
+		(*game)->map[(*game)->player_y][(*game)->player_x] = '0';
     print_move((*game), (*game)->move, c);
 	}
 	if (c == 'r')
 	{
 		(*game)->player_x += 1;
-		(*game)->map_struc->map[(*game)->player_y][(*game)->player_x] = '0';
+		(*game)->map[(*game)->player_y][(*game)->player_x] = '0';
     print_move((*game), (*game)->move, c);
 	}
 	if (c == 'l')
 	{
 		(*game)->player_x -= 1;
-		(*game)->map_struc->map[(*game)->player_y][(*game)->player_x] = '0';
+		(*game)->map[(*game)->player_y][(*game)->player_x] = '0';
     	print_move((*game), (*game)->move, c);
 	}
 	(*game)->img = mlx_xpm_file_to_image((*game)->mlx, "./ressources/alien.xpm",

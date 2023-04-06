@@ -6,13 +6,13 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 19:19:40 by victor            #+#    #+#             */
-/*   Updated: 2023/04/04 14:52:25 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/04/06 19:30:46 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-t_textures	*load_textures(t_data *game)
+/*t_textures	*load_textures(t_data *game)
 {
 	t_textures	*textures;
 	int			w;
@@ -40,4 +40,4 @@ t_textures	*load_textures(t_data *game)
 	if (!textures->floor)
 		ft_printf("Error: could not load floor texture.\n");
 	return (textures);
-}
+}*/
