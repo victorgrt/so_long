@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
+/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:36:29 by vgoret            #+#    #+#             */
-/*   Updated: 2023/04/06 19:40:30 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/04/06 23:37:33 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,10 @@ void	ft_generate_window(t_data *game)
 		{
 			put_image(game->map[y][x], x_map, y_map, &game);
 			y++;
-			y_map += 64;
+			y_map += 144;
 		}
 		x++;
-		x_map += 64;
+		x_map += 144;
 	}
 }
 

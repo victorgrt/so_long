@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_move.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
+/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 13:19:22 by victor            #+#    #+#             */
-/*   Updated: 2023/04/06 19:30:28 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/04/06 23:42:56 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,12 @@ void	left(t_data **game)
 		(*game)->img = mlx_xpm_file_to_image((*game)->mlx,
 				"./ressources/tile64.xpm", &img_w, &img_h);
 		mlx_put_image_to_window((*game)->mlx, (*game)->win, (*game)->img,
-			(*game)->player_x * 64, (*game)->player_y * 64);
+			(*game)->player_x * 144, (*game)->player_y * 144);
 		(*game)->player_x -= 1;
 		(*game)->img = mlx_xpm_file_to_image((*game)->mlx,
 				"./ressources/alien.xpm", &img_w, &img_h);
 		mlx_put_image_to_window((*game)->mlx, (*game)->win, (*game)->img,
-			(*game)->player_x * 64, (*game)->player_y * 64);
+			(*game)->player_x * 144, (*game)->player_y * 144);
 		(*game)->move++;
 	}
 	// else
@@ -85,12 +85,12 @@ void	down(t_data **game)
 		(*game)->img = mlx_xpm_file_to_image((*game)->mlx,
 				"./ressources/tile64.xpm", &img_w, &img_h);
 		mlx_put_image_to_window((*game)->mlx, (*game)->win, (*game)->img,
-			(*game)->player_x * 64, (*game)->player_y * 64);
+			(*game)->player_x * 144, (*game)->player_y * 144);
 		(*game)->player_y += 1;
 		(*game)->img = mlx_xpm_file_to_image((*game)->mlx,
 				"./ressources/alien.xpm", &img_w, &img_h);
 		mlx_put_image_to_window((*game)->mlx, (*game)->win, (*game)->img,
-			(*game)->player_x * 64, (*game)->player_y * 64);
+			(*game)->player_x * 144, (*game)->player_y * 144);
 		(*game)->move++;
 	}
 	// else
@@ -123,12 +123,12 @@ void	up(t_data **game)
 		(*game)->img = mlx_xpm_file_to_image((*game)->mlx,
 				"./ressources/tile64.xpm", &img_w, &img_h);
 		mlx_put_image_to_window((*game)->mlx, (*game)->win, (*game)->img,
-			(*game)->player_x * 64, (*game)->player_y * 64);
+			(*game)->player_x * 144, (*game)->player_y * 144);
 		(*game)->player_y -= 1;
 		(*game)->img = mlx_xpm_file_to_image((*game)->mlx,
 				"./ressources/alien.xpm", &img_w, &img_h);
 		mlx_put_image_to_window((*game)->mlx, (*game)->win, (*game)->img,
-			(*game)->player_x * 64, (*game)->player_y * 64);
+			(*game)->player_x * 144, (*game)->player_y * 144);
 		(*game)->move++;
 	}
 	// else
@@ -161,12 +161,12 @@ void	right(t_data **game)
 		(*game)->img = mlx_xpm_file_to_image((*game)->mlx,
 				"./ressources/tile64.xpm", &img_w, &img_h);
 		mlx_put_image_to_window((*game)->mlx, (*game)->win, (*game)->img,
-			(*game)->player_x * 64, (*game)->player_y * 64);
+			(*game)->player_x * 144, (*game)->player_y * 144);
 		(*game)->player_x += 1;
 		(*game)->img = mlx_xpm_file_to_image((*game)->mlx,
 				"./ressources/alien.xpm", &img_w, &img_h);
 		mlx_put_image_to_window((*game)->mlx, (*game)->win, (*game)->img,
-			(*game)->player_x * 64, (*game)->player_y * 64);
+			(*game)->player_x * 144, (*game)->player_y * 144);
 		(*game)->move++;
 	}
 	// else

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
+/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 13:29:59 by vgoret            #+#    #+#             */
-/*   Updated: 2023/04/06 18:18:39 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/04/07 00:02:51 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ char	*map_path(char *name)
 	path[2] = 'p';
 	path[3] = 's';
 	path[4] = '/';
+
 	i = 5;
 	j = 0;
 	while (name[j])
@@ -68,6 +69,7 @@ char	*map_path(char *name)
 int	verif_arg(char *str)
 {
 	int	i;
+	int	fd;
 	char	*path;
 	
 	i = 0;
@@ -79,7 +81,9 @@ int	verif_arg(char *str)
 			+ 4] == '\0')
 		{
 			path = map_path(str);
-			if (open(path, O_RDONLY) >= 0)
+			fd = open(path, O_RDONLY);
+			free(path);
+			if (fd >= 0)
 				return (0);
 		}
 		return (1);

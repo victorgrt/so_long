@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
+/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:13:31 by vgoret            #+#    #+#             */
-/*   Updated: 2023/04/06 19:40:58 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/04/07 00:04:39 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,11 +114,10 @@ int	init_game(t_data *game, char *path1)
 int	main(int ac, char **av)
 {
 	t_data	game;
-	// int		fd;
 
 	if (ac != 2)
 	{
-		printf("Trop d'arguments\n");
+		printf("Check Arguments\n");
 		return (0);
 	}
 	if (verif_arg(av[1]) == 1)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   action.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
+/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 16:53:36 by vgoret            #+#    #+#             */
-/*   Updated: 2023/04/06 19:31:43 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/04/06 23:31:18 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_collect(t_data **game, char c)
 	(*game)->img = mlx_xpm_file_to_image((*game)->mlx, "./ressources/tile64.xpm",
 			&img_w, &img_h);
 	mlx_put_image_to_window((*game)->mlx, (*game)->win, (*game)->img,
-			(*game)->player_x * 64, (*game)->player_y * 64);
+			(*game)->player_x * 144, (*game)->player_y * 144);
 
 	if (c == 'u')
 	{
@@ -49,7 +49,7 @@ void	ft_collect(t_data **game, char c)
 	(*game)->img = mlx_xpm_file_to_image((*game)->mlx, "./ressources/alien.xpm",
 			&img_w, &img_h);
 	mlx_put_image_to_window((*game)->mlx, (*game)->win, (*game)->img,
-			(*game)->player_x * 64, (*game)->player_y * 64);
+			(*game)->player_x * 144, (*game)->player_y * 144);
 	(*game)->move++;
   	(*game)->c++;
 	ft_printf("\033[0;32mCollected : %d/%d\n\033[0m", (*game)->c, (*game)->max_c);
@@ -67,11 +67,11 @@ void	ft_exit(t_data *game)
 		game->img = mlx_xpm_file_to_image(game->mlx,
 				"./ressources/alien.xpm", &img_w, &img_h);
 		mlx_put_image_to_window(game->mlx, game->win, game->img,
-				game->player_x * 64, game->player_y * 64);
+				game->player_x * 144, game->player_y * 144);
 		game->img = mlx_xpm_file_to_image(game->mlx,
 				"./ressources/alien.xpm", &img_w, &img_h);
 		mlx_put_image_to_window(game->mlx, game->win, game->img,
-				game->player_x * 64, game->player_y * 64);
+				game->player_x * 144, game->player_y * 144);
 		print_win(game);
 		exit(0);
 	}
