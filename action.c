@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   action.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
+/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 16:53:36 by vgoret            #+#    #+#             */
-/*   Updated: 2023/04/04 17:03:14 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/04/05 12:05:43 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,31 +52,32 @@ void	ft_collect(t_data **game, char c)
 			(*game)->player_x * 64, (*game)->player_y * 64);
 	(*game)->move++;
   	(*game)->c++;
-	ft_printf("Collected : %d/%d\n", (*game)->c, (*game)->max_c);
+	ft_printf("\033[0;32mCollected : %d/%d\n\033[0m", (*game)->c, (*game)->max_c);
 
 	return ;
 }
 
-void	ft_exit(t_data **game)
+void	ft_exit(t_data *game)
 {
 	int	img_w;
 	int	img_h;
 
-	if ((*game)->c == (*game)->max_c)
+	printf("al : %d\t%d", game->c, game->max_c);
+	if (game->c == game->max_c)
 	{
-		(*game)->img = mlx_xpm_file_to_image((*game)->mlx,
+		game->img = mlx_xpm_file_to_image(game->mlx,
 				"./ressources/alien.xpm", &img_w, &img_h);
-		mlx_put_image_to_window((*game)->mlx, (*game)->win, (*game)->img,
-				(*game)->player_x * 64, (*game)->player_y * 64);
-		(*game)->img = mlx_xpm_file_to_image((*game)->mlx,
+		mlx_put_image_to_window(game->mlx, game->win, game->img,
+				game->player_x * 64, game->player_y * 64);
+		game->img = mlx_xpm_file_to_image(game->mlx,
 				"./ressources/alien.xpm", &img_w, &img_h);
-		mlx_put_image_to_window((*game)->mlx, (*game)->win, (*game)->img,
-				(*game)->player_x * 64, (*game)->player_y * 64);
-		print_win(*game);
+		mlx_put_image_to_window(game->mlx, game->win, game->img,
+				game->player_x * 64, game->player_y * 64);
+		print_win(game);
 		exit(0);
 	}
 	else
 	{
-		printf("Tu n'as pas recup tous les collectables\n");
+		ft_printf("\033[0;31m T'as collecté que %d pièces sur %d. Retourne au travail !\n\033[0m", game->c, game->max_c);
 	}
 }

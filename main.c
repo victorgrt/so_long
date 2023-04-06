@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
+/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:36:29 by vgoret            #+#    #+#             */
-/*   Updated: 2023/04/04 16:38:39 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/04/05 11:58:24 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,12 +121,7 @@ int	main(int ac, char **av)
 	}
     path = map_path(av[1]);
 	fd = open(path, O_RDONLY);
-	if (init_structure(&game, av[1], fd) == 1)
-    {
-        free(game.mlx);
-        free(game.win);
-        return (1);
-    }
+	init_structure(&game, av[1], fd);
 	ft_generate_window(&game);
 	mlx_hook(game.win, 2, (1L << 0), key_hook, &game);
 	mlx_hook(game.win, 17, 0L, (void *)close_window, &game);

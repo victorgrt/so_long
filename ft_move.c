@@ -6,7 +6,7 @@
 /*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 13:19:22 by victor            #+#    #+#             */
-/*   Updated: 2023/04/04 20:28:39 by victor           ###   ########.fr       */
+/*   Updated: 2023/04/05 12:06:01 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	left(t_data **game)
 	int	img_w;
 	int	img_h;
 
+	printf("alodlaodlao %d\n", (*game)->max_c);
 	if ((*game)->map_struc->map[(*game)->player_y][(*game)->player_x
 		- 1] != '1')
 	{
@@ -41,7 +42,7 @@ void	left(t_data **game)
 		else if ((*game)->map_struc->map[(*game)->player_y]
 			[(*game)->player_x - 1] == 'E')
 		{
-			ft_exit(game);
+			ft_exit(*game);
 			return ;
 		}
 		(*game)->img = mlx_xpm_file_to_image((*game)->mlx,
@@ -79,7 +80,7 @@ void	down(t_data **game)
 		else if ((*game)->map_struc->map[(*game)->player_y
 				+ 1][(*game)->player_x] == 'E')
 		{
-			ft_exit(game);
+			ft_exit(*game);
 			return ;
 		}
 		(*game)->img = mlx_xpm_file_to_image((*game)->mlx,
@@ -117,7 +118,7 @@ void	up(t_data **game)
 		else if ((*game)->map_struc->map[(*game)->player_y
 				- 1][(*game)->player_x] == 'E')
 		{
-			ft_exit(game);
+			ft_exit(*game);
 			return ;
 		}
 		(*game)->img = mlx_xpm_file_to_image((*game)->mlx,
@@ -155,7 +156,7 @@ void	right(t_data **game)
 		else if ((*game)->map_struc->map[(*game)->player_y]
 			[(*game)->player_x + 1] == 'E')
 		{
-			ft_exit(game);
+			ft_exit(*game);
 			return ;
 		}
 		(*game)->img = mlx_xpm_file_to_image((*game)->mlx,

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_info.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
+/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:54:08 by victor            #+#    #+#             */
-/*   Updated: 2023/04/04 16:33:42 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/04/05 11:55:58 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	is_map_closed(t_data *game)
 	}
 	i = 0;
 	j = 0;
-	while (j < game->map_struc->col)
+	while (j < game->map_struc->row)
 	{
 		i = 0;
 		while (map[j] && i < game->map_struc->col - 1)
@@ -107,12 +107,12 @@ int	is_map_rules(t_data *game)
 		}
 		i++;
 	}
-	if (game->p != 1)
-		return (1);
-	if (game->e != 1)
-		return (1);
-	if (game->max_c <= 0)
-		return (1);
+	// if (game->p != 1)
+	// 	return (1);
+	// if (game->e != 1)
+	// 	return (1);
+	// if (game->max_c <= 0)
+	// 	return (1);
 	return (0);
 }
 
