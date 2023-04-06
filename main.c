@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:36:29 by vgoret            #+#    #+#             */
-/*   Updated: 2023/04/06 17:13:17 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/04/06 19:40:30 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	put_image(char c, int x, int y, t_data **game)
 		render_image(game, x, y, "./ressources/wall64.xpm");
 	}
 	if (c == '0')
-		render_image(game, x, y, "./ressources/tile64.xpm");
+		render_image(game, x, y, "./ressources/dalle_first.xpm");
 	if (c == 'C')
 		render_image(game, x, y, "./ressources/collect.xpm");
 	if (c == 'E')
