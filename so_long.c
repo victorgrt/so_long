@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:13:31 by vgoret            #+#    #+#             */
-/*   Updated: 2023/04/08 13:42:03 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/04/08 15:21:26 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,12 @@ int	init_game(t_data *game, char *path1)
 		printf("Error\nCheck Assets of the map please\n");
 		return (1);
 	}
+	printf("c:%d\n", game->c);
+	// if (ft_check_working_map(game) == 1)
+	// {
+		// printf("cant be done\n");
+		// return (1);
+	// }
 	// ft_check_objects(game);
 	game->move = 0;
 
@@ -106,7 +112,7 @@ int	init_game(t_data *game, char *path1)
 	game->win = mlx_new_window(game->mlx, game->width,
 			game->height, "so_long");
 
-	print_map(game);
+	// print_map(game);
 	
 	return (0);
 }
