@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+         #
+#    By: victor <victor@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/16 16:44:56 by vgoret            #+#    #+#              #
-#    Updated: 2023/04/06 17:19:27 by vgoret           ###   ########.fr        #
+#    Updated: 2023/04/08 23:14:03 by victor           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,11 +32,23 @@ OBJ = ${SRC:.c=.o}
 ################################################################################
 # ? RULES ? #
 
-all: ${NAME} ok_util
+NONE='\033[0m'
+GREEN='\033[32m'
+RED='\033[31m'
+YELLOW='\033[33m'
+GRAY='\033[2;37m'
+CURSIVE='\033[3m'
+BOLD='\033[1m'
+BLUE='\033[0;34m'
+
+all: ${NAME} title
 
 ${NAME} : ${OBJ}
-	@make -C ./src/ft_printf	
-	@$(CC) ${OBJ} ${CCFLAGS} -I/usr/include -Imlx_linux -Lmlx_linux -lmlx_Linux -L/usr/lib -lXext -lX11 -lm -lz ./src/ft_printf/ft_printf.a -o $@
+	@echo ${BOLD} ${YELLOW} "○	Making Ft_printf..." ${NONE}	
+	@make -C ./src/ft_printf
+	@echo ${BOLD} ${BLUE} "\033[1m○	Compiling files..." ${NONE}
+	$(CC) ${OBJ} ${CCFLAGS} -I/usr/include -Imlx_linux -Lmlx_linux -lmlx_Linux -L/usr/lib -lXext -lX11 -lm -lz ./src/ft_printf/ft_printf.a -o $@
+	@echo ${BOLD} ${GREEN} "‣	Compiled !" ${NONE}
 
 %.o: %.c
 	@$(CC) ${CCFLAGS} -Imlx_linux -c $< -o $@
@@ -44,10 +56,14 @@ ${NAME} : ${OBJ}
 clean:
 	@rm -f ${OBJ}
 
-fclean: clean fclean_util	
+fclean: clean	
+	@echo ${RED} ${BOLD} "‣	Deleting..." ${NONE}
 	@rm -f ${PROG}
 	@rm -f ${OBJ}
+	@${foreach value, $(OBJ), echo ${value};}
 	@rm -f ${NAME}
+	@rm -f ./src/ft_printf/ft_printf.a
+	@rm -f ./src/ft_printf/*.o
 	@rm -f ./a.out
 
 re : fclean all
@@ -64,5 +80,5 @@ fclean_util :
 	@${foreach value, $(NAME), echo "\\033[1;31m >> \\033[0;39m" ${value};} 
 	@echo "⣿⣷⡶⠚⠉⢀⣤⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠋⠠⣴⣿⣿⣿⣿⣶⣤⣤⣤\n⠿⠥⢶⡏⣸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠋⢀⣴⣷⣌⢿⣿⣿⣿⣿⣿⣿⣿\n⣍⡛⢷⣠⣿⣿⣿⣿⣿⣟⠻⣯⠽⣿⣿⠟⠁⣠⠿⠿⣿⣿⣎⠻⣿⣿⣿⡿⠟⣿\n⣿⣿⣦⠙⣿⣿⣿⣿⣿⣿⣷⣏⡧⠙⠁⣀⢾⣧    ⠈⣿⡟  ⠙⣫⣵⣶⠇⣋\n⣿⣿⣿⢀⣿⣿⣿⣿⣿⣿⣿⠟⠃⢀⣀⢻⣎⢻⣷⣤⣴⠟  ⣠⣾⣿⢟⣵⡆⢿\n⣿⣯⣄⢘⢻⣿⣿⣿⣿⡟⠁⢀⣤⡙⢿⣴⣿⣷⡉⠉⢀  ⣴⣿⡿⣡⣿⣿⡿⢆\n⠿⣿⣧⣤⡘⢿⣿⣿⠏  ⡔⠉⠉⢻⣦⠻⣿⣿⣶⣾⡟⣼⣿⣿⣱⣿⡿⢫⣾⣿\n⣷⣮⣝⣛⣃⡉⣿⡏  ⣾⣧⡀    ⣿⡇⢘⣿⠋    ⠻⣿⣿⣿⢟⣵⣿⣿⣿\n⣿⣿⣿⣿⣿⣿⣌⢧⣴⣘⢿⣿⣶⣾⡿⠁⢠⠿⠁⠜    ⣿⣿⣿⣿⡿⣿⣿⣿\n⣿⣿⣿⣿⣿⣿⣿⣦⡙⣿⣷⣉⡛⠋    ⣰⣾⣦⣤⣤⣤⣿⢿⠟⢋⣴⣿⣿⣿\n⣿⣿⣿⣿⣿⣿⣿⣿⣿⣌⢿⣿⣿⣿⣿⢰⡿⣻⣿⣿⣿⣿⣿⢃⣰⣫⣾⣿⣿⣿\n⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡆⠿⠿⠿⠛⢰⣾⡿⢟⣭⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿\n"
 
-ok_util :
+title :
 	@echo "\n\\033[0;34m	░██████╗░█████╗░  ██╗░░░░░░█████╗░███╗░░██╗░██████╗░\n	██╔════╝██╔══██╗  ██║░░░░░██╔══██╗████╗░██║██╔════╝░\n	╚█████╗░██║░░██║  ██║░░░░░██║░░██║██╔██╗██║██║░░██╗░\n	░╚═══██╗██║░░██║  ██║░░░░░██║░░██║██║╚████║██║░░╚██╗\n	██████╔╝╚█████╔╝  ███████╗╚█████╔╝██║░╚███║╚██████╔╝\n	╚═════╝░░╚════╝░  ╚══════╝░╚════╝░╚═╝░░╚══╝░╚═════╝░\n"

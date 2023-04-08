@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_move.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
+/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 13:19:22 by victor            #+#    #+#             */
-/*   Updated: 2023/04/08 13:52:02 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/04/08 21:51:01 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,14 @@ void	left(t_data **game)
 			ft_exit(*game);
 			return ;
 		}
-		(*game)->img = mlx_xpm_file_to_image((*game)->mlx,
-				"./ressources/water.xpm", &img_w, &img_h);
+		(*game)->img = mlx_xpm_file_to_image((*game)->mlx,"./ressources/water.xpm", &img_w, &img_h);
 		mlx_put_image_to_window((*game)->mlx, (*game)->win, (*game)->img,
-			(*game)->player_x * 64, (*game)->player_y * 64);
+		(*game)->player_x * 64, (*game)->player_y * 64);
 		(*game)->player_x -= 1;
 		(*game)->img = mlx_xpm_file_to_image((*game)->mlx,
 				"./ressources/alien.xpm", &img_w, &img_h);
 		mlx_put_image_to_window((*game)->mlx, (*game)->win, (*game)->img,
-			(*game)->player_x * 64, (*game)->player_y * 64);
+		(*game)->player_x * 64, (*game)->player_y * 64);
 		(*game)->move++;
 	}
 	// else

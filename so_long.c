@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
+/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:13:31 by vgoret            #+#    #+#             */
-/*   Updated: 2023/04/08 15:21:26 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/04/08 21:56:48 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ int	main(int ac, char **av)
 	}
 	if (verif_arg(av[1]) == 1)
 	{
-		printf("Error\nExtension de la map INVALIDE ou map pas trouvee dans ./src\n");
+		printf("Error\nExtension de la map invalide ou map pas trouvée dans ./src\n");
 		return (0);
 	}
 	if (init_game(&game, map_path(av[1])) == 1)
@@ -138,7 +138,6 @@ int	main(int ac, char **av)
 	mlx_hook(game.win, 2, (1L << 0), key_hook, &game);
 	mlx_hook(game.win, 17, 0L, (void *)close_window, &game);
 	mlx_loop(game.mlx);
-
 	return (0);
 }
 
