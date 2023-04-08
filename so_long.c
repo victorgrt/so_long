@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:13:31 by vgoret            #+#    #+#             */
-/*   Updated: 2023/04/07 00:04:39 by victor           ###   ########.fr       */
+/*   Updated: 2023/04/08 13:42:03 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,8 @@ int	init_game(t_data *game, char *path1)
 		return (1);
 	}
 	// printf("%d\n", ft_check_map(game));
-	game->width = game->col * 144;
-	game->height = game->row * 144;
+	game->width = game->col * 64;
+	game->height = game->row * 64;
 	init_objects(game);
 	if (ft_check_objects(game) == 1)
 	{
@@ -103,8 +103,8 @@ int	init_game(t_data *game, char *path1)
 
 	
     game->mlx = mlx_init();
-	game->win = mlx_new_window(game->mlx, game->col * 144,
-			game->row * 144, "so_long");
+	game->win = mlx_new_window(game->mlx, game->width,
+			game->height, "so_long");
 
 	print_map(game);
 	

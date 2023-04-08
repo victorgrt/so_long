@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 13:28:54 by victor            #+#    #+#             */
-/*   Updated: 2023/04/06 18:03:20 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/04/08 13:45:09 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@ void	init_objects(t_data *game)
 	int	j;
 	
 	i = 0;
+	game->p = 0;
+	game->e = 0;
+	game->max_c = 0;
 	while (i < game->row)
 	{
 		j = 0;
@@ -38,6 +41,7 @@ void	init_objects(t_data *game)
 		i++;
 	}
 	game->c = 0;
+	//printf("c:%d\tmax_c:%d\te:%d\tp:%d\n", game->c, game->max_c, game->e, game->p);
 }
 
 int init_structure(t_data *game)
