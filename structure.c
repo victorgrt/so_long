@@ -6,7 +6,7 @@
 /*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 13:28:54 by victor            #+#    #+#             */
-/*   Updated: 2023/04/10 17:11:03 by victor           ###   ########.fr       */
+/*   Updated: 2023/04/10 17:16:22 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,6 @@ void	init_objects(t_data *game)
 
 int init_structure(t_data *game)
 {
-    if (game->map == NULL)
-    {
-		printf("Error\nMap pas rectangle\n");
-		return (1);
-	}
     if (handle_map_error(game) == 1)
     {
 	    free(game->mlx);
