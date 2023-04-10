@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structure.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
+/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 13:28:54 by victor            #+#    #+#             */
-/*   Updated: 2023/04/08 15:15:17 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/04/10 17:11:03 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,6 @@ void	init_objects(t_data *game)
 
 int init_structure(t_data *game)
 {
-    // int img_h;
-    // int img_w;
-    
-    // game->map = create_map(game);
     if (game->map == NULL)
     {
 		printf("Error\nMap pas rectangle\n");
@@ -68,7 +64,6 @@ int init_structure(t_data *game)
         free(game->win);
     	return (1);
     }
-    // game->map = map->map;
     get_pos_player(game);
     game->mlx = mlx_init();
 	game->win = mlx_new_window(game->mlx, game->col * 64,
@@ -77,6 +72,5 @@ int init_structure(t_data *game)
     game->move = 0;
     game->width = game->col * 64;
     game->height = game->row * 64;
-    // printf("structure : \nmove : %d\nc :%d\tp :%d\te :%d\nmax_c : %d\nwidth : %d\theight :%d\n", game->move, game->c, game->p, game->e, game->max_c, game->width, game->height);
     return (0);
 }

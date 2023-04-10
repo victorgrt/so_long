@@ -6,7 +6,7 @@
 /*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:13:31 by vgoret            #+#    #+#             */
-/*   Updated: 2023/04/08 21:56:48 by victor           ###   ########.fr       */
+/*   Updated: 2023/04/10 17:14:21 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,11 @@ int	init_game(t_data *game, char *path1)
 	get_map_info(game, game->fd); //col + row initialised
 
 	game->map = create_game(game);
+	if (game->map == NULL)
+	{
+		printf("Error\nMap pas rectangulaire\n");
+		return (1);
+	}
 	if (ft_check_map(game) == 1)
 	{
 		printf("Error\nMap not closed\n");

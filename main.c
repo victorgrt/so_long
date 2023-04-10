@@ -6,7 +6,7 @@
 /*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:36:29 by vgoret            #+#    #+#             */
-/*   Updated: 2023/04/09 18:34:25 by victor           ###   ########.fr       */
+/*   Updated: 2023/04/10 17:09:40 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,7 @@ void	render_image(t_data **game, int x, int y, char *path)
 void	put_image(char c, int x, int y, t_data **game)
 {
 	if (c == '1')
-	{
-		render_image(game, x, y, "./ressources/brick.xpm");
-	}
+		render_image(game, x, y, "./ressources/skull.xpm");
 	if (c == '0')
 		render_image(game, x, y, "./ressources/water.xpm");
 	if (c == 'C')
