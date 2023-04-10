@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
+/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:36:29 by vgoret            #+#    #+#             */
-/*   Updated: 2023/04/08 13:53:57 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/04/09 18:34:25 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	put_image(char c, int x, int y, t_data **game)
 	if (c == 'E')
 		render_image(game, x, y, "./ressources/door.xpm");
 	if (c == 'P')
-		render_image(game, x, y, "./ressources/alien.xpm");
+		render_image(game, x, y, "./ressources/player_left.xpm");
 }
 
 void	ft_generate_window(t_data *game)

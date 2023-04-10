@@ -6,11 +6,49 @@
 /*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 13:19:22 by victor            #+#    #+#             */
-/*   Updated: 2023/04/08 21:51:01 by victor           ###   ########.fr       */
+/*   Updated: 2023/04/10 17:04:17 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	render_player(t_data** game, int direction)
+{
+	int	img_h;
+	int	img_w;
+
+	if (direction == 1)
+		(*game)->img = mlx_xpm_file_to_image((*game)->mlx,
+			"./ressources/player_left.xpm", &img_w, &img_h);
+	else
+		(*game)->img = mlx_xpm_file_to_image((*game)->mlx,
+			"./ressources/player_right.xpm", &img_w, &img_h);	
+	mlx_put_image_to_window((*game)->mlx, (*game)->win, (*game)->img,
+		(*game)->player_x * 64, (*game)->player_y * 64);
+}
+
+void	move(t_data **game, char c)
+{
+	int	img_w;
+	int	img_h;
+	
+	(*game)->img = mlx_xpm_file_to_image((*game)->mlx,
+			"./ressources/water.xpm", &img_w, &img_h);
+	mlx_put_image_to_window((*game)->mlx, (*game)->win, (*game)->img,
+		(*game)->player_x * 64, (*game)->player_y * 64);
+	if (c == 'u')
+		(*game)->player_y--;
+	else if (c == 'd')
+		(*game)->player_y++;
+	else if (c == 'l')
+		(*game)->player_x--;
+	else if (c == 'r')
+		(*game)->player_x++;
+	else
+		return ;
+	(*game)->move++;
+	render_player(game, (c == 'u' || c == 'l') ? 1 : 2); /*Si la condition (c == 'u' || c == 'l') est vraie, la valeur renvoyée est 1.Sinon, la valeur renvoyée est 2.*/
+}
 
 void	printmap(t_data **game)
 {
@@ -26,9 +64,6 @@ void	printmap(t_data **game)
 
 void	left(t_data **game)
 {
-	int	img_w;
-	int	img_h;
-
 	if ((*game)->map[(*game)->player_y][(*game)->player_x
 		- 1] != '1')
 	{
@@ -44,15 +79,7 @@ void	left(t_data **game)
 			ft_exit(*game);
 			return ;
 		}
-		(*game)->img = mlx_xpm_file_to_image((*game)->mlx,"./ressources/water.xpm", &img_w, &img_h);
-		mlx_put_image_to_window((*game)->mlx, (*game)->win, (*game)->img,
-		(*game)->player_x * 64, (*game)->player_y * 64);
-		(*game)->player_x -= 1;
-		(*game)->img = mlx_xpm_file_to_image((*game)->mlx,
-				"./ressources/alien.xpm", &img_w, &img_h);
-		mlx_put_image_to_window((*game)->mlx, (*game)->win, (*game)->img,
-		(*game)->player_x * 64, (*game)->player_y * 64);
-		(*game)->move++;
+		move(game, 'l');
 	}
 	// else
 	// {
@@ -63,9 +90,6 @@ void	left(t_data **game)
 
 void	down(t_data **game)
 {
-	int	img_w;
-	int	img_h;
-
 	if ((*game)->map[(*game)->player_y + 1]
 		[(*game)->player_x] != '1')
 	{
@@ -81,16 +105,7 @@ void	down(t_data **game)
 			ft_exit(*game);
 			return ;
 		}
-		(*game)->img = mlx_xpm_file_to_image((*game)->mlx,
-				"./ressources/water.xpm", &img_w, &img_h);
-		mlx_put_image_to_window((*game)->mlx, (*game)->win, (*game)->img,
-			(*game)->player_x * 64, (*game)->player_y * 64);
-		(*game)->player_y += 1;
-		(*game)->img = mlx_xpm_file_to_image((*game)->mlx,
-				"./ressources/alien.xpm", &img_w, &img_h);
-		mlx_put_image_to_window((*game)->mlx, (*game)->win, (*game)->img,
-			(*game)->player_x * 64, (*game)->player_y * 64);
-		(*game)->move++;
+		move(game, 'd');
 	}
 	// else
 	// {
@@ -99,10 +114,10 @@ void	down(t_data **game)
 	// }
 }
 
+
+
 void	up(t_data **game)
 {
-	int	img_w;
-	int	img_h;
 
 	if ((*game)->map[(*game)->player_y - 1]
 		[(*game)->player_x] != '1')
@@ -119,16 +134,7 @@ void	up(t_data **game)
 			ft_exit(*game);
 			return ;
 		}
-		(*game)->img = mlx_xpm_file_to_image((*game)->mlx,
-				"./ressources/water.xpm", &img_w, &img_h);
-		mlx_put_image_to_window((*game)->mlx, (*game)->win, (*game)->img,
-			(*game)->player_x * 64, (*game)->player_y * 64);
-		(*game)->player_y -= 1;
-		(*game)->img = mlx_xpm_file_to_image((*game)->mlx,
-				"./ressources/alien.xpm", &img_w, &img_h);
-		mlx_put_image_to_window((*game)->mlx, (*game)->win, (*game)->img,
-			(*game)->player_x * 64, (*game)->player_y * 64);
-		(*game)->move++;
+		move(game, 'u');
 	}
 	// else
 	// {
@@ -139,8 +145,6 @@ void	up(t_data **game)
 
 void	right(t_data **game)
 {
-	int	img_w;
-	int	img_h;
 
 	if ((*game)->map[(*game)->player_y][(*game)->player_x
 		+ 1] != '1')
@@ -157,16 +161,7 @@ void	right(t_data **game)
 			ft_exit(*game);
 			return ;
 		}
-		(*game)->img = mlx_xpm_file_to_image((*game)->mlx,
-				"./ressources/water.xpm", &img_w, &img_h);
-		mlx_put_image_to_window((*game)->mlx, (*game)->win, (*game)->img,
-			(*game)->player_x * 64, (*game)->player_y * 64);
-		(*game)->player_x += 1;
-		(*game)->img = mlx_xpm_file_to_image((*game)->mlx,
-				"./ressources/alien.xpm", &img_w, &img_h);
-		mlx_put_image_to_window((*game)->mlx, (*game)->win, (*game)->img,
-			(*game)->player_x * 64, (*game)->player_y * 64);
-		(*game)->move++;
+		move(game, 'r');
 	}
 	// else
 	// {

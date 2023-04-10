@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   action.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
+/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 16:53:36 by vgoret            #+#    #+#             */
-/*   Updated: 2023/04/08 15:22:49 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/04/09 18:43:09 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	ft_collect(t_data **game, char c)
 		(*game)->map[(*game)->player_y][(*game)->player_x] = '0';
     	print_move((*game), (*game)->move, c);
 	}
-	(*game)->img = mlx_xpm_file_to_image((*game)->mlx, "./ressources/alien.xpm",
+	(*game)->img = mlx_xpm_file_to_image((*game)->mlx, "./ressources/player_left.xpm",
 			&img_w, &img_h);
 	mlx_put_image_to_window((*game)->mlx, (*game)->win, (*game)->img,
 			(*game)->player_x * 64, (*game)->player_y * 64);
@@ -65,11 +65,11 @@ void	ft_exit(t_data *game)
 	if (game->c == game->max_c)
 	{
 		game->img = mlx_xpm_file_to_image(game->mlx,
-				"./ressources/alien.xpm", &img_w, &img_h);
+				"./ressources/player_left.xpm", &img_w, &img_h);
 		mlx_put_image_to_window(game->mlx, game->win, game->img,
 				game->player_x * 64, game->player_y * 64);
 		game->img = mlx_xpm_file_to_image(game->mlx,
-				"./ressources/alien.xpm", &img_w, &img_h);
+				"./ressources/player_left.xpm", &img_w, &img_h);
 		mlx_put_image_to_window(game->mlx, game->win, game->img,
 				game->player_x * 64, game->player_y * 64);
 		print_win(game);
