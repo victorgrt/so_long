@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:36:29 by vgoret            #+#    #+#             */
-/*   Updated: 2023/04/10 17:09:40 by victor           ###   ########.fr       */
+/*   Updated: 2023/04/11 15:01:39 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,27 +18,6 @@
 #define WINDOW_HEIGHT 1080
 
 #define RED 0xFF0000
-
-void	draw_map(t_map *map, t_data *img, t_data *game)
-{
-	int	x;
-	int	y;
-
-	y = 0;
-	while (y < map->row)
-	{
-		x = 0;
-		while (x < map->col)
-		{
-			if (map->map[y][x] == 'P')
-			{
-				draw_player(game, img);
-			}
-			x++;
-		}
-		y++;
-	}
-}
 
 void	draw_player(t_data *game, t_data *img)
 {

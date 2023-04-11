@@ -3,41 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 13:29:59 by vgoret            #+#    #+#             */
-/*   Updated: 2023/04/07 00:02:51 by victor           ###   ########.fr       */
+/*   Updated: 2023/04/11 15:02:17 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-int	parsing(t_data *game, char *arg, int fd)
-{
-	t_map	*map;
-	(void) fd;
-
-	if (verif_arg(arg) == 1)
-	{
-		printf("Mauvais extension, fichier attendu : .ber\n");
-		return (1);
-	}
-	map = init_map(arg);
-	if (!map)
-	{
-		printf("Error\nMap non-conforme\n");
-		return (1);
-	}
-	if (handle_map_error(game) == 1)
-	{
-		return (1);
-	}
-	//verifier si map rectangle
-	//verifier si map faisable
-	printf("%s\n%d\t%d\t%d\n%d\t%d\n", map->path, map->nb_c, map->nb_e, map->nb_p, map->col, map->row);
-	printf("%d\t%d\t%d\t%d\n", game->c, game->e, game->p, game->max_c);
-	return (0);
-}
 
 char	*map_path(char *name)
 {

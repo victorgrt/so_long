@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:54:08 by victor            #+#    #+#             */
-/*   Updated: 2023/04/06 18:40:02 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/04/11 15:03:20 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,47 +98,6 @@ int	is_map_rules(t_data *game)
 		i++;
 	}
 	return (0);
-}
-
-char	**read_map(t_map *mappppp, int fd)
-{
-	char	**map;
-	char	*line;
-	int		rows;
-	int		cols;
-	int		i;
-	int		j;
-	int		old;
-
-	rows = mappppp->row;
-	cols = mappppp->col;
-	map = (char **)malloc(sizeof(char *) * (rows + 1));
-	if (!map)
-		return (NULL);
-	i = 0;
-	line = get_next_line(fd);
-	while (line && i < rows)
-	{
-		if (ft_strlen(line) != cols && i < rows - 1)
-			return (NULL);
-		map[i] = ft_strdup(line);
-		free(line);
-		line = get_next_line(fd);
-		i++;
-	}
-	free(line);
-	if (i != rows)
-		return (NULL);
-	map[i] = '\0';
-	j = 0;
-	old = ft_strlen(map[0]);
-	while (j < mappppp->row)
-	{
-		if (ft_strlen(map[j]) != old)
-			return (NULL);
-		j++;
-	}
-	return (map);
 }
 
 // void    flood_map(t_map map, int row, int column)

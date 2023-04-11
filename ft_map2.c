@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 16:04:00 by vgoret            #+#    #+#             */
-/*   Updated: 2023/04/04 12:41:11 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/04/11 15:05:51 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,50 +60,6 @@ int	get_size(char *line)
 // 		free(line);
 // 	}
 // 	return (0);
-// }
-
-
-// int	ft_check_rectangle(t_map *map)
-// {
-// 	int		size;
-// 	int		size2;
-// 	int		fd;
-// 	char	*line;
-// 	// char	*first;
-	
-// 	fd = open(map->path, O_RDONLY);
-// 	line = get_next_line(fd);
-// 	size2 = ft_strlen(line);
-// 	while (line != NULL)
-// 	{
-// 		line = get_next_line(fd);
-// 		if (line != NULL)
-// 		{
-// 			size = ft_strlen(line);
-// 			if (size != size2)
-// 			{
-// 				printf("Pas RECT");
-// 				return (1);
-// 			}
-// 		}
-// 		// if (line)
-// 		// {
-// 		// 	printf("strlen=%d\n", ft_strlen(line));
-// 		// 	printf("%s\n", line);		
-// 		// }
-// 		free(line);
-// 	}
-// 	// size = ft_stl
-// 	printf("Map rectangulaire\n");
-// 	return (0);
-// }
-
-// int	map_check(char **tab)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	ft_check_rectangle(tab);
 // }
 
 char	**map_tab(t_map *map, int fd)
