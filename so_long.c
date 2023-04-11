@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:13:31 by vgoret            #+#    #+#             */
-/*   Updated: 2023/04/10 17:14:21 by victor           ###   ########.fr       */
+/*   Updated: 2023/04/11 14:56:52 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ int	init_game(t_data *game, char *path1)
 		return (1);
 	}
 	// printf("%d\n", ft_check_map(game));
+
 	game->width = game->col * 64;
 	game->height = game->row * 64;
 	init_objects(game);
@@ -116,7 +117,7 @@ int	init_game(t_data *game, char *path1)
     game->mlx = mlx_init();
 	game->win = mlx_new_window(game->mlx, game->width,
 			game->height, "so_long");
-
+		ft_generate_window(game);
 	// print_map(game);
 	
 	return (0);
@@ -139,7 +140,7 @@ int	main(int ac, char **av)
 	if (init_game(&game, map_path(av[1])) == 1)
 		return (0);
 
-	ft_generate_window(&game);
+
 	mlx_hook(game.win, 2, (1L << 0), key_hook, &game);
 	mlx_hook(game.win, 17, 0L, (void *)close_window, &game);
 	mlx_loop(game.mlx);
