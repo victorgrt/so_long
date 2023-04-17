@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:36:29 by vgoret            #+#    #+#             */
-/*   Updated: 2023/04/11 15:01:39 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/04/17 13:30:06 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,9 @@ void	ft_generate_window(t_data *game)
 
 int	close_window(t_data *game)
 {
+	mlx_destroy_image(game->mlx, game->img);
 	mlx_destroy_window(game->mlx, game->win);
+	mlx_loop_end(game->mlx);
 	exit(0);
 }
 

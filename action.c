@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   action.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 16:53:36 by vgoret            #+#    #+#             */
-/*   Updated: 2023/04/09 18:43:09 by victor           ###   ########.fr       */
+/*   Updated: 2023/04/17 13:16:04 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void	ft_exit(t_data *game)
 		mlx_put_image_to_window(game->mlx, game->win, game->img,
 				game->player_x * 64, game->player_y * 64);
 		print_win(game);
+		close_window(game);
 		exit(0);
 	}
 	else

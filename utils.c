@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 18:20:14 by victor            #+#    #+#             */
-/*   Updated: 2023/03/28 21:51:43 by victor           ###   ########.fr       */
+/*   Updated: 2023/04/17 13:17:12 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+#include "./mlx_linux/mlx.h"
 
 
 size_t	ft_strlen2(const char *str)

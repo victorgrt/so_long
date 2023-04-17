@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: victor <victor@student.42.fr>              +#+  +:+       +#+         #
+#    By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/16 16:44:56 by vgoret            #+#    #+#              #
-#    Updated: 2023/04/08 23:20:41 by victor           ###   ########.fr        #
+#    Updated: 2023/04/17 13:52:59 by vgoret           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRC = so_long.c \
 	structure.c ft_move.c\
 	src/get_next_line.c src/get_next_line_utils.c \
 	textures.c action.c key_hook.c\
+	ft_free.c ft_render.c\
 
 OBJ = ${SRC:.c=.o}
 

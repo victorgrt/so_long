@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:43:46 by vgoret            #+#    #+#             */
-/*   Updated: 2023/04/11 15:04:21 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/04/17 14:02:20 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,18 @@
 #  define BUFFER_SIZE 1
 # endif
 
+#define WALL	"./ressources/brick.xpm"
+#define PLAYER_L	"./ressources/player_left.xpm"
+#define PLAYER_R	"./ressources/player_right.xpm"
+#define COLLECT		"./ressources/collect.xpm"
+#define EXIT	"./ressources/door.xpm"
+#define FLOOR		"./ressources/water.xpm"
+
 typedef struct s_textures
 {
-	// int		w;
-	// int		h;
-	void		*wall;
-	void		*player;
-	void		*exit;
-	void		*floor;
+	void	*xpm_ptr;
+	int		x;
+	int		y;
 }				t_textures;
 
 typedef struct s_data
@@ -59,6 +63,13 @@ typedef struct s_data
 	int			collected;
 
 	int			fd;
+
+	t_textures	wall;
+	t_textures	floor;
+	t_textures	player_right;
+	t_textures	player_left;
+	t_textures	collect;
+	t_textures	exit;
 }				t_data;
 
 /* GET_NEXT_LINE */
@@ -117,6 +128,7 @@ void	print_move(t_data *game, int move, char c);
 int	nb_line(char *path);
 char	**create_map(t_data *game);//jsp si ca marche mais jcrois pas
 
+int	init_game(t_data *game, char *path1);
 char	**create_game(t_data *game);
 void	init_objects(t_data *game);
 void	print_map(t_data *game);
