@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 23:12:06 by victor            #+#    #+#             */
-/*   Updated: 2023/04/17 14:02:53 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/04/17 14:32:04 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ void	init_sprites(t_data *game)
 	game->floor = ft_sprite(mlx, FLOOR);
 }
 
-void	ft_render_sprite(t_data *game, t_textures sprite)
+void	ft_render_sprite(t_data *game, t_textures sprite, int y, int x)
 {
-	mlx_put_image_to_window (game->mlx, game->win, sprite.xpm_ptr, game->col * sprite.x, game->row * sprite.y);
+	mlx_put_image_to_window (game->mlx, game->win, sprite.xpm_ptr, 64 * x, 64 * y);
 }
 
 void	ft_chose_sprite(t_data *game, int y, int x)
@@ -46,15 +46,15 @@ void	ft_chose_sprite(t_data *game, int y, int x)
 	
 	c = game->map[y][x];
 	if (c == '1')
-		ft_render_sprite(game, game->wall);
+		ft_render_sprite(game, game->wall, y, x);
 	else if (c == '0')
-		ft_render_sprite(game, game->floor);
+		ft_render_sprite(game, game->floor, y, x);
 	else if (c == 'C')
-		ft_render_sprite(game, game->collect);
+		ft_render_sprite(game, game->collect, y, x);
 	else if (c == 'E')
-		ft_render_sprite(game, game->exit);
+		ft_render_sprite(game, game->exit, y, x);
 	else if (c == 'P')
-		ft_render_sprite(game, game->player_left);
+		ft_render_sprite(game, game->player_right, y, x);
 	
 }
 
@@ -95,5 +95,7 @@ int	main(int ac, char **av)
 		return (0);
 	init_sprites(&game);
 	ft_render_map(&game);
+	// mlx_hook(game.win, 17, 0L, (void *)close_window, &game);
+	mlx_loop(game.mlx);
 	return (0);
 }

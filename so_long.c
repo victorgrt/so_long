@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:13:31 by vgoret            #+#    #+#             */
-/*   Updated: 2023/04/17 14:04:51 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/04/17 14:27:20 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ int	init_game(t_data *game, char *path1)
     game->mlx = mlx_init();
 	game->win = mlx_new_window(game->mlx, game->width,
 			game->height, "so_long");
-	ft_generate_window(game);
+	// ft_generate_window(game);
 	return (0);
 }
 
