@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 23:12:06 by victor            #+#    #+#             */
-/*   Updated: 2023/04/17 14:32:04 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/04/17 15:01:22 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_textures	ft_sprite(void *mlx, char *path)
 {
 	t_textures	sprite;
-	
+
 	sprite.xpm_ptr = mlx_xpm_file_to_image(mlx, path, &sprite.x, &sprite.y);
 	if (sprite.xpm_ptr == NULL)
 		printf("Sprite NULL\t%s\n", path);
@@ -37,13 +37,14 @@ void	init_sprites(t_data *game)
 
 void	ft_render_sprite(t_data *game, t_textures sprite, int y, int x)
 {
-	mlx_put_image_to_window (game->mlx, game->win, sprite.xpm_ptr, 64 * x, 64 * y);
+	mlx_put_image_to_window (game->mlx, game->win, \
+		sprite.xpm_ptr, 64 * x, 64 * y);
 }
 
 void	ft_chose_sprite(t_data *game, int y, int x)
 {
 	char	c;
-	
+
 	c = game->map[y][x];
 	if (c == '1')
 		ft_render_sprite(game, game->wall, y, x);
@@ -55,14 +56,13 @@ void	ft_chose_sprite(t_data *game, int y, int x)
 		ft_render_sprite(game, game->exit, y, x);
 	else if (c == 'P')
 		ft_render_sprite(game, game->player_right, y, x);
-	
 }
 
 int	ft_render_map(t_data *game)
 {
 	int	x;
 	int	y;
-	
+
 	y = 0;
 	while (y < game->row)
 	{
@@ -77,7 +77,7 @@ int	ft_render_map(t_data *game)
 	return (0);
 }
 
-int	main(int ac, char **av)
+/*int	main(int ac, char **av)
 {
 	t_data	game;
 
@@ -98,4 +98,4 @@ int	main(int ac, char **av)
 	// mlx_hook(game.win, 17, 0L, (void *)close_window, &game);
 	mlx_loop(game.mlx);
 	return (0);
-}
+}*/

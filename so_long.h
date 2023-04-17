@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:43:46 by vgoret            #+#    #+#             */
-/*   Updated: 2023/04/17 14:02:20 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/04/17 15:08:25 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@
 #  define BUFFER_SIZE 1
 # endif
 
-#define WALL	"./ressources/brick.xpm"
-#define PLAYER_L	"./ressources/player_left.xpm"
-#define PLAYER_R	"./ressources/player_right.xpm"
-#define COLLECT		"./ressources/collect.xpm"
-#define EXIT	"./ressources/door.xpm"
-#define FLOOR		"./ressources/water.xpm"
+# define WALL		"./ressources/brick.xpm"
+# define PLAYER_L	"./ressources/player_left.xpm"
+# define PLAYER_R	"./ressources/player_right.xpm"
+# define COLLECT	"./ressources/collect.xpm"
+# define EXIT		"./ressources/door.xpm"
+# define FLOOR		"./ressources/water.xpm"
 
 typedef struct s_textures
 {
@@ -104,9 +104,6 @@ char			*ft_strdup(const char *s);
 /* PRINTER */
 void			print_win(t_data *game);
 void			print_loose(void);
-
-
-
 t_textures		*load_textures(t_data *game);
 void			render_image(t_data **game, int x, int y, char *path);
 void			put_image(char c, int x, int y, t_data **game);
@@ -121,20 +118,20 @@ void			left(t_data **game);
 void			right(t_data **game);
 void			down(t_data **game);
 void			up(t_data **game);
-void	printmap(t_data **game);
-void	print_move(t_data *game, int move, char c);
+void			printmap(t_data **game);
+void			print_move(t_data *game, int move, char c);
 
+int				nb_line(char *path);
+char			**create_map(t_data *game);
 
-int	nb_line(char *path);
-char	**create_map(t_data *game);//jsp si ca marche mais jcrois pas
-
-int	init_game(t_data *game, char *path1);
-char	**create_game(t_data *game);
-void	init_objects(t_data *game);
-void	print_map(t_data *game);
-int	ft_check_objects(t_data *game);
-void	ft_generate_window(t_data *game);
-int	close_window(t_data *game);
-int    ft_check_working_map(t_data *data);
+int				init_game(t_data *game, char *path1);
+char			**create_game(t_data *game);
+void			init_objects(t_data *game);
+void			print_map(t_data *game);
+int				ft_check_objects(t_data *game);
+void			ft_generate_window(t_data *game);
+int				close_window(t_data *game);
+int				ft_check_working_map(t_data *data);
+void			move(t_data **game, char c);
 
 #endif

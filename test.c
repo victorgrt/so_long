@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 12:36:14 by vgoret            #+#    #+#             */
-/*   Updated: 2023/04/06 23:45:06 by victor           ###   ########.fr       */
+/*   Updated: 2023/04/17 14:58:47 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@
 
 #define PLAYER_COLOR 0x00FF00
 
-// int	handle_keypress(int keycode, s_player *player, void *mlx_ptr, void *win_ptr)
+// int	handle_keypress(int keycode, s_player *player, 
+// void *mlx_ptr, void *win_ptr)
 // {
 // 	if (keycode == 53) // touche "echap" pour quitter
 // 		exit(0);

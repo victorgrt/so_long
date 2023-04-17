@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 15:06:22 by vgoret            #+#    #+#             */
-/*   Updated: 2023/04/17 13:15:02 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/04/17 14:52:53 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,9 @@ void	print_move(t_data *game, int last, char c)
 
 void	ft_free_game(t_data *game)
 {
-	int	i = 0;
-	
+	int	i;
+
+	i = 0;
 	mlx_destroy_window(game->mlx, game->win);
 	while (game->map[i])
 	{
@@ -59,15 +60,12 @@ void	ft_free_game(t_data *game)
 		i++;
 	}
 	close(game->fd);
-	// free(game->mlx);
-	// free(game->img);
-	// free(game->win);
 }
 
 int	key_hook(int keysym, t_data *game)
 {
-	int last;
-	
+	int	last;
+
 	last = game->move;
 	if (keysym == 113 || keysym == 65307)
 	{
@@ -99,7 +97,6 @@ int	key_hook(int keysym, t_data *game)
 			print_move(game, last, 'r');
 		}
 	}
-
 	return (0);
 }
 

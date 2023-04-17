@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 16:04:00 by vgoret            #+#    #+#             */
-/*   Updated: 2023/04/11 15:05:51 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/04/17 14:58:21 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,53 +18,13 @@ int	get_size(char *line)
 
 	i = 0;
 	while (line[i])
-	{
 		i++;
-		// if (line[i] == '\n')
-		// {
-		// 	i--;
-		// 	break ;
-		// }
-	}
 	return (i);
 }
 
-// int	ft_check_rectangle(t_map *map)
-// {
-// 	int	size;
-// 	int	size2;
-// 	int	fd;
-// 	int	i;
-// 	char	*line;
-
-// 	i = 0;
-// 	fd = open(map->path, O_RDONLY);
-// 	line = get_next_line(fd);
-// 	i++;
-// 	size = get_size(line);
-// 	printf("size:%d\n", size);
-// 	while (line != NULL)
-// 	{
-// 		line = get_next_line(fd);
-// 		i++;
-// 		printf("line:%s\n", line);
-// 		size2 = get_size(line);
-// 		printf("size2:%d\n", size2);
-// 		if (i == map->height)
-// 			size2++;
-// 		if (size != size2)
-// 		{
-// 			("Pas RECT");
-// 			return (1);
-// 		}
-// 		free(line);
-// 	}
-// 	return (0);
-// }
-
 char	**map_tab(t_map *map, int fd)
 {
-	int i;
+	int		i;
 	char	*line;
 	char	**tab;
 

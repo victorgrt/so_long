@@ -6,13 +6,12 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 18:20:14 by victor            #+#    #+#             */
-/*   Updated: 2023/04/17 13:17:12 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/04/17 14:44:17 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include "./mlx_linux/mlx.h"
-
 
 size_t	ft_strlen2(const char *str)
 {
@@ -40,8 +39,6 @@ char	*ft_strdup(const char *s)
 	while (s[i])
 	{
 		dup[i] = s[i];
-		// if (dup[i] == '\n')
-		// 	dup[i] = '\0';
 		i++;
 	}
 	if (dup[i - 1] == '\n')

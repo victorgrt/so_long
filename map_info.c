@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:54:08 by victor            #+#    #+#             */
-/*   Updated: 2023/04/11 15:03:20 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/04/17 14:37:31 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ void	get_map_info(t_data *game, int fd)
 
 int	is_map_closed(t_data *game)
 {
-	int	i;
-	int	j;
-	int	size;
-	char	**map;
+	int			i;
+	int			j;
+	int			size;
+	char		**map;
 
 	i = 0;
 	j = 0;
@@ -74,9 +74,9 @@ int	is_map_closed(t_data *game)
 
 int	is_map_rules(t_data *game)
 {
-	int	i;
-	int	j;
-	char	**tab;
+	int			i;
+	int			j;
+	char		**tab;
 
 	i = 0;
 	tab = game->map;
@@ -89,8 +89,8 @@ int	is_map_rules(t_data *game)
 				&& tab[i][j] != 'E' && tab[i][j] != '1'
 				&& tab[i][j] != '0')
 			{
-				printf("Error\nUnknown character : %c ([%d][%d])\n",
-						tab[i][j], i, j);
+				printf("Error\nUnknown character : %c ([%d][%d])\n", \
+				tab[i][j], i, j);
 				return (1);
 			}
 			j++;
