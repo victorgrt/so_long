@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
+/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:43:46 by vgoret            #+#    #+#             */
-/*   Updated: 2023/04/17 15:08:25 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/04/19 00:12:12 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,5 +133,10 @@ void			ft_generate_window(t_data *game);
 int				close_window(t_data *game);
 int				ft_check_working_map(t_data *data);
 void			move(t_data **game, char c);
+int				parsing(char *param, t_data *game);
+void	generate_window(t_data *game);
 
+void	ft_free(char **tab); //free la map apres lavoir mise dans structure
+char	*ft_strjoin2(char *s1, char *s2);//doublon pcq pour getnextline je free un truc en trop jsp comment regler
+int	create_game2(t_data *game);//assigne directement dans la structure
 #endif

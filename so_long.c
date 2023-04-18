@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
+/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:13:31 by vgoret            #+#    #+#             */
-/*   Updated: 2023/04/17 14:47:56 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/04/19 00:11:15 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,8 @@ int	init_game(t_data *game, char *path1)
 
 	game->fd = open(path1, O_RDONLY);
 	game->path = path1;
-
 	get_map_info(game, game->fd); //col + row initialised
-	game->map = create_game(game);
+	create_game2(game);
 	if (game->map == NULL)
 	{
 		printf("Error\nMap pas rectangulaire\n");
@@ -112,40 +111,42 @@ int	init_game(t_data *game, char *path1)
 	}
 	printf("c:%d\n", game->c);
 	game->move = 0;
-    game->mlx = mlx_init();
-	game->win = mlx_new_window(game->mlx, game->width,
-			game->height, "so_long");
-	ft_generate_window(game);
+    // game->mlx = mlx_init();
+	// game->win = mlx_new_window(game->mlx, game->width,
+	// 		game->height, "so_long");
+	// ft_generate_window(game);
 	return (0);
 }
 
-int	main(int ac, char **av)
-{
-	t_data	game;
+// int	main(int ac, char **av)
+// {
+// 	t_data	game;
 
-	if (ac != 2)
-	{
-		printf("Check Arguments\n");
-		return (0);
-	}
-	if (verif_arg(av[1]) == 1)
-	{
-		printf("Error\nExtension de la map invalide ou map pas trouvée dans ./src\n");
-		return (0);
-	}
-	if (init_game(&game, map_path(av[1])) == 1)
-		return (0);
+// 	if (ac != 2)
+// 	{
+// 		printf("Check Arguments\n");
+// 		return (0);
+// 	}
+// 	if (verif_arg(av[1]) == 1)
+// 	{
+// 		printf("Error\nExtension de la map invalide ou map pas trouvée dans ./src\n");
+// 		return (0);
+// 	}
+// 	if (parsing(av[1], &game) == 1)
+// 	{
+// 		printf("Erreur de parsing\n");
+// 		return (0);
+// 	}
+// 	generate_window(&game);
+// 	mlx_hook(game.win, 2, (1L << 0), key_hook, &game);
+// 	mlx_hook(game.win, 17, 0L, (void *)close_window, &game);
+// 	// mlx_string_put(game.mlx, game.win, 10, game.height - 10, RED, "MOVE :");
+// 	// mlx_string_put(game.mlx, game.win, 100, game.height - 10, BLUE, ft_itoa(game.move));
+// 	mlx_loop(game.mlx);
+// 	return (0);
+// }
+
+// /*	PLAN
 
 
-	mlx_hook(game.win, 2, (1L << 0), key_hook, &game);
-	mlx_hook(game.win, 17, 0L, (void *)close_window, &game);
-	// mlx_string_put(game.mlx, game.win, 10, game.height - 10, RED, "MOVE :");
-	// mlx_string_put(game.mlx, game.win, 100, game.height - 10, BLUE, ft_itoa(game.move));
-	mlx_loop(game.mlx);
-	return (0);
-}
-
-/*	PLAN
-
-
-*/
+// */
