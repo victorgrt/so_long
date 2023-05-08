@@ -6,7 +6,7 @@
 /*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 13:29:59 by vgoret            #+#    #+#             */
-/*   Updated: 2023/04/19 00:27:28 by victor           ###   ########.fr       */
+/*   Updated: 2023/04/21 01:30:38 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,9 +135,9 @@ int	parsing(char *param, t_data *game)
 	game->fd = open(game->path, O_RDONLY);
 	free(temp);
 	if (is_map_closed(game) == 1)
-		return (1);
+		return (free(temp), 1);
 	if (is_map_rules(game) == 1)
-		return (1);
+		return (free(temp), 1);
 	return (0);
 }
 
@@ -171,6 +171,9 @@ int	main(int ac, char **av)
 	// mlx_string_put(game.mlx, game.win, 10, game.height - 10, RED, "MOVE :");
 	// mlx_string_put(game.mlx, game.win, 100, game.height - 10, BLUE, ft_itoa(game.move));
 	mlx_loop(game.mlx);
+	// free(game.mlx);
+	// free(game.img);
+	// free(game.win);
 	ft_free(game.map);
 	return (0);
 }
