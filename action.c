@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   action.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
+/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 16:53:36 by vgoret            #+#    #+#             */
-/*   Updated: 2023/04/17 15:00:34 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/05/08 18:40:03 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ void	ft_collect(t_data **game, char c)
 	(*game)->move++;
 	(*game)->c++;
 	ft_printf("\033[0;32mCollected : %d/%d\n\033[0m", (*game)->c, (*game)->max_c);
+	if ((*game)->c == (*game)->max_c)
+		render_image(game, (*game)->exit_x*64, (*game)->exit_y*64, "./ressources/exit_colored.xpm");
 	return ;
 }
 

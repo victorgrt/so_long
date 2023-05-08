@@ -6,7 +6,7 @@
 /*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 13:29:59 by vgoret            #+#    #+#             */
-/*   Updated: 2023/04/21 01:30:38 by victor           ###   ########.fr       */
+/*   Updated: 2023/05/08 18:27:00 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,31 +149,31 @@ void	generate_window(t_data *game)
 	ft_generate_window(game);
 }
 
-int	main(int ac, char **av)
-{
-	t_data	game;
+// int	main(int ac, char **av)
+// {
+// 	t_data	game;
 
-	if (ac != 2)
-	{
-		printf("Check Arguments\n");
-		return (0);
-	}
-	if (parsing(av[1], &game) == 1)
-	{
-		printf("Erreur de parsing\n");
-		return (0);
-	}
-	generate_window(&game);
+// 	if (ac != 2)
+// 	{
+// 		printf("Check Arguments\n");
+// 		return (0);
+// 	}
+// 	if (parsing(av[1], &game) == 1)
+// 	{
+// 		printf("Erreur de parsing\n");
+// 		return (0);
+// 	}
+// 	generate_window(&game);
 
 
-	mlx_hook(game.win, 2, (1L << 0), key_hook, &game);
-	mlx_hook(game.win, 17, 0L, (void *)close_window, &game);
-	// mlx_string_put(game.mlx, game.win, 10, game.height - 10, RED, "MOVE :");
-	// mlx_string_put(game.mlx, game.win, 100, game.height - 10, BLUE, ft_itoa(game.move));
-	mlx_loop(game.mlx);
-	// free(game.mlx);
-	// free(game.img);
-	// free(game.win);
-	ft_free(game.map);
-	return (0);
-}
+// 	mlx_hook(game.win, 2, (1L << 0), key_hook, &game);
+// 	mlx_hook(game.win, 17, 0L, (void *)close_window, &game);
+// 	// mlx_string_put(game.mlx, game.win, 10, game.height - 10, RED, "MOVE :");
+// 	// mlx_string_put(game.mlx, game.win, 100, game.height - 10, BLUE, ft_itoa(game.move));
+// 	mlx_loop(game.mlx);
+// 	// free(game.mlx);
+// 	// free(game.img);
+// 	// free(game.win);
+// 	ft_free(game.map);
+// 	return (0);
+// }
