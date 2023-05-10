@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:43:46 by vgoret            #+#    #+#             */
-/*   Updated: 2023/05/10 14:45:52 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/05/10 17:19:55 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 
 typedef struct s_textures
 {
+	void	*xpm_ptr;
 	void	*mlx;
 	void	*win;
 	void	*wall;
@@ -43,6 +44,8 @@ typedef struct s_textures
 	void	*collect;
 	int		width;
 	int		height;
+	int		x;
+	int		y;
 }				t_textures;
 
 typedef struct s_data
@@ -71,12 +74,13 @@ typedef struct s_data
 
 	int			fd;
 
-	t_textures	wall;
-	t_textures	floor;
-	t_textures	player_right;
-	t_textures	player_left;
-	t_textures	collect;
-	t_textures	exit;
+	void	*wall;
+	void	*floor;
+	void	*player_right;
+	void	*player_left;
+	void	*collect;
+	void	*exit_nc;
+	void	*exit_colored;
 }				t_data;
 
 /* GET_NEXT_LINE */
@@ -143,6 +147,7 @@ void			move(t_data **game, char c);
 void			ft_print_error(char *str);
 
 void	free_tab(char **tableau);
+void	render_img(t_data *game, char c, int x, int y);
 
 size_t	ft_strlen2(const char *str);
 

@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:36:29 by vgoret            #+#    #+#             */
-/*   Updated: 2023/05/10 13:26:56 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/05/10 17:30:31 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,37 +18,6 @@
 #define WINDOW_HEIGHT 1080
 
 #define RED 0xFF0000
-
-void	draw_player(t_data *game, t_data *img)
-{
-	if (game->player_x < 0 || game->player_x >= WINDOW_WIDTH
-		|| game->player_y < 0 || game->player_y >= WINDOW_HEIGHT)
-		return ;
-	mlx_pixel_put(img->mlx, img->win, img->player_x, img->player_y, RED);
-}
-
-void	render_image(t_data **game, int x, int y, char *path)
-{
-	int	tryx;
-	int	tryy;
-
-	(*game)->img = mlx_xpm_file_to_image((*game)->mlx, path, &tryx, &tryy);
-	mlx_put_image_to_window((*game)->mlx, (*game)->win, (*game)->img, x, y);
-}
-
-void	put_image(char c, int x, int y, t_data **game)
-{
-	if (c == '1')
-		render_image(game, x, y, "./ressources/skull.xpm");
-	if (c == '0')
-		render_image(game, x, y, "./ressources/water.xpm");
-	if (c == 'C')
-		render_image(game, x, y, "./ressources/collect.xpm");
-	if (c == 'E')
-		render_image(game, x, y, "./ressources/exit_nc.xpm");
-	if (c == 'P')
-		render_image(game, x, y, "./ressources/player_left.xpm");
-}
 
 void	ft_generate_window(t_data *game)
 {
@@ -65,7 +34,8 @@ void	ft_generate_window(t_data *game)
 		y = 0;
 		while (y < game->row)
 		{
-			put_image(game->map[y][x], x_map, y_map, &game);
+			render_img(game, game->map[y][x], x_map, y_map);
+			// put_image(game->map[y][x], x_map, y_map, &game);
 			y++;
 			y_map += 64;
 		}
@@ -92,8 +62,20 @@ void	free_tab(char **tableau)
 int	close_window(t_data *game)
 {
 	mlx_destroy_image(game->mlx, game->img);
-	mlx_destroy_window(game->mlx, game->win);
+	mlx_destroy_image(game->mlx, game->player_left);
+	mlx_destroy_image(game->mlx, game->player_right);
+	mlx_destroy_image(game->mlx, game->floor);
+	mlx_destroy_image(game->mlx, game->exit_colored);
+	mlx_destroy_image(game->mlx, game->exit_nc);
+	mlx_destroy_image(game->mlx, game->collect);
+	mlx_destroy_image(game->mlx, game->wall);
 	mlx_loop_end(game->mlx);
+
+	mlx_clear_window(game->mlx, game->win);
+	mlx_destroy_window(game->mlx, game->win);
+	mlx_destroy_display(game->mlx);
+
+	// free(game->win);
 	free_tab(game->map);
 	exit(0);
 }
