@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:36:29 by vgoret            #+#    #+#             */
-/*   Updated: 2023/05/10 17:30:31 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/05/10 18:12:20 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,14 +69,18 @@ int	close_window(t_data *game)
 	mlx_destroy_image(game->mlx, game->exit_nc);
 	mlx_destroy_image(game->mlx, game->collect);
 	mlx_destroy_image(game->mlx, game->wall);
-	mlx_loop_end(game->mlx);
-
+	
 	mlx_clear_window(game->mlx, game->win);
 	mlx_destroy_window(game->mlx, game->win);
 	mlx_destroy_display(game->mlx);
+	mlx_loop_end(game->mlx);
 
-	// free(game->win);
 	free_tab(game->map);
+	free(game->mlx);
+	// free(game->win);
+	// printf("%s\n%s\n%s\n%s\n", game->map[0], game->map[1],game->map[2],game->map[3]);
+	// free(game->win);
+	// free_tab(game->map);
 	exit(0);
 }
 

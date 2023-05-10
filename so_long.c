@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:13:31 by vgoret            #+#    #+#             */
-/*   Updated: 2023/05/10 17:28:49 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/05/10 18:10:13 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ char	**create_game(t_data *game)
 	free(line);
 	close(fd);
 	map[i] = '\0';
+	// free_tab(map);
 	return (map);
 }
 
@@ -80,7 +81,7 @@ void	ft_close_free(t_data *game)
 	mlx_destroy_window(game->mlx, game->win);
 }
 
-char	*ft_strdup(const char *s)
+char	*ft_strdup(char *s)
 {
 	char	*dup;
 	int		i;
@@ -89,7 +90,7 @@ char	*ft_strdup(const char *s)
 	i = 0;
 	len = ft_strlen2(s);
 	dup = malloc(sizeof(char) * len + 1);
-	if (dup == NULL)
+	if (!dup)
 		return (NULL);
 	while (s[i])
 	{
@@ -224,6 +225,7 @@ void	parsing(int ac, char **av, t_data *game)
 		ft_print_error("Error\nCheck map!");
 	}
 	// free_tab(map_test);
+	free_tab(map_test);
 	close(fd);
 	/*Floading*/
 	

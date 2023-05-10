@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 16:53:36 by vgoret            #+#    #+#             */
-/*   Updated: 2023/05/10 17:36:43 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/05/10 17:38:43 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,5 @@ void	ft_exit(t_data *game)
 	}
 	else
 		ft_printf("\033[0;31m T'as collecté que %d pièces sur %d. \
-		Retourne au travail !\n\033[0m", game->c, game->max_c);
+		Le vaisseau ne peux pas decoler ! !\n\033[0m", game->c, game->max_c);
 }

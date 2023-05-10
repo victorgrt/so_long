@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:43:46 by vgoret            #+#    #+#             */
-/*   Updated: 2023/05/10 17:19:55 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/05/10 18:02:57 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ void			get_map_info(t_data *game, int fd);
 int				init_structure(t_data *game);
 
 /* UTILS */
-char			*ft_strdup(const char *s);
+char			*ft_strdup(char *s);
 
 /* PRINTER */
 void			print_win(t_data *game);
@@ -135,7 +135,7 @@ int				nb_line(char *path);
 char			**create_map(t_data *game);
 
 int				init_game(t_data *game, char *path1);
-char			**create_game(t_data *game);
+char		**create_game(t_data *game);
 void			init_objects(t_data *game);
 void			print_map(t_data *game);
 int				ft_check_objects(t_data *game);
