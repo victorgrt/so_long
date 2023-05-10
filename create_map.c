@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   create_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/28 18:20:14 by victor            #+#    #+#             */
-/*   Updated: 2023/05/10 14:45:34 by vgoret           ###   ########.fr       */
+/*   Created: 2023/05/02 13:39:11 by vgoret            #+#    #+#             */
+/*   Updated: 2023/05/02 13:39:30 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include "./mlx_linux/mlx.h"
 
-size_t	ft_strlen2(const char *str)
+void	ft_copy_mapdata(t_game *game, char *onelign)
 {
-	size_t	i;
+	char		**c_mapdata;
+	char		*c_onelign;
 
-	if (!str)
-		return (600);
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
+	c_onelign = malloc(ft_strlen(onelign) + 1);
+	ft_strlcpy(c_onelign, onelign, ft_strlen(onelign) + 1);
+	c_mapdata = ft_split(c_onelign, '\n');
+	map->c_data = c_mapdata;
+	free(c_onelign);
 }
-

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:13:31 by vgoret            #+#    #+#             */
-/*   Updated: 2023/05/08 18:35:35 by victor           ###   ########.fr       */
+/*   Updated: 2023/05/10 14:59:42 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,50 +20,46 @@ char	**create_game(t_data *game)
 	char	**map;
 	char	*line;
 	int		rows;
-	int		cols;
 	int		i;
 	int		fd;
-	int		j;
-	int		old;
 
 	rows = game->row;
-	cols = game->col;
-	fd = open(game->path, O_RDONLY);
 	map = (char **)malloc(sizeof(char *) * (rows + 1));
 	if (!map)
 		return (NULL);
 	i = 0;
+	fd = open(game->path, O_RDONLY);
 	line = get_next_line(fd);
+	if (line == NULL)
+	{
+		free(map);
+		return (NULL);
+	}
 	while (line && i < rows)
 	{
-		if (ft_strlen(line) != cols && i < rows - 1)
-			return (NULL);
 		map[i] = ft_strdup(line);
 		free(line);
 		line = get_next_line(fd);
 		i++;
 	}
 	free(line);
-	if (i != rows)
-		return (NULL);
+	close(fd);
 	map[i] = '\0';
-	j = 0;
-	old = ft_strlen(map[0]);
-	while (j < game->row)
-	{
-		if (ft_strlen(map[j]) != old)
-			return (NULL);
-		j++;
-	}
 	return (map);
 }
 
-int	ft_check_map(t_data *game)
+int	ft_check_map(t_data *game, char **map)
 {
-	if (is_map_closed(game) == 1)
+	if (is_map_closed(game, map) == 1)
+	{
+		free_tab(map);
 		return (1);
-	if (is_map_rules(game) == 1)
+	}
+	if (is_map_rules(game, map) == 1)
+	{
+		free_tab(map);
 		return (1);
+	}
 	return (0);
 }
 
@@ -84,60 +80,123 @@ void	ft_close_free(t_data *game)
 	mlx_destroy_window(game->mlx, game->win);
 }
 
+char	*ft_strdup(const char *s)
+{
+	char	*dup;
+	int		i;
+	int		len;
+
+	i = 0;
+	len = ft_strlen2(s);
+	dup = malloc(sizeof(char) * len + 1);
+	if (dup == NULL)
+		return (NULL);
+	while (s[i])
+	{
+		dup[i] = s[i];
+		i++;
+	}
+	if (dup[i - 1] == '\n')
+	{
+		dup[i - 1] = '\0';
+		return (dup);
+	}
+	dup[i] = '\0';
+	return (dup);
+}
+
+
 int	init_game(t_data *game, char *path1)
 {
 
-	game->fd = open(path1, O_RDONLY);
+
 	game->path = path1;
-	get_map_info(game, game->fd); //col + row initialised
-	create_game2(game);
-	if (game->map == NULL)
-	{
-		printf("Error\nMap pas rectangulaire\n");
-		return (1);
-	}
-	if (ft_check_map(game) == 1)
-	{
-		printf("Error\nMap not closed\n");
-		return (1);
-	}
+	//col + row initialised
+	game->map = create_game(game);
 	game->width = game->col * 64;
 	game->height = game->row * 64;
 	init_objects(game);
 	if (ft_check_objects(game) == 1)
 	{
-		printf("Error\nCheck Assets of the map please\n");
-		return (1);
+		free_tab(game->map);
+		ft_print_error("Error\nCheck Assets of the map");
 	}
 	printf("c:%d\n", game->c);
 	game->move = 0;
-    // game->mlx = mlx_init();
-	// game->win = mlx_new_window(game->mlx, game->width,
-	// 		game->height, "so_long");
-	// ft_generate_window(game);
+    game->mlx = mlx_init();
+	game->win = mlx_new_window(game->mlx, game->width,
+			game->height, "so_long");
+	ft_generate_window(game);
 	return (0);
+}
+
+void	ft_print_error(char *str)
+{
+	perror(str);
+	exit(0);
+}
+
+void	parsing(int ac, char **av, t_data *game)
+{
+	char	**map_test;
+	int		fd;
+	// int		i;
+	// int		old;
+
+	if (ac != 2)
+		ft_print_error("Error\nTrop d'arguments");
+	if (verif_arg(av[1]) == 1)
+		ft_print_error("Error\nFailed to open the map");
+	game->path = av[1];
+	fd = open(av[1], O_RDONLY);
+	get_map_info(game, fd);
+	printf("%d\t%d\n", game->col, game->row);
+	map_test = create_game(game);
+	// i = 0;
+	// old = ft_strlen(map_test[i]);
+	// while (i < game->row)
+	// {
+	// 	if (old != ft_strlen(map_test[i]))
+	// 	{
+	// 		ft_print_error("Error\nMap pas RECT");
+	// 	}
+	// 	i++;
+	// 	// free_tab(map_test);
+	// 	// ft_print_error("Error\nMap pas rectangulaire");
+	// }
+	if (ft_check_map(game, map_test) == 1)
+	{
+		// free_tab(map_test);
+		ft_print_error("Error\nCheck map!");
+	}
+	// free_tab(map_test);
+	close(fd);
+	/*Floading*/
+	
+	/*Free mon double tableau*/
 }
 
 int	main(int ac, char **av)
 {
 	t_data	game;
 
-	if (ac != 2)
-	{
-		printf("Check Arguments\n");
+	/*Paring*/
+	parsing(ac, av, &game);
+	// if (ac != 2)
+	// {
+	// 	printf("Check Arguments\n");
+	// 	return (0);
+	// }
+	// if (verif_arg(av[1]) == 1)
+	// {
+	// 	printf("Error\nExtension de la map invalide ou dossier source manquant\n");
+	// 	return (0);
+	// }
+	/*Initialisation*/
+	if (init_game(&game, av[1]) == 1)
 		return (0);
-	}
-	if (verif_arg(av[1]) == 1)
-	{
-		printf("Error\nExtension de la map invalide ou map pas trouvée dans ./src\n");
-		return (0);
-	}
-	if (parsing(av[1], &game) == 1)
-	{
-		printf("Erreur de parsing\n");
-		return (0);
-	}
-	generate_window(&game);
+	
+
 	mlx_hook(game.win, 2, (1L << 0), key_hook, &game);
 	mlx_hook(game.win, 17, 0L, (void *)close_window, &game);
 	// mlx_string_put(game.mlx, game.win, 10, game.height - 10, RED, "MOVE :");
@@ -146,7 +205,7 @@ int	main(int ac, char **av)
 	return (0);
 }
 
-// /*	PLAN
+/*	PLAN
 
 
-// */
+*/

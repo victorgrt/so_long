@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:43:46 by vgoret            #+#    #+#             */
-/*   Updated: 2023/04/19 00:12:12 by victor           ###   ########.fr       */
+/*   Updated: 2023/05/10 14:45:52 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,16 @@
 
 typedef struct s_textures
 {
-	void	*xpm_ptr;
-	int		x;
-	int		y;
+	void	*mlx;
+	void	*win;
+	void	*wall;
+	void	*exit;
+	void	*floor;
+	void	*player_r;
+	void	*player_l;
+	void	*collect;
+	int		width;
+	int		height;
 }				t_textures;
 
 typedef struct s_data
@@ -80,10 +87,10 @@ char			*get_next_line(int fd);
 
 /* PARSING */
 int				verif_arg(char *str);
-int				handle_map_error(t_data *game);
+int				handle_map_error(t_data *game, char **map);
 
-int				is_map_rules(t_data *game);
-int				is_map_closed(t_data *game);
+int				is_map_rules(t_data *game, char **map);
+int				is_map_closed(t_data *game, char **map);
 
 /* PLAYER */
 void			get_pos_player(t_data *game);
@@ -92,7 +99,6 @@ void			draw_player(t_data *game, t_data *img);
 /* MAP */
 int				map_height(char *map_name, int fd);
 int				map_width(char *map_name, int fd);
-char			*map_path(char *map_name);
 void			get_map_info(t_data *game, int fd);
 
 /* GAME */
@@ -133,10 +139,11 @@ void			ft_generate_window(t_data *game);
 int				close_window(t_data *game);
 int				ft_check_working_map(t_data *data);
 void			move(t_data **game, char c);
-int				parsing(char *param, t_data *game);
-void	generate_window(t_data *game);
 
-void	ft_free(char **tab); //free la map apres lavoir mise dans structure
-char	*ft_strjoin2(char *s1, char *s2);//doublon pcq pour getnextline je free un truc en trop jsp comment regler
-int	create_game2(t_data *game);//assigne directement dans la structure
+void			ft_print_error(char *str);
+
+void	free_tab(char **tableau);
+
+size_t	ft_strlen2(const char *str);
+
 #endif

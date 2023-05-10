@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 13:28:54 by victor            #+#    #+#             */
-/*   Updated: 2023/04/17 14:40:36 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/05/03 12:35:55 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,18 +48,18 @@ void	init_objects(t_data *game)
 	}
 	game->c = 0;
 	game->collected = 0;
-	printf("c:%d\tmax_c:%d\te:%d\tp:%d\nexit[%d][%d]\n", game->c,
-		game->max_c, game->e, game->p, game->exit_x, game->exit_y);
+	// printf("c:%d\tmax_c:%d\te:%d\tp:%d\nexit[%d][%d]\n", game->c,
+		// game->max_c, game->e, game->p, game->exit_x, game->exit_y);
 }
 
 int	init_structure(t_data *game)
 {
-	if (handle_map_error(game) == 1)
-	{
-		free(game->mlx);
-		free(game->win);
-		return (1);
-	}
+	// if (handle_map_error(game) == 1)
+	// {
+	// 	free(game->mlx);
+	// 	free(game->win);
+	// 	return (1);
+	// }
 	get_pos_player(game);
 	game->mlx = mlx_init();
 	game->win = mlx_new_window(game->mlx, game->col * 64,

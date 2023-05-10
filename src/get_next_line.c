@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 18:43:08 by vgoret            #+#    #+#             */
-/*   Updated: 2023/03/27 14:08:50 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/05/10 14:15:30 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,10 +102,17 @@ char	*trimming_static(char *save)
 	if (save[i] == '\n')
 		i++;
 	if (ft_strlen(save) == 0)
-		return (free(save), NULL);
+	{
+		free(save);
+		return (NULL);
+	}
 	buff = malloc(sizeof(char) * (ft_strlen(save) - i + 1));
 	if (!buff)
-		return (free(buff), free(save), NULL);
+	{
+		free(buff);
+		free(save);
+		return (NULL);
+	}
 	j = 0;
 	while (save[i] != '\0')
 	{

@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:54:08 by victor            #+#    #+#             */
-/*   Updated: 2023/04/17 14:37:31 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/05/10 14:34:22 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,15 @@ void	get_map_info(t_data *game, int fd)
 	free(line);
 }
 
-int	is_map_closed(t_data *game)
+int	is_map_closed(t_data *game, char **map)
 {
 	int			i;
 	int			j;
 	int			size;
-	char		**map;
 
 	i = 0;
 	j = 0;
-	map = game->map;
+	printf("%d\t%d\n", game->row, game->col);
 	while (j < game->row)
 	{
 		size = ft_strlen(map[j]);
@@ -72,14 +71,12 @@ int	is_map_closed(t_data *game)
 	return (0);
 }
 
-int	is_map_rules(t_data *game)
+int	is_map_rules(t_data *game, char **tab)
 {
 	int			i;
 	int			j;
-	char		**tab;
 
 	i = 0;
-	tab = game->map;
 	while (i < game->row - 1)
 	{
 		j = 0;
@@ -137,14 +134,14 @@ int	is_map_rules(t_data *game)
 //         ft_error("Error\nMap cannot be completed\n", map);
 // }
 
-int	handle_map_error(t_data *game)
+int	handle_map_error(t_data *game, char **map)
 {
-	if (is_map_closed(game) == 1)
+	if (is_map_closed(game, map) == 1)
 	{
 		printf("Error\nMap not closed\n");
 		return (1);
 	}
-	if (is_map_rules(game) == 1)
+	if (is_map_rules(game, map) == 1)
 	{
 		printf("Error\nCheck Assets of the map\n");
 		return (1);

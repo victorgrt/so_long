@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:36:29 by vgoret            #+#    #+#             */
-/*   Updated: 2023/05/08 18:33:06 by victor           ###   ########.fr       */
+/*   Updated: 2023/05/10 13:26:56 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,7 @@ void	put_image(char c, int x, int y, t_data **game)
 	if (c == 'C')
 		render_image(game, x, y, "./ressources/collect.xpm");
 	if (c == 'E')
-	{
 		render_image(game, x, y, "./ressources/exit_nc.xpm");
-	}
 	if (c == 'P')
 		render_image(game, x, y, "./ressources/player_left.xpm");
 }
@@ -76,11 +74,27 @@ void	ft_generate_window(t_data *game)
 	}
 }
 
+void	free_tab(char **tableau)
+{
+	int	i;
+	
+	if (tableau == NULL || *tableau == NULL)
+		return ;
+	i = 0;
+	while (tableau[i] != NULL)
+	{
+		free(tableau[i]);
+		i++;
+	}
+	free(tableau);
+}
+
 int	close_window(t_data *game)
 {
 	mlx_destroy_image(game->mlx, game->img);
 	mlx_destroy_window(game->mlx, game->win);
 	mlx_loop_end(game->mlx);
+	free_tab(game->map);
 	exit(0);
 }
 
@@ -89,7 +103,7 @@ int	close_window(t_data *game)
 // 	t_data	game;
 // 	char	*path;
 // 	int		fd;
-    
+
 // 	if (ac != 2)
 // 	{
 // 		printf("Error\nNo Map for so_long\n ");
