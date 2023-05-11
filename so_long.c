@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:13:31 by vgoret            #+#    #+#             */
-/*   Updated: 2023/05/11 15:00:19 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/05/11 16:19:21 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ int	ft_check_map(t_data *game, char **map)
 }
 
 
-
 char	*ft_strdup(char *s)
 {
 	char	*dup;
@@ -96,8 +95,6 @@ void	parsing(int ac, char **av, t_data *game)
 {
 	char	**map_test;
 	int		fd;
-	// int		i;
-	// int		old;
 
 	if (ac != 2)
 		ft_print_error("Error\nTrop d'arguments");

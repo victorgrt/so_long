@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:43:46 by vgoret            #+#    #+#             */
-/*   Updated: 2023/05/11 14:57:41 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/05/11 16:16:32 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,30 +23,6 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1
 # endif
-
-# define WALL		"./ressources/brick.xpm"
-# define PLAYER_L	"./ressources/player_left.xpm"
-# define PLAYER_R	"./ressources/player_right.xpm"
-# define COLLECT	"./ressources/collect.xpm"
-# define EXIT		"./ressources/door.xpm"
-# define FLOOR		"./ressources/water.xpm"
-
-typedef struct s_textures
-{
-	void	*xpm_ptr;
-	void	*mlx;
-	void	*win;
-	void	*wall;
-	void	*exit;
-	void	*floor;
-	void	*player_r;
-	void	*player_l;
-	void	*collect;
-	int		width;
-	int		height;
-	int		x;
-	int		y;
-}				t_textures;
 
 typedef struct s_data
 {
@@ -81,6 +57,7 @@ typedef struct s_data
 	void	*collect;
 	void	*exit_nc;
 	void	*exit_colored;
+	void	*textures[7];
 }				t_data;
 
 /* GET_NEXT_LINE */
@@ -114,7 +91,6 @@ char			*ft_strdup(char *s);
 /* PRINTER */
 void			print_win(t_data *game);
 void			print_loose(void);
-t_textures		*load_textures(t_data *game);
 void			render_image(t_data **game, int x, int y, char *path);
 void			put_image(char c, int x, int y, t_data **game);
 void			ft_draw_window(t_data *game);
@@ -154,6 +130,6 @@ void	render_img(t_data *game, char c, int x, int y);
 size_t	ft_strlen2(const char *str);
 
 void	render_player(t_data **game, int direction, char c);
-int	init_img(t_data *game);
+void	init_img(t_data *game);
 
 #endif

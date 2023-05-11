@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 13:28:54 by victor            #+#    #+#             */
-/*   Updated: 2023/05/11 14:57:21 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/05/11 16:24:04 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,11 @@ int	init_game(t_data *game, char *path1)
 	game->move = 0;
 
     game->mlx = mlx_init();
-	if (init_img(game) == 1)
-		close_window3(game);
+	init_img(game);
+		// close_window3(game);
 	game->win = mlx_new_window(game->mlx, game->width,
 			game->height, "so_long");
 
-	// printf("zzz %d\n", init_img(game));
 	ft_generate_window(game);
 	return (0);
 }
