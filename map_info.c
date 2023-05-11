@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:54:08 by victor            #+#    #+#             */
-/*   Updated: 2023/05/10 14:34:22 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/05/11 17:21:23 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,29 +30,11 @@ void	get_map_info(t_data *game, int fd)
 	free(line);
 }
 
-int	is_map_closed(t_data *game, char **map)
+int	is_map_closed2ndpart(t_data *game, char **map)
 {
-	int			i;
-	int			j;
-	int			size;
+	int	i;
+	int	j;
 
-	i = 0;
-	j = 0;
-	printf("%d\t%d\n", game->row, game->col);
-	while (j < game->row)
-	{
-		size = ft_strlen(map[j]);
-		i = 0;
-		while (map[j] && i < game->row)
-		{
-			if (map[i][0] != 49)
-				return (1);
-			if (map[i][size - 1] != '1')
-				return (1);
-			i++;
-		}
-		j++;
-	}
 	i = 0;
 	j = 0;
 	while (j < game->row)
@@ -68,6 +50,33 @@ int	is_map_closed(t_data *game, char **map)
 		}
 		j++;
 	}
+	return (0);
+}
+
+int	is_map_closed(t_data *game, char **map)
+{
+	int			i;
+	int			j;
+	int			size;
+
+	i = 0;
+	j = 0;
+	while (j < game->row)
+	{
+		size = ft_strlen(map[j]);
+		i = 0;
+		while (map[j] && i < game->row)
+		{
+			if (map[i][0] != 49)
+				return (1);
+			if (map[i][size - 1] != '1')
+				return (1);
+			i++;
+		}
+		j++;
+	}
+	if (is_map_closed2ndpart(game, map) == 1)
+		return (1);
 	return (0);
 }
 

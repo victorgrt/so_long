@@ -6,13 +6,11 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 13:19:22 by victor            #+#    #+#             */
-/*   Updated: 2023/05/11 14:05:26 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/05/11 17:17:48 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-
 
 void	move(t_data **game, char c)
 {
@@ -30,6 +28,6 @@ void	move(t_data **game, char c)
 	(*game)->move++;
 	if (c == 'r')
 		render_player(game, 1, 'R');
-	else	
+	else
 		render_player(game, 2, 'P');
 }

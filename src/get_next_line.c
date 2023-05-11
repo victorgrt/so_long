@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 18:43:08 by vgoret            #+#    #+#             */
-/*   Updated: 2023/05/10 14:15:30 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/05/11 17:34:07 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,11 +88,25 @@ tant qu'on a pas trouve notre prochain '\0'. Quand c'est fini, on ajoute
 un '\0' a la main et on return notre buffer.
 */
 
+char	*do_trimming(char *save, char *buff, int i)
+{
+	int	j;
+
+	j = 0;
+	while (save[i] != '\0')
+	{
+		buff[j] = save[i];
+		i++;
+		j++;
+	}
+	buff[j] = '\0';
+	return (buff);
+}
+
 char	*trimming_static(char *save)
 {
 	char	*buff;
 	int		i;
-	int		j;
 
 	i = 0;
 	if (!save)
@@ -113,14 +127,7 @@ char	*trimming_static(char *save)
 		free(save);
 		return (NULL);
 	}
-	j = 0;
-	while (save[i] != '\0')
-	{
-		buff[j] = save[i];
-		i++;
-		j++;
-	}
-	buff[j] = '\0';
+	buff = do_trimming(save, buff, i);
 	return (free(save), buff);
 }
 

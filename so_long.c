@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:13:31 by vgoret            #+#    #+#             */
-/*   Updated: 2023/05/11 16:19:21 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/05/11 17:25:59 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,13 @@
 
 #define RED 0xFF0000
 #define BLUE 0x0000FF
+
+void	create_game2ndpart(char *line, int fd, char **map, int i)
+{
+	free(line);
+	close(fd);
+	map[i] = '\0';
+}
 
 char	**create_game(t_data *game)
 {
@@ -30,11 +37,6 @@ char	**create_game(t_data *game)
 	i = 0;
 	fd = open(game->path, O_RDONLY);
 	line = get_next_line(fd);
-	if (line == NULL)
-	{
-		free(map);
-		return (NULL);
-	}
 	while (line && i < rows)
 	{
 		map[i] = ft_strdup(line);
@@ -42,10 +44,7 @@ char	**create_game(t_data *game)
 		line = get_next_line(fd);
 		i++;
 	}
-	free(line);
-	close(fd);
-	map[i] = '\0';
-	// free_tab(map);
+	create_game2ndpart(line, fd, map, i);
 	return (map);
 }
 
@@ -64,33 +63,6 @@ int	ft_check_map(t_data *game, char **map)
 	return (0);
 }
 
-
-char	*ft_strdup(char *s)
-{
-	char	*dup;
-	int		i;
-	int		len;
-
-	i = 0;
-	len = ft_strlen2(s);
-	dup = malloc(sizeof(char) * len + 1);
-	if (!dup)
-		return (NULL);
-	while (s[i])
-	{
-		dup[i] = s[i];
-		i++;
-	}
-	if (dup[i - 1] == '\n')
-	{
-		dup[i - 1] = '\0';
-		return (dup);
-	}
-	dup[i] = '\0';
-	return (dup);
-}
-
-
 void	parsing(int ac, char **av, t_data *game)
 {
 	char	**map_test;
@@ -108,9 +80,6 @@ void	parsing(int ac, char **av, t_data *game)
 		ft_print_error("Error\nCheck map!");
 	free_tab(map_test);
 	close(fd);
-	/*Floading*/
-	
-	/*Free mon double tableau*/
 }
 
 int	main(int ac, char **av)
@@ -122,8 +91,6 @@ int	main(int ac, char **av)
 		return (0);
 	mlx_hook(game.win, 2, (1L << 0), key_hook, &game);
 	mlx_hook(game.win, 17, 0L, (void *)close_window, &game);
-	// mlx_string_put(game.mlx, game.win, 10, game.height - 10, RED, "MOVE :");
-	// mlx_string_put(game.mlx, game.win, 100, game.height - 10, BLUE, ft_itoa(game.move));
 	mlx_loop(game.mlx);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 15:06:22 by vgoret            #+#    #+#             */
-/*   Updated: 2023/05/11 14:07:34 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/05/11 17:22:04 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,20 @@ void	print_move(t_data *game, int last, char *c)
 	{
 		ft_printf("Move : %d %s\r", game->move, c);
 		last++;
+	}
+}
+
+void	key_hook2ndpart(int keysym, t_data *game, int last)
+{
+	if (keysym == 65361)
+	{
+		left(&game);
+		print_move(game, last, "←");
+	}
+	if (keysym == 65363)
+	{
+		right(&game);
+		print_move(game, last, "→");
 	}
 }
 
@@ -42,16 +56,7 @@ int	key_hook(int keysym, t_data *game)
 		down(&game);
 		print_move(game, last, "⬇");
 	}
-	if (keysym == 65361)
-	{
-		left(&game);
-		print_move(game, last, "←");
-	}
-	if (keysym == 65363)
-	{
-		right(&game);
-		print_move(game, last, "→");
-	}
+	key_hook2ndpart(keysym, game, last);
 	return (0);
 }
 
