@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:43:46 by vgoret            #+#    #+#             */
-/*   Updated: 2023/05/11 16:16:32 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/05/11 17:12:34 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,86 +50,75 @@ typedef struct s_data
 
 	int			fd;
 
-	void	*wall;
-	void	*floor;
-	void	*player_right;
-	void	*player_left;
-	void	*collect;
-	void	*exit_nc;
-	void	*exit_colored;
-	void	*textures[7];
+	void		*wall;
+	void		*floor;
+	void		*player_right;
+	void		*player_left;
+	void		*collect;
+	void		*exit_nc;
+	void		*exit_colored;
+	void		*textures[7];
 }				t_data;
-
-/* GET_NEXT_LINE */
-int				ft_strlen(char *str);
-void			*ft_calloc(size_t nmemb, size_t size);
-char			*ft_strjoin(char *s1, char *s2);
-char			*get_next_line(int fd);
 
 /* PARSING */
 int				verif_arg(char *str);
 int				handle_map_error(t_data *game, char **map);
-
 int				is_map_rules(t_data *game, char **map);
 int				is_map_closed(t_data *game, char **map);
 
+/* STRUCTURE */
+int				init_structure(t_data *game);
+int				init_game(t_data *game, char *path1);
+void			init_objects(t_data *game);
+
 /* PLAYER */
 void			get_pos_player(t_data *game);
-void			draw_player(t_data *game, t_data *img);
 
 /* MAP */
 int				map_height(char *map_name, int fd);
 int				map_width(char *map_name, int fd);
 void			get_map_info(t_data *game, int fd);
+int				ft_check_objects(t_data *game);
+char			**create_game(t_data *game);
+int				ft_check_working_map(t_data *data);
 
 /* GAME */
-int				init_structure(t_data *game);
-
-/* UTILS */
-char			*ft_strdup(char *s);
+int				key_hook(int keysym, t_data *game);
+void			ft_generate_window(t_data *game);
+void			ft_collect(t_data **game, char c);
+void			ft_exit(t_data *game);
 
 /* PRINTER */
 void			print_win(t_data *game);
 void			print_loose(void);
-void			render_image(t_data **game, int x, int y, char *path);
-void			put_image(char c, int x, int y, t_data **game);
-void			ft_draw_window(t_data *game);
-void			ft_collect(t_data **game, char c);
-void			ft_exit(t_data *game);
+void			print_move(t_data *game, int move, char *c);
+void			ft_print_error(char *str);
+void			print_map(t_data *game);
 
-/* Deplacements */
-
-int				key_hook(int keysym, t_data *game);
+/* DEPLACEMENTS */
+void			move(t_data **game, char c);
 void			left(t_data **game);
 void			right(t_data **game);
 void			down(t_data **game);
 void			up(t_data **game);
-void			printmap(t_data **game);
-void			print_move(t_data *game, int move, char *c);
 
-int				nb_line(char *path);
-char			**create_map(t_data *game);
+/* TEXTURES */
+void			init_img(t_data *game);
+void			render_player(t_data **game, int direction, char c);
+void			render_img(t_data *game, char c, int x, int y);
 
-int				init_game(t_data *game, char *path1);
-char		**create_game(t_data *game);
-void			init_objects(t_data *game);
-void			print_map(t_data *game);
-int				ft_check_objects(t_data *game);
-void			ft_generate_window(t_data *game);
+/* FREE */
+void			free_tab(char **tableau);
 int				close_window(t_data *game);
 int				close_window2(t_data *game);
-void				close_window3(t_data *game);
-int				ft_check_working_map(t_data *data);
-void			move(t_data **game, char c);
+void			close_window3(t_data *game);
 
-void			ft_print_error(char *str);
-
-void	free_tab(char **tableau);
-void	render_img(t_data *game, char c, int x, int y);
-
-size_t	ft_strlen2(const char *str);
-
-void	render_player(t_data **game, int direction, char c);
-void	init_img(t_data *game);
+/* UTILS */
+char			*ft_strdup(char *s);
+size_t			ft_strlen2(const char *str);
+int				ft_strlen(char *str);
+void			*ft_calloc(size_t nmemb, size_t size);
+char			*ft_strjoin(char *s1, char *s2);
+char			*get_next_line(int fd);
 
 #endif

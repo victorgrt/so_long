@@ -6,23 +6,11 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 15:03:45 by vgoret            #+#    #+#             */
-/*   Updated: 2023/05/11 14:03:29 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/05/11 17:09:17 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	printmap(t_data **game)
-{
-	int	i;
-
-	i = 0;
-	while ((*game)->map[i])
-	{
-		ft_printf("%s\n", (*game)->map[i]);
-		i++;
-	}
-}
 
 void	left(t_data **game)
 {

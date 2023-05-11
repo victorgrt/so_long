@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:26:21 by vgoret            #+#    #+#             */
-/*   Updated: 2023/05/11 14:12:32 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/05/11 17:09:42 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,25 +25,6 @@ void	ft_free(char **tab)
 	free(tab);
 	tab = NULL;
 	return ;
-}
-
-int	nb_line(char *path)
-{
-	int		fd;
-	int		i;
-	char	*temp;
-
-	fd = open(path, O_RDONLY);
-	i = 0;
-	temp = get_next_line(fd);
-	while (temp)
-	{
-		temp = get_next_line(fd);
-		free(temp);
-		i++;
-	}
-	close(fd);
-	return (i);
 }
 
 int	get_size(char *line)
