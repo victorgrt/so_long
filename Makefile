@@ -6,7 +6,7 @@
 #    By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/16 16:44:56 by vgoret            #+#    #+#              #
-#    Updated: 2023/05/11 17:10:42 by vgoret           ###   ########.fr        #
+#    Updated: 2023/05/11 17:53:41 by vgoret           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ CC      =	gcc
 # * SRC * #
 
 SRC = so_long.c \
-	main.c parsing.c ft_check_map.c ft_map.c ft_printer.c map_info.c \
+	parsing.c ft_map.c ft_printer.c map_info.c \
 	player.c utils.c \
 	draw_map.c \
 	structure.c ft_move.c ft_move_directions.c\

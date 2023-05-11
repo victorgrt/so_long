@@ -6,47 +6,11 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:13:31 by vgoret            #+#    #+#             */
-/*   Updated: 2023/05/11 17:25:59 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/05/11 17:54:05 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-#define RED 0xFF0000
-#define BLUE 0x0000FF
-
-void	create_game2ndpart(char *line, int fd, char **map, int i)
-{
-	free(line);
-	close(fd);
-	map[i] = '\0';
-}
-
-char	**create_game(t_data *game)
-{
-	char	**map;
-	char	*line;
-	int		rows;
-	int		i;
-	int		fd;
-
-	rows = game->row;
-	map = (char **)malloc(sizeof(char *) * (rows + 1));
-	if (!map)
-		return (NULL);
-	i = 0;
-	fd = open(game->path, O_RDONLY);
-	line = get_next_line(fd);
-	while (line && i < rows)
-	{
-		map[i] = ft_strdup(line);
-		free(line);
-		line = get_next_line(fd);
-		i++;
-	}
-	create_game2ndpart(line, fd, map, i);
-	return (map);
-}
 
 int	ft_check_map(t_data *game, char **map)
 {

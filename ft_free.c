@@ -6,13 +6,28 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 13:33:00 by vgoret            #+#    #+#             */
-/*   Updated: 2023/05/11 17:44:00 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/05/11 17:51:27 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-	/*mlx_destroy_image(game->mlx, game->img);*/
+void	free_tab(char **tableau)
+{
+	int	i;
+
+	if (tableau == NULL || *tableau == NULL)
+		return ;
+	i = 0;
+	while (tableau[i] != NULL)
+	{
+		free(tableau[i]);
+		i++;
+	}
+	free(tableau);
+}
+
+/*mlx_destroy_image(game->mlx, game->img);*/
 int	close_window(t_data *game)
 {
 	mlx_destroy_image(game->mlx, game->player_left);
