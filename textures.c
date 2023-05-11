@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 19:19:40 by victor            #+#    #+#             */
-/*   Updated: 2023/05/11 14:45:29 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/05/11 15:12:33 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ int	init_img(t_data *game)
 	int	img_y;
 
 	(*game).wall = mlx_xpm_file_to_image((*game).mlx, 
-		"./ressources/skull.xpm", &img_x, &img_y);
+		"./ressources/64skull.xpm", &img_x, &img_y);
 	if (!(*game).wall)
 		return (1);
 	(*game).floor = mlx_xpm_file_to_image((*game).mlx, 
-		"./ressources/water.xpm", &img_x, &img_y);
+		"./ressources/64floor.xpm", &img_x, &img_y);
 	if (!(*game).floor)
 		return (1);
 	(*game).exit_nc = mlx_xpm_file_to_image((*game).mlx, 

@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:13:31 by vgoret            #+#    #+#             */
-/*   Updated: 2023/05/11 14:58:29 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/05/11 15:00:19 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,9 +108,7 @@ void	parsing(int ac, char **av, t_data *game)
 	get_map_info(game, fd);
 	map_test = create_game(game);
 	if (ft_check_map(game, map_test) == 1)
-	{
 		ft_print_error("Error\nCheck map!");
-	}
 	free_tab(map_test);
 	close(fd);
 	/*Floading*/
@@ -125,8 +123,6 @@ int	main(int ac, char **av)
 	parsing(ac, av, &game);
 	if (init_game(&game, av[1]) == 1)
 		return (0);
-	
-
 	mlx_hook(game.win, 2, (1L << 0), key_hook, &game);
 	mlx_hook(game.win, 17, 0L, (void *)close_window, &game);
 	// mlx_string_put(game.mlx, game.win, 10, game.height - 10, RED, "MOVE :");
@@ -134,8 +130,3 @@ int	main(int ac, char **av)
 	mlx_loop(game.mlx);
 	return (0);
 }
-
-/*	PLAN
-
-
-*/
