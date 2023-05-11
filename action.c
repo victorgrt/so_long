@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 16:53:36 by vgoret            #+#    #+#             */
-/*   Updated: 2023/05/10 17:38:43 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/05/11 13:39:24 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,33 +21,37 @@ void	ft_collect(t_data **game, char c)
 	if (c == 'u')
 	{
 		(*game)->map[(*game)->player_y][(*game)->player_x] = '0';
+				printf("%s\n", (*game)->map[(*game)->player_y]);
 		(*game)->player_y -= 1;
 
-		print_move((*game), (*game)->move, c);
+		print_move((*game), (*game)->move, "↑");
 		render_img((*game), 'P', (*game)->player_x * 64, (*game)->player_y * 64);
 	}
 	if (c == 'd')
 	{
-				(*game)->map[(*game)->player_y][(*game)->player_x] = '0';
+		(*game)->map[(*game)->player_y][(*game)->player_x] = '0';
+		printf("%s\n", (*game)->map[(*game)->player_y]);
 		(*game)->player_y += 1;
 
-		print_move((*game), (*game)->move, c);
+		print_move((*game), (*game)->move, "⬇");
 		render_img((*game), 'R', (*game)->player_x * 64, (*game)->player_y * 64);
 	}
 	if (c == 'r')
 	{
-				(*game)->map[(*game)->player_y][(*game)->player_x] = '0';
+		(*game)->map[(*game)->player_y][(*game)->player_x] = '0';
+				printf("%s\n", (*game)->map[(*game)->player_y]);
 		(*game)->player_x += 1;
 
-		print_move((*game), (*game)->move, c);
+		print_move((*game), (*game)->move, "→");
 		render_img((*game), 'R', (*game)->player_x * 64, (*game)->player_y * 64);
 	}
 	if (c == 'l')
 	{
-				(*game)->map[(*game)->player_y][(*game)->player_x] = '0';
+		(*game)->map[(*game)->player_y][(*game)->player_x] = '0';
+				printf("%s\n", (*game)->map[(*game)->player_y]);
 		(*game)->player_x -= 1;
 
-		print_move((*game), (*game)->move, c);
+		print_move((*game), (*game)->move, "←");
 		render_img((*game), 'P', (*game)->player_x * 64, (*game)->player_y * 64);
 	}
 	(*game)->move++;

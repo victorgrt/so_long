@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:43:46 by vgoret            #+#    #+#             */
-/*   Updated: 2023/05/10 18:02:57 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/05/11 13:38:56 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ void			right(t_data **game);
 void			down(t_data **game);
 void			up(t_data **game);
 void			printmap(t_data **game);
-void			print_move(t_data *game, int move, char c);
+void			print_move(t_data *game, int move, char *c);
 
 int				nb_line(char *path);
 char			**create_map(t_data *game);
@@ -141,6 +141,7 @@ void			print_map(t_data *game);
 int				ft_check_objects(t_data *game);
 void			ft_generate_window(t_data *game);
 int				close_window(t_data *game);
+int				close_window2(t_data *game);
 int				ft_check_working_map(t_data *data);
 void			move(t_data **game, char c);
 

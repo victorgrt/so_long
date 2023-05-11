@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:36:29 by vgoret            #+#    #+#             */
-/*   Updated: 2023/05/10 18:12:20 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/05/11 13:39:49 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,27 @@ void	free_tab(char **tableau)
 		i++;
 	}
 	free(tableau);
+}
+
+int	close_window2(t_data *game)
+{
+	// mlx_destroy_image(game->mlx, game->img);
+	mlx_destroy_image(game->mlx, game->player_left);
+	mlx_destroy_image(game->mlx, game->player_right);
+	mlx_destroy_image(game->mlx, game->floor);
+	mlx_destroy_image(game->mlx, game->exit_colored);
+	mlx_destroy_image(game->mlx, game->exit_nc);
+	mlx_destroy_image(game->mlx, game->collect);
+	mlx_destroy_image(game->mlx, game->wall);
+	
+	mlx_clear_window(game->mlx, game->win);
+	mlx_destroy_window(game->mlx, game->win);
+	mlx_destroy_display(game->mlx);
+	mlx_loop_end(game->mlx);
+
+	free_tab(game->map);
+	free(game->mlx);
+	exit(0);
 }
 
 int	close_window(t_data *game)

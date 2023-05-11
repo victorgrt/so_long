@@ -6,45 +6,18 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 15:06:22 by vgoret            #+#    #+#             */
-/*   Updated: 2023/05/10 17:49:47 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/05/11 13:39:01 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	print_move(t_data *game, int last, char c)
+void	print_move(t_data *game, int last, char *c)
 {
-	if (c == 'u')
+	if (game->move != last)
 	{
-		if (game->move != last)
-		{
-			printf("Move : %d ↑\n", game->move);
-			last++;
-		}
-	}
-	if (c == 'l')
-	{
-		if (game->move != last)
-		{
-			printf("Move : %d ←\n", game->move);
-			last++;
-		}
-	}
-	if (c == 'r')
-	{
-		if (game->move != last)
-		{
-			printf("Move : %d →\n", game->move);
-			last++;
-		}
-	}
-	if (c == 'd')
-	{
-		if (game->move != last)
-		{
-			printf("Move : %d ⬇\n", game->move);
-			last++;
-		}
+		ft_printf("Move : %d %s\r", game->move, c);
+		last++;
 	}
 }
 
@@ -55,7 +28,7 @@ int	key_hook(int keysym, t_data *game)
 	last = game->move;
 	if (keysym == 113 || keysym == 65307)
 	{
-		close_window(game);
+		close_window2(game);
 		exit(0);
 		return (0);
 	}
@@ -65,22 +38,22 @@ int	key_hook(int keysym, t_data *game)
 		if (keysym == 65362)
 		{
 			up(&game);
-			print_move(game, last, 'u');
+			print_move(game, last, "↑");
 		}
 		if (keysym == 65364)
 		{
 			down(&game);
-			print_move(game, last, 'd');
+			print_move(game, last, "⬇");
 		}
 		if (keysym == 65361)
 		{
 			left(&game);
-			print_move(game, last, 'l');
+			print_move(game, last, "←");
 		}
 		if (keysym == 65363)
 		{
 			right(&game);
-			print_move(game, last, 'r');
+			print_move(game, last, "→");
 		}
 	}
 	return (0);
