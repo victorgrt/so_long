@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:36:29 by vgoret            #+#    #+#             */
-/*   Updated: 2023/05/11 13:39:49 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/05/11 14:35:50 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,31 +18,6 @@
 #define WINDOW_HEIGHT 1080
 
 #define RED 0xFF0000
-
-void	ft_generate_window(t_data *game)
-{
-	int	x;
-	int	y;
-	int	x_map;
-	int	y_map;
-
-	x_map = 0;
-	x = 0;
-	while (x < game->col)
-	{
-		y_map = 0;
-		y = 0;
-		while (y < game->row)
-		{
-			render_img(game, game->map[y][x], x_map, y_map);
-			// put_image(game->map[y][x], x_map, y_map, &game);
-			y++;
-			y_map += 64;
-		}
-		x++;
-		x_map += 64;
-	}
-}
 
 void	free_tab(char **tableau)
 {
@@ -59,51 +34,7 @@ void	free_tab(char **tableau)
 	free(tableau);
 }
 
-int	close_window2(t_data *game)
-{
-	// mlx_destroy_image(game->mlx, game->img);
-	mlx_destroy_image(game->mlx, game->player_left);
-	mlx_destroy_image(game->mlx, game->player_right);
-	mlx_destroy_image(game->mlx, game->floor);
-	mlx_destroy_image(game->mlx, game->exit_colored);
-	mlx_destroy_image(game->mlx, game->exit_nc);
-	mlx_destroy_image(game->mlx, game->collect);
-	mlx_destroy_image(game->mlx, game->wall);
-	
-	mlx_clear_window(game->mlx, game->win);
-	mlx_destroy_window(game->mlx, game->win);
-	mlx_destroy_display(game->mlx);
-	mlx_loop_end(game->mlx);
 
-	free_tab(game->map);
-	free(game->mlx);
-	exit(0);
-}
-
-int	close_window(t_data *game)
-{
-	mlx_destroy_image(game->mlx, game->img);
-	mlx_destroy_image(game->mlx, game->player_left);
-	mlx_destroy_image(game->mlx, game->player_right);
-	mlx_destroy_image(game->mlx, game->floor);
-	mlx_destroy_image(game->mlx, game->exit_colored);
-	mlx_destroy_image(game->mlx, game->exit_nc);
-	mlx_destroy_image(game->mlx, game->collect);
-	mlx_destroy_image(game->mlx, game->wall);
-	
-	mlx_clear_window(game->mlx, game->win);
-	mlx_destroy_window(game->mlx, game->win);
-	mlx_destroy_display(game->mlx);
-	mlx_loop_end(game->mlx);
-
-	free_tab(game->map);
-	free(game->mlx);
-	// free(game->win);
-	// printf("%s\n%s\n%s\n%s\n", game->map[0], game->map[1],game->map[2],game->map[3]);
-	// free(game->win);
-	// free_tab(game->map);
-	exit(0);
-}
 
 // int	main(int ac, char **av)
 // {

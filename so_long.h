@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:43:46 by vgoret            #+#    #+#             */
-/*   Updated: 2023/05/11 14:10:04 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/05/11 14:57:41 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,7 @@ int				ft_check_objects(t_data *game);
 void			ft_generate_window(t_data *game);
 int				close_window(t_data *game);
 int				close_window2(t_data *game);
+void				close_window3(t_data *game);
 int				ft_check_working_map(t_data *data);
 void			move(t_data **game, char c);
 
@@ -153,6 +154,6 @@ void	render_img(t_data *game, char c, int x, int y);
 size_t	ft_strlen2(const char *str);
 
 void	render_player(t_data **game, int direction, char c);
-void	init_img(t_data *game);
+int	init_img(t_data *game);
 
 #endif

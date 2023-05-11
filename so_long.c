@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:13:31 by vgoret            #+#    #+#             */
-/*   Updated: 2023/05/11 14:12:21 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/05/11 14:58:29 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,26 +106,11 @@ void	parsing(int ac, char **av, t_data *game)
 	game->path = av[1];
 	fd = open(av[1], O_RDONLY);
 	get_map_info(game, fd);
-	printf("%d\t%d\n", game->col, game->row);
 	map_test = create_game(game);
-	// i = 0;
-	// old = ft_strlen(map_test[i]);
-	// while (i < game->row)
-	// {
-	// 	if (old != ft_strlen(map_test[i]))
-	// 	{
-	// 		ft_print_error("Error\nMap pas RECT");
-	// 	}
-	// 	i++;
-	// 	// free_tab(map_test);
-	// 	// ft_print_error("Error\nMap pas rectangulaire");
-	// }
 	if (ft_check_map(game, map_test) == 1)
 	{
-		// free_tab(map_test);
 		ft_print_error("Error\nCheck map!");
 	}
-	// free_tab(map_test);
 	free_tab(map_test);
 	close(fd);
 	/*Floading*/
@@ -137,19 +122,7 @@ int	main(int ac, char **av)
 {
 	t_data	game;
 
-	/*Paring*/
 	parsing(ac, av, &game);
-	// if (ac != 2)
-	// {
-	// 	printf("Check Arguments\n");
-	// 	return (0);
-	// }
-	// if (verif_arg(av[1]) == 1)
-	// {
-	// 	printf("Error\nExtension de la map invalide ou dossier source manquant\n");
-	// 	return (0);
-	// }
-	/*Initialisation*/
 	if (init_game(&game, av[1]) == 1)
 		return (0);
 	
