@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 15:05:53 by vgoret            #+#    #+#             */
-/*   Updated: 2023/05/11 14:58:04 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/05/11 17:49:20 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ int	ft_check_working_map(t_data *data)
 	j = data->player_x;
 	flood_map(data, i, j);
 	collected = data->collected;
-	printf("%d\t%d\n", collected, data->max_c);
 	if (collected != data->max_c)
 	{
 		printf("Cant be done\n");
