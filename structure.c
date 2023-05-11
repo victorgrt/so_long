@@ -6,11 +6,34 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 13:28:54 by victor            #+#    #+#             */
-/*   Updated: 2023/05/03 12:35:55 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/05/11 14:11:20 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+int	init_game(t_data *game, char *path1)
+{
+	game->path = path1;
+	//col + row initialised
+	game->map = create_game(game);
+	game->width = game->col * 64;
+	game->height = game->row * 64;
+	init_objects(game);
+	if (ft_check_objects(game) == 1)
+	{
+		free_tab(game->map);
+		ft_print_error("Error\nCheck Assets of the map");
+	}
+	printf("c:%d\n", game->c);
+	game->move = 0;
+    game->mlx = mlx_init();
+	game->win = mlx_new_window(game->mlx, game->width,
+			game->height, "so_long");
+	init_img(game);
+	ft_generate_window(game);
+	return (0);
+}
 
 void	init_objects(t_data *game)
 {
@@ -48,25 +71,4 @@ void	init_objects(t_data *game)
 	}
 	game->c = 0;
 	game->collected = 0;
-	// printf("c:%d\tmax_c:%d\te:%d\tp:%d\nexit[%d][%d]\n", game->c,
-		// game->max_c, game->e, game->p, game->exit_x, game->exit_y);
-}
-
-int	init_structure(t_data *game)
-{
-	// if (handle_map_error(game) == 1)
-	// {
-	// 	free(game->mlx);
-	// 	free(game->win);
-	// 	return (1);
-	// }
-	get_pos_player(game);
-	game->mlx = mlx_init();
-	game->win = mlx_new_window(game->mlx, game->col * 64,
-			game->row * 64, "so_long");
-	init_objects(game);
-	game->move = 0;
-	game->width = game->col * 64;
-	game->height = game->row * 64;
-	return (0);
 }

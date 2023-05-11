@@ -6,11 +6,19 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 23:12:06 by victor            #+#    #+#             */
-/*   Updated: 2023/05/10 17:39:14 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/05/11 14:05:28 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	render_player(t_data **game, int direction, char c)
+{
+	if (direction == 1)
+		render_img((*game), c, (*game)->player_x * 64, (*game)->player_y * 64);
+	else
+		render_img((*game), c, (*game)->player_x * 64, (*game)->player_y * 64);
+}
 
 /*int	main(int ac, char **av)
 {

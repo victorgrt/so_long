@@ -3,62 +3,50 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 19:19:40 by victor            #+#    #+#             */
-/*   Updated: 2023/04/08 22:10:35 by victor           ###   ########.fr       */
+/*   Updated: 2023/05/11 14:09:40 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-/*void	set_img(t_data *game)
+void	render_img(t_data *game, char c, int x, int y)
 {
-	game->img.height = 64;
-	game->img.width = 64;
-	game->img.floor = "./ressources/water.xpm";
-	game->img.wall = "./ressources/brick.xpm";
-	game->img.collect = "./ressources/collect.xpm";
-	game->img.player = "./ressources/alien.xpm";
-	game->img.exit = "./ressources/door.xpm";
-	game->img.img_wall = mlx_xpm_file_to_image(game->mlx, game->img.wall,
-			&(game->img.width), &(game->img.height));
-	game->img.img_floor = mlx_xpm_file_to_image(game->mlx, game->img.floor,
-			&(game->img.width), &(game->img.height));
-	game->img.img_exit = mlx_xpm_file_to_image(game->mlx, game->img.exit,
-			&(game->img.width), &(game->img.height));
-	game->img.img_collect = mlx_xpm_file_to_image(game->mlx,
-			game->img.collect, &(game->img.width), &(game->img.height));
-	game->img.img_player = mlx_xpm_file_to_image(game->mlx,
-			game->img.player, &(game->img.width), &(game->img.height));
-}*/
+	if (c == '1')
+		mlx_put_image_to_window((*game).mlx, (*game).win, (*game).wall, x, y);
+	if (c == '0')
+		mlx_put_image_to_window((*game).mlx, (*game).win, (*game).floor, x, y);
+	if (c == 'C')
+		mlx_put_image_to_window((*game).mlx, (*game).win, (*game).collect, x, y);
+	if (c == 'E')
+		mlx_put_image_to_window((*game).mlx, (*game).win, (*game).exit_nc, x, y);
+	if (c == 'S')
+		mlx_put_image_to_window((*game).mlx, (*game).win, (*game).exit_colored, x, y);
+	if (c == 'P')
+		mlx_put_image_to_window((*game).mlx, (*game).win, (*game).player_left, x, y);
+	if (c == 'R')
+		mlx_put_image_to_window((*game).mlx, (*game).win, (*game).player_right, x, y);
+}
 
-/*t_textures	*load_textures(t_data *game)
+void	init_img(t_data *game)
 {
-	t_textures	*textures;
-	int			w;
-	int			h;
+	int	img_x;
+	int	img_y;
 
-	textures = malloc(sizeof(t_textures));
-	if (!textures)
-		return (NULL);
-	// textures->w = game->width;
-	// textures->h = game->height;
-	game->textures->wall = mlx_xpm_file_to_image(game->mlx,
-			"./ressources/wall64.xpm", &w, &h);
-	if (!textures->wall)
-		ft_printf("Error: could not load wall texture.\n");
-	game->textures->player = mlx_xpm_file_to_image(game->mlx,
-			"./ressources/alien.xpm", &w, &h);
-	if (!textures->player)
-		ft_printf("Error: could not load player texture.\n");
-	game->textures->exit = mlx_xpm_file_to_image(game->mlx,
-			"./ressources/door.xpm", &w, &h);
-	if (!textures->exit)
-		ft_printf("Error: could not load exit texture.\n");
-	game->textures->floor = mlx_xpm_file_to_image(game->mlx,
-			"./ressouces/tile64.xpm", &w, &h);
-	if (!textures->floor)
-		ft_printf("Error: could not load floor texture.\n");
-	return (textures);
-}*/
+	(*game).wall = mlx_xpm_file_to_image((*game).mlx, 
+		"./ressources/skull.xpm", &img_x, &img_y);
+	(*game).floor = mlx_xpm_file_to_image((*game).mlx, 
+		"./ressources/water.xpm", &img_x, &img_y);
+	(*game).exit_nc = mlx_xpm_file_to_image((*game).mlx, 
+		"./ressources/exit_nc.xpm", &img_x, &img_y);
+	(*game).exit_colored = mlx_xpm_file_to_image((*game).mlx, 
+		"./ressources/exit_colored.xpm", &img_x, &img_y);
+	(*game).player_left = mlx_xpm_file_to_image((*game).mlx, 
+		"./ressources/player_left.xpm", &img_x, &img_y);
+	(*game).player_right = mlx_xpm_file_to_image((*game).mlx, 
+		"./ressources/player_right.xpm", &img_x, &img_y);
+	(*game).collect = mlx_xpm_file_to_image((*game).mlx, 
+		"./ressources/collect.xpm", &img_x, &img_y);
+}

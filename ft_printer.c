@@ -6,11 +6,17 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 22:41:54 by victor            #+#    #+#             */
-/*   Updated: 2023/04/17 14:50:17 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/05/11 14:11:40 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	ft_print_error(char *str)
+{
+	perror(str);
+	exit(0);
+}
 
 void	print_win(t_data *game)
 {
@@ -41,13 +47,13 @@ void	print_map(t_data *game)
 	i = 0;
 	while (game->map[i])
 	{
-		printf("%s\tlen : %d\n", game->map[i], ft_strlen(game->map[i]));
+		ft_printf("%s\tlen : %d\n", game->map[i], ft_strlen(game->map[i]));
 		i++;
 	}
-	printf("fd:%d\t path:%s\nrow:%d\tcol:%d\nc:%d\tp:%d\te:%d\nplayer[%d][%d]\n", \
+	ft_printf("fd:%d\t path:%s\nrow:%d\tcol:%d\nc:%d\tp:%d\te:%d\nplayer[%d][%d]\n", \
 	game->fd, game->path, game->row, game->col, game->max_c, game->p, game->p, \
 	game->player_x, game->player_y);
-	printf("check : %d\n", ft_check_objects(game));
+	ft_printf("check : %d\n", ft_check_objects(game));
 }
 
 // int main (void)

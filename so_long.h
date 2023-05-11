@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:43:46 by vgoret            #+#    #+#             */
-/*   Updated: 2023/05/11 13:38:56 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/05/11 14:10:04 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,5 +151,8 @@ void	free_tab(char **tableau);
 void	render_img(t_data *game, char c, int x, int y);
 
 size_t	ft_strlen2(const char *str);
+
+void	render_player(t_data **game, int direction, char c);
+void	init_img(t_data *game);
 
 #endif

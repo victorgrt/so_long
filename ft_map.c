@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:26:21 by vgoret            #+#    #+#             */
-/*   Updated: 2023/04/17 14:41:24 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/05/11 14:12:32 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,25 @@ int	nb_line(char *path)
 	}
 	close(fd);
 	return (i);
+}
+
+int	get_size(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i])
+		i++;
+	return (i);
+}
+
+int	ft_check_objects(t_data *game)
+{
+	if (game->max_c <= 0)
+		return (1);
+	if (game->p != 1)
+		return (1);
+	if (game->e != 1)
+		return (1);
+	return (0);
 }
