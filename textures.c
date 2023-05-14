@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
+/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 19:19:40 by victor            #+#    #+#             */
-/*   Updated: 2023/05/11 17:35:26 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/05/14 15:41:15 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	init_img2ndpart(t_data *game)
 	if (!(*game).player_right)
 		fail_xpm(game, 5);
 	(*game).collect = mlx_xpm_file_to_image((*game).mlx, \
-		"./textures/collect.xpm", &img_x, &img_y);
+		"./textures/collectable.xpm", &img_x, &img_y);
 	game->textures[6] = game->collect;
 	if (!(*game).collect)
 		fail_xpm(game, 6);

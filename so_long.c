@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
+/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:13:31 by vgoret            #+#    #+#             */
-/*   Updated: 2023/05/11 17:54:05 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/05/14 15:36:12 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,11 @@ void	parsing(int ac, char **av, t_data *game)
 	get_map_info(game, fd);
 	map_test = create_game(game);
 	if (ft_check_map(game, map_test) == 1)
+	{
+		// close(fd);
+		// free_tab(map_test);
 		ft_print_error("Error\nCheck map!");
+	}
 	free_tab(map_test);
 	close(fd);
 }
