@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structure.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
+/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 13:28:54 by victor            #+#    #+#             */
-/*   Updated: 2023/05/11 17:48:54 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/05/14 16:39:57 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	init_game(t_data *game, char *path1)
 {
 	game->path = path1;
 	game->map = create_game(game);
-	game->width = game->col * 64;
+	game->width = (game->col - 1) * 64;
 	game->height = game->row * 64;
 	game->p = 0;
 	game->e = 0;
