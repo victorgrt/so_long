@@ -6,7 +6,7 @@
 #    By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/16 16:44:56 by vgoret            #+#    #+#              #
-#    Updated: 2023/05/17 14:42:00 by vgoret           ###   ########.fr        #
+#    Updated: 2023/05/17 16:15:17 by vgoret           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ SRC = so_long.c \
 	parsing.c ft_map.c ft_printer.c map_info.c \
 	player.c utils.c \
 	draw_map.c ft_check_map.c\
-	structure.c ft_move.c ft_move_directions.c\
+	structure.c ft_move.c\
 	src/get_next_line.c src/get_next_line_utils.c \
 	textures.c action.c key_hook.c\
 	ft_free.c ft_render.c\
