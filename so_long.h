@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:43:46 by vgoret            #+#    #+#             */
-/*   Updated: 2023/05/17 14:50:18 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/05/17 16:03:32 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ char			**create_game(t_data *game);
 int				ft_check_working_map(t_data *data);
 void			flood_map(t_data *game, char **map, int row, int col);
 void			ft_flood_map(t_data *game);
-int 			path_finder(char **map);
+int 			path_finder(t_data *game, char **map);
 
 /* GAME */
 int				key_hook(int keysym, t_data *game);
