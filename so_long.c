@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:13:31 by vgoret            #+#    #+#             */
-/*   Updated: 2023/05/14 15:36:12 by victor           ###   ########.fr       */
+/*   Updated: 2023/05/17 13:33:48 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	ft_check_map(t_data *game, char **map)
 {
+	if (map[0] == NULL)
+		return (1);
 	if (is_map_closed(game, map) == 1)
 	{
 		free_tab(map);
@@ -43,8 +45,9 @@ void	parsing(int ac, char **av, t_data *game)
 	if (ft_check_map(game, map_test) == 1)
 	{
 		// close(fd);
+		free(map_test);
 		// free_tab(map_test);
-		ft_print_error("Error\nCheck map!");
+		ft_print_error("Error\nCheck map : ");
 	}
 	free_tab(map_test);
 	close(fd);
