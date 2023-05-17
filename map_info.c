@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:54:08 by victor            #+#    #+#             */
-/*   Updated: 2023/05/17 14:53:30 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/05/17 16:42:50 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,6 @@ int	is_map_rules(t_data *game, char **tab)
 				&& tab[i][j] != 'E' && tab[i][j] != '1'
 				&& tab[i][j] != '0')
 			{
-				printf("Error\nUnknown character : %c ([%d][%d])\n", \
-				tab[i][j], i, j);
 				return (1);
 			}
 			j++;

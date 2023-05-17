@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 13:28:54 by victor            #+#    #+#             */
-/*   Updated: 2023/05/17 14:41:18 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/05/17 16:29:11 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,7 @@ int	init_game(t_data *game, char *path1)
 	init_objects(game);
 	game->c = 0;
 	game->collected = 0;
-	game->collected_flood = 0;
 	ft_flood_map(game);
-	if (game->collected_flood != game->max_c)
-	{
-		printf("collected %d\n", game->collected_flood);
-		free_tab(game->map);
-		ft_print_error("Error\nMap not Doable");
-	}
 	if (ft_check_objects(game) == 1)
 	{
 		free_tab(game->map);

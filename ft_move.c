@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 13:19:22 by victor            #+#    #+#             */
-/*   Updated: 2023/05/17 14:51:10 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/05/17 17:10:36 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	move(t_data **game, char c)
 	else
 		return ;
 	(*game)->move++;
-	if (c == 'r')
+	if (c == 'r' || c == 'u')
 		render_player(game, 1, 'R');
 	else
 		render_player(game, 2, 'P');

@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 22:41:54 by victor            #+#    #+#             */
-/*   Updated: 2023/05/11 14:11:40 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/05/17 16:30:58 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,3 @@ void	print_map(t_data *game)
 	game->player_x, game->player_y);
 	ft_printf("check : %d\n", ft_check_objects(game));
 }
-
-// int main (void)
-// {
-//     print_win();
-//     print_loose();
-//     return (0);
-// }
