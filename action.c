@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 16:53:36 by vgoret            #+#    #+#             */
-/*   Updated: 2023/05/11 17:42:58 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/05/17 15:56:24 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	ft_collect2(t_data **game, char c)
 	}
 	(*game)->move++;
 	(*game)->c++;
-	ft_printf("\033[0;32mCollected : %d/%d\n\033[0m", (*game)->c, (*game)->max_c);
+	ft_printf("\t\t\033[0;32mCollected : %d/%d\r\033[0m", (*game)->c, (*game)->max_c);
 	if ((*game)->c == (*game)->max_c)
 		render_img((*game), 'S', (*game)->exit_x * 64, (*\
 		game)->exit_y * 64);

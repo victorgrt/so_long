@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 19:19:40 by victor            #+#    #+#             */
-/*   Updated: 2023/05/14 16:36:00 by victor           ###   ########.fr       */
+/*   Updated: 2023/05/17 15:55:34 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	init_img(t_data *game)
 	int	img_y;
 
 	(*game).wall = mlx_xpm_file_to_image((*game).mlx, \
-		"./textures/64wall2.xpm", &img_x, &img_y);
+		"./textures/64wall.xpm", &img_x, &img_y);
 	game->textures[0] = game->wall;
 	if (!(*game).wall)
 		fail_xpm(game, 0);
