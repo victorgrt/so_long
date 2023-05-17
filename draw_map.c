@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 22:12:29 by victor            #+#    #+#             */
-/*   Updated: 2023/05/14 16:37:10 by victor           ###   ########.fr       */
+/*   Updated: 2023/05/17 14:48:07 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_generate_window(t_data *game)
 	{
 		y_map = 0;
 		y = 0;
-		while (y < game->row )
+		while (y < game->row)
 		{
 			render_img(game, game->map[y][x], x_map, y_map);
 			y++;

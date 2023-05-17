@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 23:12:06 by victor            #+#    #+#             */
-/*   Updated: 2023/05/11 17:44:59 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/05/17 14:52:46 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,26 +42,3 @@ void	render_player(t_data **game, int direction, char c)
 	else
 		render_img((*game), c, (*game)->player_x * 64, (*game)->player_y * 64);
 }
-
-/*int	main(int ac, char **av)
-{
-	t_data	game;
-
-	if (ac != 2)
-	{
-		printf("Check Arguments\n");
-		return (0);
-	}
-	if (verif_arg(av[1]) == 1)
-	{
-		printf("Error\nExtension de la map invalide ou map pas trouvée dans ./src\n");
-		return (0);
-	}
-	if (init_game(&game, map_path(av[1])) == 1)
-		return (0);
-	init_sprites(&game);
-	ft_render_map(&game);
-	// mlx_hook(game.win, 17, 0L, (void *)close_window, &game);
-	mlx_loop(game.mlx);
-	return (0);
-}*/

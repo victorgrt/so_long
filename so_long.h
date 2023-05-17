@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:43:46 by vgoret            #+#    #+#             */
-/*   Updated: 2023/05/17 14:41:32 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/05/17 14:50:18 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ typedef struct s_data
 }				t_data;
 
 /* PARSING */
+void			parsing(int ac, char **av, t_data *game);
 int				verif_arg(char *str);
 int				handle_map_error(t_data *game, char **map);
 int				is_map_rules(t_data *game, char **map);
@@ -82,6 +83,9 @@ void			get_map_info(t_data *game, int fd);
 int				ft_check_objects(t_data *game);
 char			**create_game(t_data *game);
 int				ft_check_working_map(t_data *data);
+void			flood_map(t_data *game, char **map, int row, int col);
+void			ft_flood_map(t_data *game);
+int 			path_finder(char **map);
 
 /* GAME */
 int				key_hook(int keysym, t_data *game);
@@ -122,7 +126,6 @@ void			*ft_calloc(size_t nmemb, size_t size);
 char			*ft_strjoin(char *s1, char *s2);
 char			*get_next_line(int fd);
 
-void	flood_map(t_data *game, char **map, int row, int col);
-void	ft_flood_map(t_data *game);
+
 
 #endif

@@ -6,26 +6,11 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:26:21 by vgoret            #+#    #+#             */
-/*   Updated: 2023/05/11 17:53:29 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/05/17 14:49:56 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	ft_free(char **tab)
-{
-	int	i;
-
-	i = 0;
-	while (tab[i])
-	{
-		free(tab[i]);
-		i++;
-	}
-	free(tab);
-	tab = NULL;
-	return ;
-}
 
 void	create_game2ndpart(char *line, int fd, char **map, int i)
 {
@@ -58,16 +43,6 @@ char	**create_game(t_data *game)
 	}
 	create_game2ndpart(line, fd, map, i);
 	return (map);
-}
-
-int	get_size(char *line)
-{
-	int	i;
-
-	i = 0;
-	while (line[i])
-		i++;
-	return (i);
 }
 
 int	ft_check_objects(t_data *game)

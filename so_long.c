@@ -6,50 +6,11 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:13:31 by vgoret            #+#    #+#             */
-/*   Updated: 2023/05/17 14:39:35 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/05/17 14:48:58 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-int	ft_check_map(t_data *game, char **map)
-{
-	if (map[0] == NULL)
-		return (1);
-	if (is_map_closed(game, map) == 1)
-	{
-		free_tab(map);
-		return (1);
-	}
-	if (is_map_rules(game, map) == 1)
-	{
-		free_tab(map);
-		return (1);
-	}
-	return (0);
-}
-
-void	parsing(int ac, char **av, t_data *game)
-{
-	char	**map_test;
-	int		fd;
-
-	if (ac != 2)
-		ft_print_error("Error\nTrop d'arguments");
-	if (verif_arg(av[1]) == 1)
-		ft_print_error("Error\nFailed to open the map");
-	game->path = av[1];
-	fd = open(av[1], O_RDONLY);
-	get_map_info(game, fd);
-	map_test = create_game(game);
-	if (ft_check_map(game, map_test) == 1)
-	{
-		free(map_test);
-		ft_print_error("Error\nCheck map : ");
-	}
-	free_tab(map_test);
-	close(fd);
-}
 
 int	main(int ac, char **av)
 {

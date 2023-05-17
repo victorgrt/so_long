@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 13:29:59 by vgoret            #+#    #+#             */
-/*   Updated: 2023/05/17 13:50:19 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/05/17 14:53:37 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,28 +44,6 @@ void	ft_print_tab(char **tab)
 	}
 }
 
-// void	flood_map(t_data *game, int row, int column)
-// {
-// 	char		**mapdata;
-// 	int			i;
-// 	int			j;
-
-// 	i = row;
-// 	j = column;
-// 	mapdata = game->map;
-// 	if (i > game->row - 1 || j > game->col - 1 || j < 0 || i < 0)
-// 		return ;
-// 	if (mapdata[i][j] == '1' || mapdata[i][j] == '2')
-// 		return ;
-// 	if (mapdata[i][j] == 'C')
-// 		game->collected += 1;
-// 	mapdata[i][j] = '2';
-// 	flood_map(game, i + 1, j);
-// 	flood_map(game, i, j + 1);
-// 	flood_map(game, i - 1, j);
-// 	flood_map(game, i, j - 1);
-// }
-
 void	get_position_exit(char **map, t_data *game)
 {
 	int	i;
@@ -88,29 +66,41 @@ void	get_position_exit(char **map, t_data *game)
 	}
 }
 
-// int	ft_check_working_map(t_data *data)
-// {
-// 	int	i;
-// 	int	j;
-// 	int	collected;
+int	ft_check_map(t_data *game, char **map)
+{
+	if (map[0] == NULL)
+		return (1);
+	if (is_map_closed(game, map) == 1)
+	{
+		free_tab(map);
+		return (1);
+	}
+	if (is_map_rules(game, map) == 1)
+	{
+		free_tab(map);
+		return (1);
+	}
+	return (0);
+}
 
-// 	i = data->player_y;
-// 	j = data->player_x;
-// 	flood_map(data, i, j);
-// 	collected = data->collected;
-// 	if (collected != data->max_c)
-// 	{
-// 		printf("Cant be done\n");
-// 		return (1);
-// 	}
-// 	printf("exit[%d][%d]\n", data->exit_x, data->exit_y);
-// 	if (data->map[data->exit_y - 1][data->exit_x] == '1' && 
-// 		data->map[data->exit_y + 1][data->exit_x] == '1'
-// 		&& data->map[data->exit_y][data->exit_x - 1] == '1' && 
-// 		data->map[data->exit_y][data->exit_x + 1] == '1')
-// 	{
-// 		printf("The exit is surrounded by walls.\n");
-// 		return (1);
-// 	}
-// 	return (0);
-// }
+void	parsing(int ac, char **av, t_data *game)
+{
+	char	**map_test;
+	int		fd;
+
+	if (ac != 2)
+		ft_print_error("Error\nTrop d'arguments");
+	if (verif_arg(av[1]) == 1)
+		ft_print_error("Error\nFailed to open the map");
+	game->path = av[1];
+	fd = open(av[1], O_RDONLY);
+	get_map_info(game, fd);
+	map_test = create_game(game);
+	if (ft_check_map(game, map_test) == 1)
+	{
+		free(map_test);
+		ft_print_error("Error\nCheck map : ");
+	}
+	free_tab(map_test);
+	close(fd);
+}
