@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:13:31 by vgoret            #+#    #+#             */
-/*   Updated: 2023/05/17 13:33:48 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/05/17 14:39:35 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,7 @@ void	parsing(int ac, char **av, t_data *game)
 	map_test = create_game(game);
 	if (ft_check_map(game, map_test) == 1)
 	{
-		// close(fd);
 		free(map_test);
-		// free_tab(map_test);
 		ft_print_error("Error\nCheck map : ");
 	}
 	free_tab(map_test);

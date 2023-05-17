@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:43:46 by vgoret            #+#    #+#             */
-/*   Updated: 2023/05/11 17:12:34 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/05/17 14:41:32 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct s_data
 	int			max_c;
 	int			move;
 	int			collected;
+	int			collected_flood;
 
 	int			fd;
 
@@ -120,5 +121,8 @@ int				ft_strlen(char *str);
 void			*ft_calloc(size_t nmemb, size_t size);
 char			*ft_strjoin(char *s1, char *s2);
 char			*get_next_line(int fd);
+
+void	flood_map(t_data *game, char **map, int row, int col);
+void	ft_flood_map(t_data *game);
 
 #endif
