@@ -20,11 +20,8 @@
 </details>
 
 
-
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
 
 Ce projet est mon premier projet graphique chez 42. C'est un simple jeu video en 2D. Le but est d'obtenir tous les collectables et de prendre la sortie.
 
@@ -55,6 +52,7 @@ This is an example of how to list things you need to use the software and how to
   gcc install gcc@latest -g
   ```
 
+
 ### Installation
 
 1. Clone the repo
@@ -64,12 +62,15 @@ This is an example of how to list things you need to use the software and how to
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+
+
 <!-- USAGE EXAMPLES -->
 ## Usage
 Pour compiler :
 ```sh
 make
 ```
+
 Pour lancer le jeu :
 ```sh
 ./so_long ./maps/"nom de la map".ber
