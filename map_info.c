@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:54:08 by victor            #+#    #+#             */
-/*   Updated: 2023/05/17 16:42:50 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/05/22 14:00:33 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,12 +108,12 @@ int	handle_map_error(t_data *game, char **map)
 {
 	if (is_map_closed(game, map) == 1)
 	{
-		printf("Error\nMap not closed\n");
+		ft_printf("Error\nMap not closed\n");
 		return (1);
 	}
 	if (is_map_rules(game, map) == 1)
 	{
-		printf("Error\nCheck Assets of the map\n");
+		ft_printf("Error\nCheck Assets of the map\n");
 		return (1);
 	}
 	return (0);

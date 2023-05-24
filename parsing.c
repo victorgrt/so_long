@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 13:29:59 by vgoret            #+#    #+#             */
-/*   Updated: 2023/05/17 16:43:08 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/05/22 13:22:01 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,10 @@ void	get_position_exit(char **map, t_data *game)
 int	ft_check_map(t_data *game, char **map)
 {
 	if (map[0] == NULL)
+	{
+		free(map);
 		return (1);
+	}
 	if (is_map_closed(game, map) == 1)
 	{
 		free_tab(map);
@@ -97,7 +100,7 @@ void	parsing(int ac, char **av, t_data *game)
 	get_map_info(game, fd);
 	map_test = create_game(game);
 	if (ft_check_map(game, map_test) == 1)
-		ft_print_error("Error\nCheck map");
+		ft_print_error("Error\nMap Not Closed or Not Rectangle");
 	free_tab(map_test);
 	close(fd);
 }

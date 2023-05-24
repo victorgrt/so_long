@@ -6,7 +6,7 @@
 #    By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/16 16:44:56 by vgoret            #+#    #+#              #
-#    Updated: 2023/05/17 16:15:17 by vgoret           ###   ########.fr        #
+#    Updated: 2023/05/22 13:42:02 by vgoret           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,7 @@ BLUE='\033[0;34m'
 all: ${NAME} title
 
 ${NAME} : ${OBJ}
+	@cd ./mlx_linux && ./configure && cd ..
 	@echo ${BOLD} ${YELLOW} "○	Making Ft_printf..." ${NONE}	
 	@make -C ./src/ft_printf
 	@echo ${BOLD} ${BLUE} "\033[1m○	Compiling files..." ${NONE}

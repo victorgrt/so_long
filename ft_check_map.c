@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 15:05:53 by vgoret            #+#    #+#             */
-/*   Updated: 2023/05/17 16:31:04 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/05/22 13:47:12 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,13 @@ void	flood_map(t_data *game, char **map, int row, int col)
 	j = col;
 	if (i < 0 || j < 0 || i >= game->row || j >= game->col)
 		return ;
-	if (map[i][j] == '1' || map[i][j] == '2' || (map[i][j] == 'E' && \
-		game->collected_flood != game->max_c))
+	if (map[i][j] == '1' || map[i][j] == '2' || (map[i][j] == 'E' \
+		&& game->exit_flood != 1))
+	{
+		if (map[i][j] == 'E')
+			game->exit_flood++;
 		return ;
+	}
 	if (map[i][j] == 'C')
 	{
 		game->collected_flood++;
@@ -59,10 +63,12 @@ void	ft_flood_map(t_data *game)
 {
 	char	**map;
 
+	game->exit_flood = 0;
 	game->collected_flood = 0;
 	map = create_game(game);
 	flood_map(game, map, game->player_y, game->player_x);
-	if (path_finder(game, map) == 0 || game->collected_flood != game->max_c)
+	if (path_finder(game, map) == 0 || game->collected_flood != game->max_c \
+		|| game->exit_flood != 1)
 	{
 		free_tab(map);
 		free_tab(game->map);

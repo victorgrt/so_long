@@ -6,7 +6,7 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:43:46 by vgoret            #+#    #+#             */
-/*   Updated: 2023/05/17 16:03:32 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/05/22 12:35:16 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_data
 	int			move;
 	int			collected;
 	int			collected_flood;
+	int			exit_flood;
 
 	int			fd;
 
@@ -85,7 +86,7 @@ char			**create_game(t_data *game);
 int				ft_check_working_map(t_data *data);
 void			flood_map(t_data *game, char **map, int row, int col);
 void			ft_flood_map(t_data *game);
-int 			path_finder(t_data *game, char **map);
+int				path_finder(t_data *game, char **map);
 
 /* GAME */
 int				key_hook(int keysym, t_data *game);
@@ -125,7 +126,5 @@ int				ft_strlen(char *str);
 void			*ft_calloc(size_t nmemb, size_t size);
 char			*ft_strjoin(char *s1, char *s2);
 char			*get_next_line(int fd);
-
-
 
 #endif

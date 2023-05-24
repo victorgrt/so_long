@@ -6,16 +6,14 @@
 /*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 13:28:54 by victor            #+#    #+#             */
-/*   Updated: 2023/05/17 16:29:11 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/05/22 14:20:31 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	init_game(t_data *game, char *path1)
-{	
-	game->path = path1;
-	game->map = create_game(game);
+void	init_game_var(t_data *game)
+{
 	game->width = (game->col - 1) * 64;
 	game->height = game->row * 64;
 	game->p = 0;
@@ -26,17 +24,30 @@ int	init_game(t_data *game, char *path1)
 	init_objects(game);
 	game->c = 0;
 	game->collected = 0;
-	ft_flood_map(game);
+}
+
+int	init_game(t_data *game, char *path1)
+{	
+	game->map = create_game(game);
+	if (!game->map)
+		return (1);
+	init_game_var(game);
+	game->path = path1;
 	if (ft_check_objects(game) == 1)
 	{
 		free_tab(game->map);
 		ft_print_error("Error\nCheck Assets of the map");
 	}
 	game->move = 0;
+	ft_flood_map(game);
 	game->mlx = mlx_init();
+	if (!game->mlx)
+		return (1);
 	init_img(game);
 	game->win = mlx_new_window(game->mlx, game->width,
 			game->height, "so_long");
+	if (!game->win)
+		return (1);
 	ft_generate_window(game);
 	return (0);
 }
