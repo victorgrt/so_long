@@ -66,7 +66,11 @@ This is an example of how to list things you need to use the software and how to
 
 <!-- USAGE EXAMPLES -->
 ## Usage
-
+Pour compiler :
+```sh
+make
+```
+Pour lancer le jeu :
 ```sh
 ./so_long ./maps/"nom de la map".ber
 ```
